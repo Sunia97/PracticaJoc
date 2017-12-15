@@ -1,6 +1,7 @@
 
 /* Inicializar el juego */
 function iniciarJuego() {
+  loadMap();
   /* TODO */
 }
 
