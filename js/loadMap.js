@@ -16,6 +16,6 @@ function loadNewMap() {
 
 function uploadMapFirstTime() {
   $.post( url + token + "/slot/nueva",    //URL del post
-          data,                           // TODO: Path del fitxer json amb TOTS els nivells
+          "src/level1.json",              //Path del fitxer json amb TOTS els nivells
           "json");                        //Datatype
 }
