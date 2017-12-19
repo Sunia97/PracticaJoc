@@ -18,7 +18,7 @@ var enemigo = {
   xp:0,
   img:"",
   objetos:[]
-}
+};
 
 var player = {
   nombre:"",
@@ -41,7 +41,7 @@ var player = {
 /* Se llama al cargar todos los elementos de la página */
 window.onload = function () {
   iniciarJuego();
-}
+};
 
 /*  Pinta imagen en el visor */
 function pintaImagen(src, x, y) {
@@ -53,7 +53,7 @@ function pintaImagen(src, x, y) {
   base_image.onload = function () {
     // Pinta imagen en el canvas
     context.drawImage(this, x, y);
-  }
+  };
 }
 
 /* Pinta al visor lo que hay en el mapa */

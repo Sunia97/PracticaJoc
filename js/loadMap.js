@@ -1,45 +1,21 @@
-/*Cargrega mapa de nivell*/
+/*
+VARIABLES GLOBALS
+ */
+var url = "http://puigpedros.salleurl.edu/pwi/pac4/token/";
+var token = "fa8a1b5b-55ff-4f03-b5f9-be0a95e713e2";
 
-//Classes per les caselles (excepte pels enemics i els jugador)
-var wall = {
-  img:"media/images/dungeon_wall.png",         //Imatge que es mostrarà en la posició
-  action:"Block"                               //Accions de la classe (per exemple: bloquejar usuari, cridar a una funció per iniciar un combat, superar nivell...)
-};
 
-var door = {
-  img:"media/images/dungeon_door.png",
-  action:"Exit"
-};
-
-var air = {
-  img:"media/images/dungeon_step.png",
-  action:null
-};
-
-function loadMap() {
-
-  readTextFile("src/mapa-2.txt");
-
-  var mapa = [[]];
+/*
+FUNCIONS
+ */
+function loadNewMap() {
+  mapa = [[[]]];                                      // la variable mapa és un array de nivells, on cada nivell és un array d'arrays (mapa 10x10)
+  $mapa.getJSON( url + token + "/partida/nueva");     //Carregar tots els nivells a la variable mapa a l'inici del joc (partida nova)
 
 }
 
-
-
-function readTextFile(file)
-{
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-                var allText = rawFile.responseText;
-                alert(allText);
-            }
-        }
-    }
-    rawFile.send(null);
+function uploadMapFirstTime() {
+  $.post( url + token + "/slot/nueva",    //URL del post
+          data,                           // TODO: Path del fitxer json amb TOTS els nivells
+          "json");                        //Datatype
 }
