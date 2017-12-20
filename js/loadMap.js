@@ -9,7 +9,7 @@ FUNCIONS
 
  //Per penjar l'estructura json al servidor
 
- function uploadStructureFirstTime() {
+function uploadStructureFirstTime() {
 
   $.ajax({
     type: 'POST',
