@@ -31,10 +31,11 @@ function iniciarJuego() {
   var gameJSON = downloadStructureJSON(slot);//game es el json object amb tots els nivells
 
   var level = -2;
-
+/*
   while (level < 1) {
     level = loadNewLevel(level, gameJSON);
   }
+*/
   //S'acaba el joc quan s'arriba al nivell 1
 
 /*
