@@ -25,10 +25,10 @@ function iniciarJuego() {
 
   var slot = "nueva";     // NOTE: Variarà segons el que vulgui el jugador (partida 1 o 2 guardada) o "nueva" a l'inici
 
-  uploadMapFirstTime();   // NOTE: Només per pujar els mapes al servidor. Comentar-ho quan ja estan pujats!
+  uploadStructureFirstTime();   // NOTE: Només per pujar els mapes al servidor. Comentar-ho quan ja estan pujats!
   getListOfGames();
 
-  downloadMapsJSON(slot);
+  downloadStructureJSON(slot);
 /*
   var level = -2;
 
