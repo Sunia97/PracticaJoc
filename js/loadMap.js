@@ -10,7 +10,8 @@ FUNCIONS
  */
 function loadNewMap() {
   mapa = [[[]]];                                      // la variable mapa és un array de nivells, on cada nivell és un array d'arrays (mapa 10x10)
-  $mapa.getJSON( url + token + "/partida/nueva");     //Carregar tots els nivells a la variable mapa a l'inici del joc (partida nova)
+  $mapa.getJSON( url + token + "/partida/nueva");
+  return mapa;     //Carregar tots els nivells a la variable mapa a l'inici del joc (partida nova)
 
 }
 
