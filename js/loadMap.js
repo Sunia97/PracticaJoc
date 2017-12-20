@@ -36,8 +36,8 @@ FUNCIONS
 
  }
 
+//Per descarregar del servidor l'estructura de mapes en objecte json i retorna-lo.
 function downloadStructureJSON(slot) {
-  var estructuraJSON = "";// la variable estructuraJSON és un array de nivells, on cada nivell és un array d'arrays (mapa 10x10)
 
   $.ajax({
     type: 'GET',
@@ -45,36 +45,46 @@ function downloadStructureJSON(slot) {
     success: function(result){
       console.log("Success on GET downloadMapsJSON. Result:\n");
       console.log(result);
-      estructuraJSON = result;
+      var gameJSON = JSON.parse(result);// la variable estructuraJSON conté un array de nivells, on cada nivell és un array d'arrays (mapa 10x10)
+      return gameJSON;
     }
   });
-
 }
 
-
 /*
-function loadNewLevel(level) {
+//Funció per a fer una crida de guardar una partida
+function saveGame() {
 
-  var nextLevel;
+}
+*/
+
+//Funció que carrega un nivell del map i on es desenvolupa tot el joc amb crides a funcions
+function loadNewLevel(level, gameJSON) {
 
   switch(level) {
     case -2:
+      mapa = gameJSON[0].map;//Assigno el nivell (mapa) que toca a mapa
+
       //TODO
 
-      nextLevel = -1;
-      break;
+
+      level = -1;
+      return level;//Un cop superat nivell
     case -1:
+      mapa = gameJSON[1].map;//Assigno el nivell (mapa) que toca a mapa
+
       //TODO
 
-      nextLevel = 0;
-      break;
+
+      level = 0;//Un cop superat nivell
+      return level;
     case 0:
+      mapa = gameJSON[2].map;//Assigno el nivell (mapa) que toca a mapa
+
       //TODO
 
-      nextLevel = 1;
-      break;
-  }
 
-  return nextLevel;
+      level = 1;//Un cop superat nivell
+      return level;
+  }
 }
-*/
