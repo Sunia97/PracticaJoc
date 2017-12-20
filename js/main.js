@@ -1,6 +1,3 @@
-/*
-VARIABLES GLOBALS
- */
 
 //Classes per les caselles (excepte pels enemics i els jugador)
 var wall = {
@@ -26,9 +23,25 @@ FUNCIONS
 /* Inicializar el juego */
 function iniciarJuego() {
 
-  //uploadMapFirstTime();   // NOTE: Només s'utilitza el primer cop, després comentar funció.
+  var slot = "nueva";     // NOTE: Variarà segons el que vulgui el jugador (partida 1 o 2 guardada) o "nueva" a l'inici
 
-  //mapa = loadNewMap();
+  uploadStructureFirstTime();   // NOTE: Només per pujar els mapes al servidor. Comentar-ho quan ja estan pujats!
+  getListOfGames();
+
+  downloadStructureJSON(slot);
+/*
+  var level = -2;
+
+  while (level < 1) {
+    level = loadNewLevel(level);
+  }
+
+  //S'acaba el joc quan s'arriba al nivell 1
+}
+*/
+//uploadMapFirstTime();   // NOTE: Només s'utilitza el primer cop, després comentar funció.
+
+//mapa = loadNewMap();
 
   mapa = [["##########"],["#········#"],["#········#"],["#········#"],["#········#"],["#····#···#"],["#····P···#"],["#········#"],["#········#"],["##########"]];
   for (x = 0; x<11; x++) {
@@ -41,29 +54,27 @@ function iniciarJuego() {
       //mapaToImg(x, y);
     }
   }
-
 }
 
 function move (moviment) {
-  switch (player.estadoPartida.direccion) {
-      case 0:
-        if (moviment == "forward") player.estadoPartida.y--;
-        else player.estadoPartida.y++;
-        break;
-      case 1:
-        if (moviment == "forward") player.estadoPartida.y++;
-        else player.estadoPartida.y--;
-        break;
-      case 2:
-        if (moviment == "forward") player.estadoPartida.x++;
-        else player.estadoPartida.x--;
-        break;
-      case 3:
-        if (moviment == "forward") player.estadoPartida.x--;
-        else player.estadoPartida.x++;
-        break;
-    }
-}
+switch (player.estadoPartida.direccion) {
+    case 0:
+      if (moviment == "forward") player.estadoPartida.y--;
+      else player.estadoPartida.y++;
+      break;
+    case 1:
+      if (moviment == "forward") player.estadoPartida.y++;
+      else player.estadoPartida.y--;
+      break;
+    case 2:
+      if (moviment == "forward") player.estadoPartida.x++;
+      else player.estadoPartida.x--;
+      break;
+    case 3:
+      if (moviment == "forward") player.estadoPartida.x--;
+      else player.estadoPartida.x++;
+      break;
+  }
 
 function rotate (rotacio) {
   switch (player.estadoPartida.direccion) {
