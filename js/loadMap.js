@@ -8,7 +8,7 @@ FUNCIONS
  */
 
  //Per penjar l'estructura json al servidor
- function uploadMapFirstTime() {
+ function uploadStructureFirstTime() {
 
   $.ajax({
     type: 'POST',
@@ -36,8 +36,8 @@ FUNCIONS
 
  }
 
-function downloadMapsJSON(slot) {
-  var estructuraJSON = "";                                   // la variable mapa és un array de nivells, on cada nivell és un array d'arrays (mapa 10x10)
+function downloadStructureJSON(slot) {
+  var estructuraJSON = "";// la variable estructuraJSON és un array de nivells, on cada nivell és un array d'arrays (mapa 10x10)
 
   $.ajax({
     type: 'GET',
