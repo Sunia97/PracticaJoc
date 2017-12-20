@@ -28,19 +28,20 @@ function iniciarJuego() {
   uploadMapFirstTime();   // NOTE: Només per pujar els mapes al servidor. Comentar-ho quan ja estan pujats!
   getListOfGames();
 
-/*
   downloadMapsJSON(slot);
-
+/*
   var level = -2;
 
   while (level < 1) {
     level = loadNewLevel(level);
-  }*/
+  }
 
   //S'acaba el joc quan s'arriba al nivell 1
 }
+*/
 
 /* Convierte lo que hay en el mapa en un archivo de imagen */
-function mapaToImg(x, y) {
+  function mapaToImg(x, y) {
   /* TODO */
+  }
 }

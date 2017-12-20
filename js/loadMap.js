@@ -13,9 +13,9 @@ FUNCIONS
   $.ajax({
     type: 'POST',
     url: url_server + token + "&slot=nueva",
-    json: structure,
+    json: structure,//Com que el path està posat al html ho detecta com una variable
     success: function(result){
-     console.log("Success on POST. Result:\n");
+     console.log("Success on POST uploadMapFirstTime. Result:\n");
      console.log(result);
     }
   });
@@ -27,23 +27,30 @@ FUNCIONS
 
    $.ajax({
       type: 'GET',
-      url : url_server + token,
+      url: url_server + token,
       success: function(result){
-        console.log("Success on GET. Result:\n");
+        console.log("Success on GET getListOfGames. Result:\n");
         console.log(result);
       }
    });
 
  }
 
-/*
 function downloadMapsJSON(slot) {
-  estructuraJSON = [];                                   // la variable mapa és un array de nivells, on cada nivell és un array d'arrays (mapa 10x10)
+  var estructuraJSON = "";                                   // la variable mapa és un array de nivells, on cada nivell és un array d'arrays (mapa 10x10)
 
+  $.ajax({
+    type: 'GET',
+    url: url_server + token + "&slot=" + slot,
+    success: function(result){
+      console.log("Success on GET downloadMapsJSON. Result:\n");
+      console.log(result);
+      estructuraJSON = result;
+    }
+  });
 
-  //$mapa.getJSON( url + token + "/partida/nueva");     //Carregar tots els nivells a la variable mapa a l'inici del joc (partida nova)
 }
-*/
+
 
 /*
 function loadNewLevel(level) {
