@@ -52,6 +52,10 @@ function iniciarJuego() {
 */
 }
 
+
+
+// TODO: Posar aquestes funcions de logica de moviments en un altre .js
+
 function move (moviment) {
 switch (player.estadoPartida.direccion) {
     case 0:
@@ -113,6 +117,7 @@ function show () {
         break;
     }
 }
+
 /* Convierte lo que hay en el mapa en un archivo de imagen */
 function mapaToImg(x, y) {
   if (mapa[x][y] == "#") {
