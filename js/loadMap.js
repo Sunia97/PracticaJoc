@@ -11,10 +11,10 @@ FUNCIONS
  function uploadMapFirstTime() {
 
    $.ajax({
-     "type": "POST",
-     "url" :url2 + token + "&slot=nueva",
-     "json" :"src/structure.json",
-     "success": function(result){
+     type: "POST",
+     url: url2 + token + "&slot=nueva",
+     json: "src/structure.json",
+     success: function(result){
        console.log("Success on POST. Result:\n");
        console.log(result);
      }
