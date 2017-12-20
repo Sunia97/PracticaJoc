@@ -37,7 +37,7 @@ function iniciarJuego() {
   }
   //S'acaba el joc quan s'arriba al nivell 1
 
-
+/*
   mapa = [["##########"],["#········#"],["#········#"],["#········#"],["#········#"],["#····#···#"],["#····P···#"],["#········#"],["#········#"],["##########"]];
   for (x = 0; x<11; x++) {
     for (y = 0; y<11; y++) {
@@ -49,6 +49,7 @@ function iniciarJuego() {
       //mapaToImg(x, y);
     }
   }
+*/
 }
 
 function move (moviment) {
