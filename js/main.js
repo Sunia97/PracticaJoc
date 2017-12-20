@@ -75,6 +75,7 @@ switch (player.estadoPartida.direccion) {
       else player.estadoPartida.x++;
       break;
   }
+}
 
 function rotate (rotacio) {
   switch (player.estadoPartida.direccion) {
