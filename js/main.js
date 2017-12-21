@@ -23,9 +23,10 @@ FUNCIONS
 /* Inicializar el juego */
 function iniciarJuego() {
 
-  var slot = "nueva";           // NOTE: Variarà segons el que vulgui el jugador (partida 1 o 2 guardada) o "nueva" a l'inici
+  var slot = "";           // NOTE: Variarà segons el que vulgui el jugador (partida 1 o 2 guardada) o "nueva" a l'inici
 
-  uploadStructureFirstTime();   // NOTE: Només per pujar els mapes al servidor. Comentar-ho quan ja estan pujats!
+  //uploadStructureJSON(slot);   // NOTE: Només per pujar els mapes al servidor. Comentar-ho quan ja estan pujats!
+  //deleteStructureJSON(slot);
   getListOfGames();             // NOTE: Només és comprovació. No influeix en joc.
 
   var gameJSON = downloadStructureJSON(slot);//game es el json object amb tots els nivells
