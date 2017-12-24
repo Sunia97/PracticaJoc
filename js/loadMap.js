@@ -72,9 +72,22 @@ function loadNewLevel(level, gameJSON) {
   switch(level) {
     case -2:
       mapa = gameJSON[0].map;//Assigno el nivell (mapa) que toca a mapa
+      iniciaPartida(); //carrega la posició del jugador i el que calgui
+      show();
+      estatPartida = 0; //indica l'estat de la partida: 0 = jugador viu, 1 = sense vides, 2 = èxit!
 
-      //TODO
+      //Bucle que comprova que el jugador segueix viu
+      while (estatPartida == 0) {
+        comprovaPartida();
+      }
 
+      if (estatPartida == 1) {
+        alert("has perdut!");
+        // TODO: que passa quan perd?
+      } else {
+        alert("has superat el nivell -2")
+        level = -1;
+      }
       console.log("Superat nivell -2");
       level = -1;
       return level;//Un cop superat nivell
