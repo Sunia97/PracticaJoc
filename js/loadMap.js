@@ -45,8 +45,9 @@ function downloadStructureJSON(slot) {
     success: function(result){
       console.log("Success on GET from Server (downloadMapsJSON). Result:\n");
       console.log(result);
-      var gameJSON = JSON.parse(result);// la variable estructuraJSON conté un array de nivells, on cada nivell és un array d'arrays (mapa 10x10)
-      return gameJSON;
+      //var gameJSON = [];
+      //gameJSON = JSON.parse(result);// la variable gameJSON conté un array de nivells, on cada nivell és un array d'arrays (mapa 10x10)
+      return result;
     }
   });
 }
@@ -60,8 +61,6 @@ function deleteStructureJSON(slot) {
     success: function(result){
       console.log("Success on DELETE from Server (deleteStructureJSON)\n");
       console.log(result);
-      var gameJSON = JSON.parse(result);// la variable estructuraJSON conté un array de nivells, on cada nivell és un array d'arrays (mapa 10x10)
-      return gameJSON;
     }
   });
 
@@ -76,7 +75,7 @@ function loadNewLevel(level, gameJSON) {
 
       //TODO
 
-
+      console.log("Superat nivell -2");
       level = -1;
       return level;//Un cop superat nivell
     case -1:
@@ -84,7 +83,7 @@ function loadNewLevel(level, gameJSON) {
 
       //TODO
 
-
+      console.log("Superat nivell -1");
       level = 0;//Un cop superat nivell
       return level;
     case 0:
@@ -92,7 +91,7 @@ function loadNewLevel(level, gameJSON) {
 
       //TODO
 
-
+      console.log("Superat nivell 0");
       level = 1;//Un cop superat nivell
       return level;
   }
