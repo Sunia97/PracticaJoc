@@ -59,7 +59,46 @@ function iniciarJuego() {
 */
 }
 
+function iniciaPartida(mapa) {
+  alert(mapa);
+  x = 0;
+  y = 0;
+  fi = 0;
+  while (x < 11 && fi == 0) {
+    console.log(x);
+    while (y < 11 && fi == 0) {
+      console.log(y);
+        if  (mapa[x][y] == "P") {
+        console.log("posicio", x, y);
+        player.estadoPartida.x = x;
+        player.estadoPartida.y = y;
+        fi = 1;
+      }
+    }
+  }
+  //for (x = 0; x<11; x++) {
+  //  console.log(x)
+  //  for (y = 0; y<11; y++) {
+  //    console.log(y)
+  //    if (mapa[x][y] == "P"){
+  //      console.log("posicio")
+  //      player.estadoPartida.x = x;
+  //      player.estadoPartida.y = y;
+  //    }
+  //  }
+  //}
+  console.log("he sortit", player.estadoPartida.x, player.estadoPartida.y)
+  show();
+}
 
+function comprovaPartida(mapa, estatPartida) {
+  if (mapa[player.x][player.y]=="E") {
+    estatPartida = 2;
+  }
+  if (player.vida == 0) {
+    estatPartida = 1;
+  }
+}
 
 // TODO: Posar aquestes funcions de logica de moviments en un altre .js
 
@@ -128,10 +167,10 @@ function show () {
 /* Convierte lo que hay en el mapa en un archivo de imagen */
 function mapaToImg(x, y) {
   if (mapa[x][y] == "#") {
-    return "media/images/dungeon_wall.png";
+    return "dungeon_wall.png";
   }
   if (mapa[x][y] == ".") {
-    return "media/images/dungeon_step.png";
+    return "dungeon_step.png";
   }
   /*if (mapa[x][y] == "D") {
     return "media/images/dungeon_door.png";
