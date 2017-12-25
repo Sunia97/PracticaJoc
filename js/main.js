@@ -23,6 +23,9 @@ FUNCIONS
 /* Inicializar el juego */
 function iniciarJuego() {
 
+  var audio = new Audio('src/StrangerThings8 Bit.mp3');
+  audio.play();
+
   var slot = "nueva";           // NOTE: Variarà segons el que vulgui el jugador (partida 1 o 2 guardada) o "nueva" a l'inici
 
   //uploadStructureJSON(slot);   // NOTE: Només per pujar els mapes al servidor. Comentar-ho quan ja estan pujats!

@@ -1,0 +1,45 @@
+@media all {
+  .container {
+    background-color: #C20E0E;
+    font-family: 'Open Sans', sans-serif;
+  }
+  .button {
+    background-color: #C20E0E;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+  #titol_principal {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 35px;
+  }
+  #titol_equipo {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 22px;
+  }
+  #titol_controles {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 22px;
+  }
+  #titol_navegacion {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 22px;
+  }
+  #header {
+    background-color: #ff1515;
+  }
+  #controles {
+    background-color: #ff1515;
+  }
+  #navegacion {
+    background-color: white;
+  }
+  #equipo {
+    background-color: #1e193c;
+    color: white;
+  }
+}

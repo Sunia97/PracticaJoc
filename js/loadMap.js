@@ -63,7 +63,6 @@ function deleteStructureJSON(slot) {
       console.log(result);
     }
   });
-
 }
 
 }
