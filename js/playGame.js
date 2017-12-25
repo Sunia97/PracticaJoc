@@ -1,9 +1,9 @@
 //Funció que carrega un nivell del map i on es desenvolupa tot el joc amb crides a funcions
 function loadNewLevel(level) {
-
+  if (level < 0) {
     readJSON (level);
     startGame(); //carrega la posició del jugador i el que calgui
-    //return level;//Un cop superat nivell
+  }
 }
 
 function readJSON (level) {
