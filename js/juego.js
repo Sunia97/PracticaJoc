@@ -24,10 +24,10 @@ var enemigo = {
 var player = {
   nombre:"jugador",
   vida:10,
-  nivel:0,
+  nivel:1,
   xp:0,
-  ataque:3,
-  defensa:1,
+  ataque:0,
+  defensa:0,
   manoderecha:"garrot",
   manoizquierda:"",
   mochila:[],

@@ -65,14 +65,36 @@ function show () {
         break;
   }
 
+  checkGame(x, y);
+}
+
+//Rep la casella que el jugaor té davant
+function checkGame(x, y) {
+
   if (mapa[x][y] == "E") {
     fight();
   }
 
-  checkGame(player.estadoPartida);
-}
+  //TODO Cal fer per baixar de nivell
+  if (mapa[x][y] == "D") {
+    console.log("PORTA PER PUJAR DE NIVELL");
+    if (player.xp >= 10 * player.nivel) {
 
-function checkGame(estatPartida) {
+    }
+  }
+
+  //XP acumulats d'altres nivells.
+  var xp = 0;
+  for (i = player.nivel; i > 1; i--) {
+    xp += player.nivel * 10;
+  }
+
+  //El jugador puja de nivell
+  if (player.xp >= 10 * (player.nivel + 1) + xp) {
+    player.nivel ++;
+    console.log("PUJA NIVELL " + player.nivel);
+  }
+
   //Si està mort:
   if (player.vida <= 0) {
     estatPartida = 1;
