@@ -1,3 +1,6 @@
+var level = -2;
+var gameJSON;
+
 /*
 FUNCIONS
  */
@@ -15,13 +18,8 @@ function iniciarJuego() {
   //var gameJSON = downloadStructureJSON(slot);//game es el json object amb tots els nivells
 
   // NOTE: TEMPORALMENT, UTILITZEM EL FITXER JSON LOCAL, NO EL DEL SERVIDOR
-  var gameJSON = structure;
-
-  var level = -2;
-
-  while (level < 1) {
-    level = loadNewLevel(level, gameJSON);
-  }
+  gameJSON = structure;
+  loadNewLevel(level);
 
   //console.log("Partida acabada");
   //S'acaba el joc quan s'arriba al nivell 1

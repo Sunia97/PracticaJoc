@@ -1,12 +1,12 @@
 //Funció que carrega un nivell del map i on es desenvolupa tot el joc amb crides a funcions
-function loadNewLevel(level, gameJSON) {
+function loadNewLevel(level) {
 
-    readJSON (level, gameJSON);
+    readJSON (level);
     startGame(); //carrega la posició del jugador i el que calgui
     //return level;//Un cop superat nivell
 }
 
-function readJSON (level, gameJSON) {
+function readJSON (level) {
 
   //Busca el mapa corresponent al nivell
   for (var z = 0; z < gameJSON.size; z++) {
@@ -75,14 +75,28 @@ function checkGame(x, y) {
     fight();
   }
 
-  //TODO Cal fer per baixar de nivell
-  if (mapa[x][y] == "D") {
-    console.log("PORTA PER PUJAR DE NIVELL");
-    if (player.xp >= 10 * player.nivel) {
+  updatePlayer ();
 
+  //Si està mort:
+  if (player.vida <= 0) {
+    estatPartida = 1;
+    alert("has perdut!");
+    // TODO: que passa quan perd?
+  } else {
+
+    //TODO Cal fer per baixar de nivell
+    if (mapa[x][y] == "D") {
+      level++;
+      console.log("PORTA PER PUJAR DE NIVELL AL " + level);
+
+      //puja de nivell
+      loadNewLevel(level);
     }
   }
+}
 
+//Actualitza el nivell, defensa i atac del jugador
+function updatePlayer () {
   //XP acumulats d'altres nivells.
   var xp = 0;
   for (i = player.nivel; i > 1; i--) {
@@ -92,19 +106,15 @@ function checkGame(x, y) {
   //El jugador puja de nivell
   if (player.xp >= 10 * (player.nivel + 1) + xp) {
     player.nivel ++;
+    player.defensa --;
+    player.vida += player.nivel * 10;
     console.log("PUJA NIVELL " + player.nivel);
   }
 
-  //Si està mort:
-  if (player.vida <= 0) {
-    estatPartida = 1;
-    alert("has perdut!");
-    // TODO: que passa quan perd?
+  //Cada dos nivells es puja 1 d'atac
+  if (player.nivel % 2 == 0) {
+    player.ataque ++;
   }
-  /*else {
-    alert("has superat el nivell -2");
-    level = -1;
-  }*/
 }
 
 function fight () {
