@@ -97,7 +97,7 @@
     border-right-style: solid;
 
     p {
-      @include margin(25px, 25px, 25px, 0px);
+      @include margin(25px, 25px, 25px, 25px);
     }
   }
 
