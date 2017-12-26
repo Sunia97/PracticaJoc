@@ -8,8 +8,9 @@ FUNCIONS
 /* Inicializar el juego */
 function iniciarJuego() {
 
-  var audio = new Audio('src/StrangerThings8 Bit.mp3');
-  audio.play();
+  var introMusic = new Audio('src/StrangerThings8 Bit.mp3');
+
+  introMusic.play();
 
   var slot = "nueva";           // NOTE: Variarà segons el que vulgui el jugador (partida 1 o 2 guardada) o "nueva" a l'inici
 
@@ -31,7 +32,7 @@ function iniciarJuego() {
 /* Convierte lo que hay en el mapa en un archivo de imagen */
 function mapaToImg(x, y) {
   if (mapa[x][y] == "#") {
-    return "dungeon_wall.png";
+    return "dungeon_wall.png";    
   }
   if (mapa[x][y] == "." || mapa[x][y] == "P") {
     return "dungeon_step.png";
@@ -40,6 +41,6 @@ function mapaToImg(x, y) {
     return "dungeon_door.png";
   }
   if (mapa[x][y] == "E") {
-    return "media/images/demogorgon.png";
+    return "demogorgon.png";
   }
 }
