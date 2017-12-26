@@ -1,9 +1,23 @@
 @media all {
 
-  .container {
-    background-color: #C20E0E;
-    font-family: 'Open Sans', sans-serif;
+  @mixin title-style($font-size) {
+    font-family: 'Press Start 2P', cursive;
+    font-size: $font-size;
+  }
 
+  @mixin margin($top, $left, $right, $bottom) {
+    margin-left: $left;
+    margin-top: $top;
+    margin-bottom: $bottom;
+    margin-right: $right;
+  }
+
+  .container {
+    //background-color: #C20E0E;
+    background-color: #1e193c;
+    //font-family: 'Open Sans', sans-serif;
+    font-family: 'Press Start 2P', sans-serif;
+    font-size: 13px;
   }
 
   .button {
@@ -14,29 +28,50 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
-    font-size: 16px;
+    font-size: 13px;
+  }
+
+  .button_control {
+    background-color: #C20E0E;
+    border: none;
+    color: white;
+    padding: 1px 2px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+  }
+
+  #logo {
+    @include margin(25px, 25px, 0px, 0px);
+  }
+
+  #controls_partida {
+    @include margin(25px, 0px, 0px, 25px);
   }
 
   #titol_principal {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 35px;
-
+    color: #1e193c;
+    @include title-style(35px);
+    @include margin(40px, 25px, 0px, 0px);
   }
 
   #titol_equipo {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 22px;
+    @include title-style(22px);
+    @include margin(25px, 25px, 0px, 0px);
+
   }
 
   #titol_controles {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 22px;
+    @include title-style(22px);
+    @include margin(25px, 25px, 0px, 25px);
 
   }
 
   #titol_navegacion {
-    font-family: 'Press Start 2P', cursive;
-    font-size: 22px;
+    color: white;
+    @include title-style(22px);
+    @include margin(25px, 25px, 0px, 25px);
 
   }
 
@@ -45,16 +80,55 @@
   }
 
   #controles {
-    background-color: #ff1515;
+    background-color: #C20E0E;
+    color: white;
   }
 
   #navegacion {
-    background-color: white;
+    background-color: black;
+    border-color: #ff1515;
+    border-left-style: solid;
   }
 
   #equipo {
     background-color: #1e193c;
     color: white;
+    border-color: #ff1515;
+    border-right-style: solid;
+
+    p {
+      @include margin(25px, 25px, 25px, 0px);
+    }
+  }
+
+  #footer {
+    background-color: #ff1515;
+    color: #1e193c;
+
+    p {
+      @include margin(15px, 15px, 0px, 15px);
+      font-size: 9px;
+    }
+  }
+
+  #movendavant {
+    background-color: #1e193c;
+  }
+
+  #movesquerra {
+    background-color: #1e193c;
+  }
+
+  #movdreta {
+    background-color: #1e193c;
+  }
+
+  #movendarrere {
+    background-color: #1e193c;
+  }
+
+  #botones_controles {
+    background-color: #C20E0E;
   }
 
 }

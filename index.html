@@ -15,57 +15,75 @@
     <script src="js/main.js"></script>
     <script src="js/loadMap.js"></script>
     <script src="js/playGame.js"></script>
+    <script src="js/movements.js"></script>
     <script src="jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="src/structure.json"></script>
   </head>
 
   <body class="container">
 
+    <header class="row" id="header">
+
+      <img id="logo" src="media/images/title.png" height="80" />
+      <h1 id="titol_principal">Dungeon Master</h1>
+
+      <nav id="controls_partida">
+        <ul>
+          <li href="#" class="button" id="start">Comenzar partida </li>
+          <li href="#" class="button" id="save">Guardar partida</li>
+        </ul>
+      </nav>
+    </header>
+
     <div class="row">
 
-      <header id="header">
-        <h1 id="titol_principal">STRANGER Dungeon Master</h1>
-        <nav id="Controls_partida">
-          <ul>
-            <li class="button" id="start">Comenzar partida</li>
-            <li class="button" id="save">Guardar partida</li>
-          </ul>
-        </nav>
-      </header>
-
-    </div>
-
-    <div class="row">
-
-      <section id="navegacion">
+      <section class="col" id="navegacion">
         <h2 id="titol_navegacion">Navegación</h2>
         <canvas id="visor" width="512" height="480"></canvas>
       </section>
 
-      <div class="row">
+      <section class="col" id="controles">
+        <h2 id="titol_controles">Controles</h2>
 
-        <section id="controles">
-          <h2 id="titol_controles">Controles</h2>
-          <a href="#" id="movesquerra" onclick="rotate('left')" >Gira izquierda</a>
-          <a href="#" id="movdreta" onclick="rotate('right')"> Gira derecha</a>
-          <a href="#" id="movendavant" onclick="move('forward')">Adelante</a>
-          <a href="#" id="movendarrere" onclick="move('backwards')">Atrás</a>
-        </section>
+        <div id="botones_controles" class="container">
+          <div class="row">
+            <div class="col align-self-center">
+              <a href="#" class="button_control" id="movendavant" onclick="move('forward')" style="text-decoration:none;"> ⇧ </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col align-self-start">
+              <a href="#" class="button_control"  id="movesquerra" onclick="rotate('left')" style="text-decoration:none;" > ⇦ </a>
+            </div>
+            <div class="col align-self-end">
+              <a href="#" class="button_control"  id="movdreta" onclick="rotate('right')" style="text-decoration:none;"> ⇨ </a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col align-self-center">
+              <a href="#"  class="button_control" id="movendarrere" onclick="move('backwards')" style="text-decoration:none;"> ⇩ </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
-        <section id="equipo">
-          <h2 id="titol_equipo">Equipo</h2>
-          <p>Nombre/Sexo: <span></span></p>
-          <p>Nivel: <span></span></p>
-          <p>Ataque: <span></span></p>
-          <p>Defensa: <span></span></p>
-          <p>Vida: <span></span></p>
-          <p>Objetos: <span></span></p>
-        </section>
-
-      </div>
+      <section class="col" id="equipo">
+        <h2 id="titol_equipo">Equipo</h2>
+        <p>Nombre/Sexo: <span></span></p>
+        <p>Nivel: <span></span></p>
+        <p>Ataque: <span></span></p>
+        <p>Defensa: <span></span></p>
+        <p>Vida: <span></span></p>
+        <p>Objetos: <span></span></p>
+      </section>
 
     </div>
 
+    <footer id="footer" class="row">
+      <p>
+        Proyectos Web I ... Práctica IV
+      </p>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
