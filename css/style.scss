@@ -13,11 +13,15 @@
   }
 
   .container {
-    //background-color: #C20E0E;
+    background-image: url("https://static1.squarespace.com/static/55687b77e4b03346fd69979b/55687bc8e4b0e642ac65bd47/57bc2a10440243fdcf811bb9/1472555496466/Stranger-Things-background.png?format=1500w");
     background-color: #1e193c;
-    //font-family: 'Open Sans', sans-serif;
     font-family: 'Press Start 2P', sans-serif;
     font-size: 13px;
+  }
+
+  #botones_controles {
+    background-image: none;
+    background-color: #C20E0E;
   }
 
   .button {
@@ -29,13 +33,16 @@
     text-decoration: none;
     display: inline-block;
     font-size: 13px;
+    cursor: pointer;
   }
 
   .button_control {
     background-color: #C20E0E;
     border: none;
     color: white;
-    padding: 1px 2px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 7px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -48,6 +55,7 @@
 
   #controls_partida {
     @include margin(25px, 0px, 0px, 25px);
+
   }
 
   #titol_principal {
@@ -92,6 +100,7 @@
 
   #sound {
     background-color: #C20E0E;
+    cursor: pointer;
   }
 
   #equipo {
@@ -131,8 +140,30 @@
     background-color: #1e193c;
   }
 
-  #botones_controles {
-    background-color: #C20E0E;
+  #video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: 1;
   }
 
+  #title-intro {
+    @include margin(25px, 15px, 0px, 15px);
+  }
+
+  #logo2 {
+    @include margin(0px, 0px, 0px, 30px);
+  }
+
+  #intro-container {
+    position: fixed;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    width: 100%;
+    padding: 20px;
+    z-index: 2;
+  }
 }

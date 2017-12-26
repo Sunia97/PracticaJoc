@@ -54,3 +54,7 @@ function soundEnable () {
     $("#sound").css("color", "black");
   }
 }
+
+function introSkip () {
+  $("#intro").remove();
+}

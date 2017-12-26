@@ -20,7 +20,24 @@
     <script type="text/javascript" src="src/structure.json"></script>
   </head>
 
-  <body class="container">
+  <body id="body" class="container">
+
+    <div id="intro">
+
+      <video autoplay muted loop id="video">
+        <source src="media/video.mp4" type="video/mp4">
+      </video>
+
+      <div id="intro-container" class="container">
+        <div class="row justify-content-center">
+          <img id="logo2" src="media/images/logo2.png" height="100" />
+          <h1 id="title-intro">Dungeon Master</h1>
+        </div>
+        <div class="row justify-content-center">
+          <button class="button" onclick="introSkip()">Play Game</button>
+        </div>
+      </div>
+    </div>
 
     <header class="row" id="header">
 
@@ -46,23 +63,15 @@
         <h2 id="titol_controles">Controles</h2>
 
         <div id="botones_controles" class="container">
-          <div class="row">
-            <div class="col align-self-center">
-              <a href="#" class="button_control" id="movendavant" onclick="move('forward')" style="text-decoration:none;"> ⇧ </a>
-            </div>
+          <div class="row justify-content-center">
+            <a href="#" class="button_control" id="movendavant" onclick="move('forward')" style="text-decoration:none;"> ⇧ </a>
           </div>
-          <div class="row">
-            <div class="col align-self-start">
-              <a href="#" class="button_control"  id="movesquerra" onclick="rotate('left')" style="text-decoration:none;" > ⇦ </a>
-            </div>
-            <div class="col align-self-end">
-              <a href="#" class="button_control"  id="movdreta" onclick="rotate('right')" style="text-decoration:none;"> ⇨ </a>
-            </div>
+          <div class="row justify-content-around">
+            <a href="#" class="button_control"  id="movesquerra" onclick="rotate('left')" style="text-decoration:none;" > ⇦ </a>
+            <a href="#" class="button_control"  id="movdreta" onclick="rotate('right')" style="text-decoration:none;"> ⇨ </a>
           </div>
-          <div class="row">
-            <div class="col align-self-center">
-              <a href="#"  class="button_control" id="movendarrere" onclick="move('backwards')" style="text-decoration:none;"> ⇩ </a>
-            </div>
+          <div class="row justify-content-center">
+            <a href="#"  class="button_control" id="movendarrere" onclick="move('backwards')" style="text-decoration:none;"> ⇩ </a>
           </div>
         </div>
       </section>
