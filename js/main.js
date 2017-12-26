@@ -1,5 +1,6 @@
 var level = -2;
 var gameJSON;
+var introMusic = new Audio('src/StrangerThings8 Bit.mp3');
 
 /*
 FUNCIONS
@@ -8,9 +9,8 @@ FUNCIONS
 /* Inicializar el juego */
 function iniciarJuego() {
 
-  var introMusic = new Audio('src/StrangerThings8 Bit.mp3');
-
   introMusic.play();
+  introMusic.loop = true;
 
   var slot = "nueva";           // NOTE: Variarà segons el que vulgui el jugador (partida 1 o 2 guardada) o "nueva" a l'inici
 
@@ -32,7 +32,7 @@ function iniciarJuego() {
 /* Convierte lo que hay en el mapa en un archivo de imagen */
 function mapaToImg(x, y) {
   if (mapa[x][y] == "#") {
-    return "dungeon_wall.png";    
+    return "dungeon_wall.png";
   }
   if (mapa[x][y] == "." || mapa[x][y] == "P") {
     return "dungeon_step.png";
@@ -42,5 +42,15 @@ function mapaToImg(x, y) {
   }
   if (mapa[x][y] == "E") {
     return "demogorgon.png";
+  }
+}
+
+function soundEnable () {
+  if (introMusic.paused) {
+    introMusic.play();
+    $("#sound").css("color", "white");
+  }else {
+    introMusic.pause();
+    $("#sound").css("color", "black");
   }
 }
