@@ -14,9 +14,8 @@ function uploadStructureJSON(slot) {
     type: 'POST',
     url: url_server + token + "&slot=" + slot,
     data: {json: structure},//Com que el path està posat al html ho detecta com una variable
-    success: function(result){
+    complete: function(result){
      console.log("GAME SAVED. Success on POST from Server (uploadStructureJSON)");
-     console.log(result);
     }
   });
 
@@ -33,7 +32,6 @@ function uploadStructureJSON(slot) {
         console.log(result);
       }
    });
-
  }
 
 //Per descarregar del servidor l'estructura de mapes en objecte json i retorna-lo.
@@ -42,11 +40,12 @@ function downloadStructureJSON(slot) {
   $.ajax({
     type: 'GET',
     url: url_server + token + "&slot=" + slot,
-    success: function(result){
+    //dataType: 'json',
+    complete: function(result){
+
       console.log("Success on GET from Server (downloadMapsJSON). Result:\n");
       console.log(result);
-      //var gameJSON = [];
-      //gameJSON = JSON.parse(result);// la variable gameJSON conté un array de nivells, on cada nivell és un array d'arrays (mapa 10x10)
+
       return result;
     }
   });
@@ -60,7 +59,6 @@ function deleteStructureJSON(slot) {
     url: url_server + token + "&slot=" + slot,
     success: function(result){
       console.log("Success on DELETE from Server (deleteStructureJSON)\n");
-      console.log(result);
     }
   });
 }

@@ -18,6 +18,7 @@ function iniciarJuego() {
   //deleteStructureJSON(slot);
   //getListOfGames();             // NOTE: Només és comprovació. No influeix en joc.
 
+  //downloadStructureJSON(slot);
   // TODO: ENCARA NO FUNCIONA LA DESCARREGA DEL FITXER DEL SERVIDOR
   //var gameJSON = downloadStructureJSON(slot);//game es el json object amb tots els nivells
 
