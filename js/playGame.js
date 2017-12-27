@@ -42,7 +42,10 @@ function startGame() {
       }
     }
   }
-
+/*
+  $("#level").text(player.nivel);
+  $("#attack").text(player.ataque);
+  $("#defending").text(player.defensa);*/
   show();
 }
 
@@ -80,7 +83,7 @@ function checkGame(x, y) {
   //Si està mort:
   if (player.vida <= 0) {
     estatPartida = 1;
-    alert("has perdut!");
+    //alert("has perdut!");
     // TODO: que passa quan perd?
   } else {
 
@@ -115,6 +118,10 @@ function updatePlayer () {
   if (player.nivel % 2 == 0) {
     player.ataque ++;
   }
+
+  $("#level").text(player.nivel);
+  $("#attack").text(player.ataque);
+  $("#defending").text(player.defensa);
 }
 
 function fight () {

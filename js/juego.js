@@ -13,11 +13,11 @@ var objetos = {
 };
 
 var enemigo = {
-  vida:5,
-  ataque:3,
-  defensa:2,
+  vida:2,
+  ataque:0,
+  defensa:0,
   xp:0,
-  img:"dungeon_enemy.png",
+  img:"demogorgon.png",
   objetos:[objetos.garrote, objetos.llave, objetos.hacha]
 };
 

@@ -67,8 +67,8 @@
             <a href="#" class="button_control" id="movendavant" onclick="move('forward')" style="text-decoration:none;"> ⇧ </a>
           </div>
           <div class="row justify-content-around">
-            <a href="#" class="button_control"  id="movesquerra" onclick="rotate('left')" style="text-decoration:none;" > ⇦ </a>
-            <a href="#" class="button_control"  id="movdreta" onclick="rotate('right')" style="text-decoration:none;"> ⇨ </a>
+            <a href="#" class="button_control"  id="movesquerra" onclick="move('left')" style="text-decoration:none;" > ⇦ </a>
+            <a href="#" class="button_control"  id="movdreta" onclick="move('right')" style="text-decoration:none;"> ⇨ </a>
           </div>
           <div class="row justify-content-center">
             <a href="#"  class="button_control" id="movendarrere" onclick="move('backwards')" style="text-decoration:none;"> ⇩ </a>
@@ -78,12 +78,12 @@
 
       <section class="col" id="equipo">
         <h2 id="titol_equipo">Equipo</h2>
-        <p>Nombre/Sexo: <span></span></p>
-        <p>Nivel: <span></span></p>
-        <p>Ataque: <span></span></p>
-        <p>Defensa: <span></span></p>
-        <p>Vida: <span></span></p>
-        <p>Objetos: <span></span></p>
+        <p>Nombre/Sexo: <span id = "name/genre"></span></p>
+        <p>Nivel: <span id = "level"></span></p>
+        <p>Ataque: <span id = "attack"></span></p>
+        <p>Defensa: <span id = "defending"></span></p>
+        <p>Vida: <span id = "lives"></span></p>
+        <p>Objetos: <span id = "objects"></span></p>
       </section>
 
     </div>
