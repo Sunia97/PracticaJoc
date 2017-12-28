@@ -28,6 +28,22 @@ function readJSON (level) {
   }
 }
 
+//Mostra les dades del jugador i de l'equip.
+function showAttributes () {
+  var objects;
+  for (var i=0; i < player.mochila; i++) {
+    objects += "<li>";
+    objects += player.mochila [i];
+    objects += "<li>";
+  }
+
+  $("#objects").text(objects);
+  $("#lives").text(player.vida);
+  $("#level").text(player.nivel);
+  $("#attack").text(player.ataque);
+  $("#defending").text(player.defensa);
+}
+
 function startGame() {
   fi = 0;
   estatPartida = 0; //indica l'estat de la partida: 0 = jugador viu, 1 = sense vides, 2 = èxit!
@@ -42,10 +58,9 @@ function startGame() {
       }
     }
   }
-/*
-  $("#level").text(player.nivel);
-  $("#attack").text(player.ataque);
-  $("#defending").text(player.defensa);*/
+
+  refreshWeapons();
+  showAttributes();
   show();
 }
 
@@ -78,8 +93,6 @@ function checkGame(x, y) {
     fight();
   }
 
-  updatePlayer ();
-
   //Si està mort:
   if (player.vida <= 0) {
     estatPartida = 1;
@@ -109,7 +122,7 @@ function updatePlayer () {
   //El jugador puja de nivell
   if (player.xp >= 10 * (player.nivel + 1) + xp) {
     player.nivel ++;
-    player.defensa --;
+    player.defensa ++;
     player.vida += player.nivel * 10;
     console.log("PUJA NIVELL " + player.nivel);
   }
@@ -119,16 +132,16 @@ function updatePlayer () {
     player.ataque ++;
   }
 
-  $("#level").text(player.nivel);
-  $("#attack").text(player.ataque);
-  $("#defending").text(player.defensa);
+  showAttributes();
 }
 
+//Lluita entre l'enemic i el jugador.
 function fight () {
   var attacker = 1; //1 si ataca el jugador, -1 si ataca l'enemic.
 
   //torns d'atac mentre cap dels dos mor
   while (player.vida > 0 && enemigo.vida > 0) {
+    //TODO Es crea bucle infinit si l'enemic té atac i defensa = 0
     //Ataca el jugador
     if (attacker > 0) {
       attack = player.ataque - enemigo.defensa;
@@ -152,8 +165,22 @@ function fight () {
   }
 
   if (enemigo.vida <= 0) {
-    console.log("ENEMIC MORT");
-    player.mochila.push (enemigo.objetos);
     player.xp += enemigo.xp;
+    player.mochila.push (enemigo.objetos);
+    refreshWeapons();
   }
+
+  updatePlayer ();
+}
+
+//Segons les armes que té a les mans actualitza atac i defensa.
+function refreshWeapons() {
+
+  var object_right = objetos[player.manoderecha];
+  player.ataque = object_right.ataque;
+  player.defensa = object_right.defensa;
+
+  var object_left = objetos[player.manoizquierda];
+  player.ataque += object_left.ataque;
+  player.defensa += object_left.defensa;
 }
