@@ -49,7 +49,6 @@ function showAttributes () {
 
 function startGame() {
   fi = 0;
-  estatPartida = 0; //indica l'estat de la partida: 0 = jugador viu, 1 = sense vides, 2 = èxit!
 
   //Busca la posició del jugador
   for (y = 0; y < 11 && fi == 0; y++) {
@@ -85,7 +84,7 @@ function show () {
         pintaPosicion(--x, y);
         break;
   }
-
+  drawCompass(player.estadoPartida.direccion, 0, 0);
   checkGame(x, y);
 }
 

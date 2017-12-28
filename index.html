@@ -59,30 +59,38 @@
         <canvas id="visor" width="512" height="480"></canvas>
       </section>
 
-      <section class="col" id="equipo">
-        <h2 id="titol_equipo">Equipo</h2>
-        <p>Nombre/Sexo: <span id = "name"></span></p>
-        <p>Nivel: <span id = "level"></span></p>
-        <p>Ataque: <span id = "attack"></span></p>
-        <p>Defensa: <span id = "defending"></span></p>
-        <p>Vida: <span id = "lives"></span></p>
+      <section class="col" id="eines">
+          <div class= "row" id="controles">
+            <h2 id="titol_controles">Controles</h2>
 
-        <section id="controles">
-          <h2 id="titol_controles">Controles</h2>
-
-          <div id="botones_controles" class="container">
-            <div class="row justify-content-center">
-              <a href="#" class="button_control" id="movendavant" onclick="move('forward')" style="text-decoration:none;"> ⇧ </a>
-            </div>
-            <div class="row justify-content-around">
-              <a href="#" class="button_control"  id="movesquerra" onclick="move('left')" style="text-decoration:none;" > ⇦ </a>
-              <a href="#" class="button_control"  id="movdreta" onclick="move('right')" style="text-decoration:none;"> ⇨ </a>
-            </div>
-            <div class="row justify-content-center">
-              <a href="#"  class="button_control" id="movendarrere" onclick="move('backwards')" style="text-decoration:none;"> ⇩ </a>
+            <div id="botones_controles" class="container">
+              <div class="row justify-content-center">
+                <a href="#" class="button_control" id="movendavant" onclick="move('forward')" style="text-decoration:none;"> ⇧ </a>
+              </div>
+              <div class="row justify-content-around">
+                <a href="#" class="button_control"  id="movesquerra" onclick="rotate('left')" style="text-decoration:none;" > ⇦ </a>
+                <a href="#" class="button_control"  id="movdreta" onclick="rotate('right')" style="text-decoration:none;"> ⇨ </a>
+              </div>
+              <div class="row justify-content-center">
+                <a href="#"  class="button_control" id="movendarrere" onclick="move('backwards')" style="text-decoration:none;"> ⇩ </a>
+              </div>
             </div>
           </div>
-        </section>
+
+          <div class = "row justify-content-around" id= "bruixola">
+            <canvas id="compass" width="200" height="200"></canvas>
+          </div>
+
+      </section>
+
+      <section class="col" id="equipo">
+        <h2 id="titol_equipo">Equipo</h2>
+        <p id = "name">Nombre/Sexo: <span></span></p>
+        <p id = "level">Nivel: <span></span></p>
+        <p id = "attack">Ataque: <span></span></p>
+        <p id = "defense">Defensa: <span></span></p>
+        <p id = "life">Vida: <span></span></p>
+        <p id = "objects">Objetos: <span></span></p>
       </section>
 
       <section class="col" id="objetos">

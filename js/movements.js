@@ -5,29 +5,90 @@ function move (movement) {
   } else {
     walk (movement);
   }
-
   show();
 }
 
 function walk (movement) {
+  console.log(mapa);
+  x = player.estadoPartida.x;
+  y = player.estadoPartida.y;
+
   switch (player.estadoPartida.direccion) {
+    //Si player mira al Nord:
     case 0:
-      if (movement == "forward") player.estadoPartida.y--;
-      else player.estadoPartida.y++;
+      if (movement == "forward") {
+        ok = comprovaMoviment(x, y-1);
+        if (ok == true) {
+          player.estadoPartida.y--;
+        }
+      }
+      else {
+        ok = comprovaMoviment(x, y+1);
+        if (ok == true) {
+          player.estadoPartida.y++;
+        }
+      }
       break;
+    //Si player mira al Sud:
     case 1:
-      if (movement == "forward") player.estadoPartida.y++;
-      else player.estadoPartida.y--;
-      break;
+      if (movement == "forward") {
+        ok = comprovaMoviment(x, y+1);
+        if (ok == true) {
+          player.estadoPartida.y++;
+        }
+      }
+      else {
+        ok = comprovaMoviment(x, y-1);
+        if (ok == true) {
+          player.estadoPartida.y--;
+        }
+      }
+    break;
+    //Si player mira a l'Est:
     case 2:
-      if (movement == "forward") player.estadoPartida.x++;
-      else player.estadoPartida.x--;
-      break;
+      if (movement == "forward") {
+        ok = comprovaMoviment(x+1, y);
+        if (ok == true) {
+          player.estadoPartida.x++;
+        }
+      }
+      else {
+        ok = comprovaMoviment(x-1, y);
+        if (ok == true) {
+           player.estadoPartida.x--;
+        }
+      }
+    break;
+    //Si player mira a l'Oest:
     case 3:
-      if (movement == "forward") player.estadoPartida.x--;
-      else player.estadoPartida.x++;
-      break;
+    if (movement == "forward") {
+      ok = comprovaMoviment(x-1, y);
+      if (ok == true) {
+        player.estadoPartida.x--;
+      }
+    }
+    else {
+      ok = comprovaMoviment(x+1, y);
+      if (ok == true) {
+        player.estadoPartida.x++;
+      }
+    }
+  break;
   }
+  //console.log(player.estadoPartida.x, player.estadoPartida.y);
+  show();
+}
+
+function comprovaMoviment(x, y) {
+
+  if (mapa[x][y] == "#") {
+    console.log(x, y);
+    alert ("No pots travessar una paret!");
+    ok = false;
+  } else {
+    ok = true;
+  }
+  return ok;
 }
 
 function rotate (rotation) {
@@ -49,4 +110,23 @@ function rotate (rotation) {
         else player.estadoPartida.direccion = 0;
         break;
     }
+
+    show();
+}
+
+function drawCompass(direccio, x, y) {
+  // Consigue el canvas
+  if (direccio == 0) src = "BruixolaN.png";
+  if (direccio == 1) src = "BruixolaS.png";
+  if (direccio == 2) src = "BruixolaE.png";
+  if (direccio == 3) src = "BruixolaO.png";
+
+  var canvas = document.getElementById('compass');
+  var context = canvas.getContext('2d');
+  var base_image = new Image();
+  base_image.src = "./media/images/"+src;
+  base_image.onload = function () {
+    // Pinta imagen en el canvas
+    context.drawImage(this, x, y);
+  };
 }
