@@ -30,14 +30,17 @@ function readJSON (level) {
 
 //Mostra les dades del jugador i de l'equip.
 function showAttributes () {
-  var objects;
-  for (var i=0; i < player.mochila; i++) {
-    objects += "<li>";
-    objects += player.mochila [i];
-    objects += "<li>";
+  var objects = "";
+
+  for (var i = 0; i < player.mochila.length; i++) {
+    var obj = player.mochila [i];
+    objects += "<button class='weapon'>" + obj;
+    objects += " Ataque: " + objetos[obj].ataque + " Defensa: " + objetos[obj].defensa;
+    objects += "</button>";
   }
 
-  $("#objects").text(objects);
+  $("#bag").innerHTML = "";
+  $("#bag").append(objects);
   $("#lives").text(player.vida);
   $("#level").text(player.nivel);
   $("#attack").text(player.ataque);
@@ -90,7 +93,9 @@ function show () {
 function checkGame(x, y) {
 
   if (mapa[x][y] == "E") {
-    fight();
+    var playerWins = fight();
+    if (playerWins) mapa[x][y] = ".";
+    console.log("jugador guanya: " + playerWins);
   }
 
   //Si està mort:
@@ -135,9 +140,10 @@ function updatePlayer () {
   showAttributes();
 }
 
-//Lluita entre l'enemic i el jugador.
+//Lluita entre l'enemic i el jugador que retorna true si el jugador guanya. .
 function fight () {
   var attacker = 1; //1 si ataca el jugador, -1 si ataca l'enemic.
+  var playerWins = true;
 
   //torns d'atac mentre cap dels dos mor
   while (player.vida > 0 && enemigo.vida > 0) {
@@ -161,6 +167,7 @@ function fight () {
   }
 
   if (player.vida <= 0) {
+    playerWins = false;
     console.log("JUGADOR MORT");
   }
 
@@ -171,11 +178,11 @@ function fight () {
   }
 
   updatePlayer ();
+  return playerWins;
 }
 
 //Segons les armes que té a les mans actualitza atac i defensa.
 function refreshWeapons() {
-
   var object_right = objetos[player.manoderecha];
   player.ataque = object_right.ataque;
   player.defensa = object_right.defensa;

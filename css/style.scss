@@ -67,13 +67,16 @@
   #titol_equipo {
     @include title-style(22px);
     @include margin(25px, 25px, 0px, 0px);
-
   }
 
   #titol_controles {
     @include title-style(22px);
     @include margin(25px, 25px, 0px, 25px);
+  }
 
+  #titol_objetos {
+    @include title-style(22px);
+    @include margin(25px, 25px, 0px, 25px);
   }
 
   #titol_navegacion {
@@ -90,6 +93,8 @@
   #controles {
     background-color: #C20E0E;
     color: white;
+    padding: 15px;
+    margin: 5px;
   }
 
   #navegacion {
@@ -104,6 +109,21 @@
   }
 
   #equipo {
+    background-color: #1e193c;
+    color: white;
+    border-color: #ff1515;
+    border-right-style: solid;
+
+    p {
+      @include margin(25px, 25px, 25px, 25px);
+    }
+  }
+
+  #hands {
+    margin-top: 20px;
+  }
+
+  #objetos {
     background-color: #1e193c;
     color: white;
     border-color: #ff1515;

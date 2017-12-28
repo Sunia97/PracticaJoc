@@ -69,6 +69,14 @@
     margin-bottom: 25px;
     margin-right: 0px;
   }
+  #titol_objetos {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 22px;
+    margin-left: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-right: 0px;
+  }
   #titol_navegacion {
     color: white;
     font-family: 'Press Start 2P', cursive;
@@ -84,6 +92,8 @@
   #controles {
     background-color: #C20E0E;
     color: white;
+    padding: 15px;
+    margin: 5px;
   }
   #navegacion {
     background-color: black;
@@ -101,6 +111,21 @@
     border-right-style: solid;
   }
   #equipo p {
+    margin-left: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-right: 25px;
+  }
+  #hands {
+    margin-top: 20px;
+  }
+  #objetos {
+    background-color: #1e193c;
+    color: white;
+    border-color: #ff1515;
+    border-right-style: solid;
+  }
+  #objetos p {
     margin-left: 25px;
     margin-top: 25px;
     margin-bottom: 25px;
