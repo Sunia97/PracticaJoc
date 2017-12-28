@@ -44,7 +44,7 @@ function showAttributes () {
   $("#lives").text(player.vida);
   $("#level").text(player.nivel);
   $("#attack").text(player.ataque);
-  $("#defending").text(player.defensa);
+  $("#deffense").text(player.defensa);
 }
 
 function startGame() {
