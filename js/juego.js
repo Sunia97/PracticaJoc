@@ -8,17 +8,17 @@ var mapa = [];
 
 var objetos = {
   garrote: {ataque:1, defensa:0},
-  llave: {},
-  hacha: {}
+  llave: {ataque:1, defensa:0},
+  hacha: {ataque:2, defensa:1}
 };
 
 var enemigo = {
-  vida:5,
-  ataque:3,
-  defensa:2,
+  vida:2,
+  ataque:1,
+  defensa:0,
   xp:0,
-  img:"dungeon_enemy.png",
-  objetos:[objetos.garrote, objetos.llave, objetos.hacha]
+  img:"demogorgon.png",
+  objetos:["garrote", "llave"]
 };
 
 var player = {
@@ -28,9 +28,9 @@ var player = {
   xp:0,
   ataque:0,
   defensa:0,
-  manoderecha:"garrot",
-  manoizquierda:"",
-  mochila:[],
+  manoderecha:"llave",
+  manoizquierda:"garrote",
+  mochila:["llave", "hacha"],
   estadoPartida: {
     x:3,
     y:1,

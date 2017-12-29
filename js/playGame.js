@@ -28,9 +28,27 @@ function readJSON (level) {
   }
 }
 
+//Mostra les dades del jugador i de l'equip.
+function showAttributes () {
+  var objects = "";
+
+  for (var i = 0; i < player.mochila.length; i++) {
+    var obj = player.mochila [i];
+    objects += "<button class='weapon'>" + obj;
+    objects += " Ataque: " + objetos[obj].ataque + " Defensa: " + objetos[obj].defensa;
+    objects += "</button>";
+  }
+
+  $("#bag").innerHTML = "";
+  $("#bag").append(objects);
+  $("#lives").text(player.vida);
+  $("#level").text(player.nivel);
+  $("#attack").text(player.ataque);
+  $("#deffense").text(player.defensa);
+}
+
 function startGame() {
   fi = 0;
-  estatPartida = 0; //indica l'estat de la partida: 0 = jugador viu, 1 = sense vides, 2 = èxit!
 
   //Busca la posició del jugador
   for (y = 0; y < 11 && fi == 0; y++) {
@@ -43,6 +61,8 @@ function startGame() {
     }
   }
 
+  refreshWeapons();
+  showAttributes();
   show();
 }
 
@@ -64,7 +84,7 @@ function show () {
         pintaPosicion(--x, y);
         break;
   }
-
+  drawCompass(player.estadoPartida.direccion, 0, 0);
   checkGame(x, y);
 }
 
@@ -72,15 +92,15 @@ function show () {
 function checkGame(x, y) {
 
   if (mapa[x][y] == "E") {
-    fight();
+    var playerWins = fight();
+    if (playerWins) mapa[x][y] = ".";
+    console.log("jugador guanya: " + playerWins);
   }
-
-  updatePlayer ();
 
   //Si està mort:
   if (player.vida <= 0) {
     estatPartida = 1;
-    alert("has perdut!");
+    //alert("has perdut!");
     // TODO: que passa quan perd?
   } else {
 
@@ -106,7 +126,7 @@ function updatePlayer () {
   //El jugador puja de nivell
   if (player.xp >= 10 * (player.nivel + 1) + xp) {
     player.nivel ++;
-    player.defensa --;
+    player.defensa ++;
     player.vida += player.nivel * 10;
     console.log("PUJA NIVELL " + player.nivel);
   }
@@ -115,13 +135,18 @@ function updatePlayer () {
   if (player.nivel % 2 == 0) {
     player.ataque ++;
   }
+
+  showAttributes();
 }
 
+//Lluita entre l'enemic i el jugador que retorna true si el jugador guanya. .
 function fight () {
   var attacker = 1; //1 si ataca el jugador, -1 si ataca l'enemic.
+  var playerWins = true;
 
   //torns d'atac mentre cap dels dos mor
   while (player.vida > 0 && enemigo.vida > 0) {
+    //TODO Es crea bucle infinit si l'enemic té atac i defensa = 0
     //Ataca el jugador
     if (attacker > 0) {
       attack = player.ataque - enemigo.defensa;
@@ -141,12 +166,27 @@ function fight () {
   }
 
   if (player.vida <= 0) {
+    playerWins = false;
     console.log("JUGADOR MORT");
   }
 
   if (enemigo.vida <= 0) {
-    console.log("ENEMIC MORT");
-    player.mochila.push (enemigo.objetos);
     player.xp += enemigo.xp;
+    player.mochila.push (enemigo.objetos);
+    refreshWeapons();
   }
+
+  updatePlayer ();
+  return playerWins;
+}
+
+//Segons les armes que té a les mans actualitza atac i defensa.
+function refreshWeapons() {
+  var object_right = objetos[player.manoderecha];
+  player.ataque = object_right.ataque;
+  player.defensa = object_right.defensa;
+
+  var object_left = objetos[player.manoizquierda];
+  player.ataque += object_left.ataque;
+  player.defensa += object_left.defensa;
 }

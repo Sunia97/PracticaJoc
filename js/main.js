@@ -42,7 +42,7 @@ function mapaToImg(x, y) {
     return "dungeon_door.png";
   }
   if (mapa[x][y] == "E") {
-    return "demogorgon.png";
+    return enemigo.img;
   }
 }
 
