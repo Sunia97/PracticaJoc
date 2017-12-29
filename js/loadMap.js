@@ -38,17 +38,17 @@ function uploadStructureJSON(slot) {
 function downloadStructureJSON(slot) {
 
   $.ajax({
-    type: 'GET',
+    type: 'get',
     url: url_server + token + "&slot=" + slot,
-    //dataType: 'json',
-    complete: function(result){
+    //dataType: 'application/json',
+    success: function(result){
 
       console.log("Success on GET from Server (downloadMapsJSON). Result:\n");
       console.log(result);
-
-      return result;
+      //console.log(result[0].level);
     }
   });
+
 }
 
 //Per eliminar estructura del slot del servidor
