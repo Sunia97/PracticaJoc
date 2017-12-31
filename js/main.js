@@ -1,10 +1,6 @@
 var level = -2;
-var gameJSON = "";
+var gameJSON;
 var introMusic = new Audio('src/StrangerThings8 Bit.mp3');
-
-/*
-FUNCIONS
- */
 
 /* Inicializar el juego */
 function iniciarJuego() {
@@ -16,12 +12,15 @@ function iniciarJuego() {
 
   //uploadStructureJSON(slot);   // NOTE: Només per pujar els mapes al servidor. Comentar-ho quan ja estan pujats!
   //deleteStructureJSON(slot);
-  getListOfGames();             // NOTE: Només és comprovació. No influeix en joc.
+  //getListOfGames();             // NOTE: Només és comprovació. No influeix en joc.
 
-  downloadStructureJSON(slot, function(result) {
-    gameJSON = result;
-    loadNewLevel(level);
-  });
+  //downloadStructureJSON(slot);
+  // TODO: ENCARA NO FUNCIONA LA DESCARREGA DEL FITXER DEL SERVIDOR
+  //var gameJSON = downloadStructureJSON(slot);//game es el json object amb tots els nivells
+
+  // NOTE: TEMPORALMENT, UTILITZEM EL FITXER JSON LOCAL, NO EL DEL SERVIDOR
+  gameJSON = structure;
+  loadNewLevel(level);
 
   //console.log("Partida acabada");
   //S'acaba el joc quan s'arriba al nivell 1
