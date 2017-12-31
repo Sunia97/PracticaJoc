@@ -1,5 +1,5 @@
 var level = -2;
-var gameJSON;
+var gameJSON = "";
 var introMusic = new Audio('src/StrangerThings8 Bit.mp3');
 
 /*
