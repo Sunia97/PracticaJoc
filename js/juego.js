@@ -28,8 +28,8 @@ var player = {
   xp:0,
   ataque:0,
   defensa:0,
-  manoderecha:"llave",
-  manoizquierda:"garrote",
+  manoderecha:"",
+  manoizquierda:"",
   mochila:["llave", "hacha"],
   estadoPartida: {
     x:3,

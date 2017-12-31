@@ -1,3 +1,5 @@
+numNivells = 3; //Nombre de nivells que tenim al joc
+
 //Funció que carrega un nivell del map i on es desenvolupa tot el joc amb crides a funcions
 function loadNewLevel(level) {
   if (level < 0) {
@@ -7,16 +9,16 @@ function loadNewLevel(level) {
 }
 
 function readJSON (level) {
-
   //Busca el mapa corresponent al nivell
-  for (var z = 0; z < gameJSON.size; z++) {
+  console.log("hola");
+  // Utilitzem numNivells ja que gameJSON.size no funcionava.
+  for (var z = 0; z < numNivells; z++) {
     if (gameJSON[z].level == level) {
       break;
     }
   }
-
   player.estadoPartida.direccion = gameJSON[z].direction;
-  mapa = gameJSON[z].map;//Assigna el nivell (mapa) que toca a mapa
+  mapa= gameJSON[z].map;//Assigna el nivell (mapa) que toca a mapa
 
   //Fa la trasposada de la matriu Mapa, per guardar-la igual que al json.
   for (var i = 0; i < 10; i++) {
@@ -26,6 +28,10 @@ function readJSON (level) {
       mapa[j][i] = temp;
     }
   }
+<<<<<<< HEAD
+  console.log(level);
+  console.log(mapa);
+=======
 }
 
 //Mostra les dades del jugador i de l'equip.
@@ -33,36 +39,60 @@ function showAttributes () {
   var objects = "";
 
   for (var i = 0; i < player.mochila.length; i++) {
-    var obj = player.mochila [i];
-    objects += "<button class='weapon'>" + obj;
-    objects += " Ataque: " + objetos[obj].ataque + " Defensa: " + objetos[obj].defensa;
-    objects += "</button>";
+    addWeaponButton(player.mochila [i]);
   }
 
-  $("#bag").innerHTML = "";
-  $("#bag").append(objects);
   $("#lives").text(player.vida);
   $("#level").text(player.nivel);
   $("#attack").text(player.ataque);
-  $("#deffense").text(player.defensa);
+  $("#defense").text(player.defensa);
+}
+
+//Afegeix el botó d'una eina
+function addWeaponButton (obj) {
+  var object_button = "";
+  object_button += "<button class='weapon'>" + obj;
+  object_button += " Ataque: " + objetos[obj].ataque + " Defensa: " + objetos[obj].defensa;
+  object_button += "</button>";
+
+  $("#bag").append(object_button);
+}
+
+//Segons les armes que té a les mans actualitza atac i defensa.
+function propertiesHands () {
+  if (player.manoderecha != "") {
+    var object_right = objetos[player.manoderecha];
+    player.ataque = object_right.ataque;
+    player.defensa = object_right.defensa;
+  }
+
+  if (player.manoizquierda != "") {
+    var object_left = objetos[player.manoizquierda];
+    player.ataque += object_left.ataque;
+    player.defensa += object_left.defensa;
+  }
+>>>>>>> ab52001ae752c03b323fd88b9ff3c26b1f8a4bb6
 }
 
 function startGame() {
-  fi = 0;
-
   //Busca la posició del jugador
-  for (y = 0; y < 11 && fi == 0; y++) {
-    for (x = 0; x < 11 && fi == 0; x++) {
-      if (mapa[y][x] == "P") {
+  fi = 0;
+  for (x = 0; x < 10 && fi == 0; x++) {
+    for (y = 0; y < 10 && fi == 0; y++) {
+      if (mapa[x][y] == "P") {
         player.estadoPartida.x = x;
         player.estadoPartida.y = y;
+        console.log(x, y);
         fi = 1;
       }
     }
   }
+<<<<<<< HEAD
+=======
 
-  refreshWeapons();
+  propertiesHands();
   showAttributes();
+>>>>>>> ab52001ae752c03b323fd88b9ff3c26b1f8a4bb6
   show();
 }
 
@@ -72,45 +102,66 @@ function show () {
 
   switch (player.estadoPartida.direccion) {
       case 0:
-        pintaPosicion(x, --y);
+        pintaPosicion(x, y - 1);
         break;
       case 1:
-        pintaPosicion(x, ++y);
+        pintaPosicion(x, y + 1);
         break;
       case 2:
-        pintaPosicion(++x, y);
+        pintaPosicion(x + 1, y);
         break;
       case 3:
-        pintaPosicion(--x, y);
+        pintaPosicion(x - 1, y);
         break;
   }
+
   drawCompass(player.estadoPartida.direccion, 0, 0);
   checkGame(x, y);
 }
 
-//Rep la casella que el jugaor té davant
+//Rep la casella que el jugador té davant
 function checkGame(x, y) {
 
   if (mapa[x][y] == "E") {
-    var playerWins = fight();
-    if (playerWins) mapa[x][y] = ".";
-    console.log("jugador guanya: " + playerWins);
+    esViu = fight();
+    if (esViu == true) mapa[x][y] = "·";
   }
+
+  updatePlayer ();
 
   //Si està mort:
   if (player.vida <= 0) {
     estatPartida = 1;
-    //alert("has perdut!");
+    alert("has perdut!");
+    pintaImagen("you_lose.png", 0, 0);
     // TODO: que passa quan perd?
   } else {
 
     //TODO Cal fer per baixar de nivell
-    if (mapa[x][y] == "D") {
-      level++;
-      console.log("PORTA PER PUJAR DE NIVELL AL " + level);
-
-      //puja de nivell
-      loadNewLevel(level);
+    if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "D") {
+      if (confirm("Vols pujar de nivell?")) {
+        able = false;
+        level++;
+        setTimeout(2000,pintaImagen("BruixolaE.png",0,0));
+        loadNewLevel(level);
+      } else {
+        alert("esperem veure't aviat");
+        switch (player.estadoPartida.direccion) {
+            case 0:
+              player.estadoPartida.y++;
+              break;
+            case 1:
+              player.estadoPartida.y--;
+              break;
+            case 2:
+              player.estadoPartida.y--;
+              break;
+            case 3:
+              player.estadoPartida.y++;
+              break;
+        }
+        show();
+      }
     }
   }
 }
@@ -126,7 +177,7 @@ function updatePlayer () {
   //El jugador puja de nivell
   if (player.xp >= 10 * (player.nivel + 1) + xp) {
     player.nivel ++;
-    player.defensa ++;
+    player.defensa --;
     player.vida += player.nivel * 10;
     console.log("PUJA NIVELL " + player.nivel);
   }
@@ -135,19 +186,16 @@ function updatePlayer () {
   if (player.nivel % 2 == 0) {
     player.ataque ++;
   }
-
-  showAttributes();
+<<<<<<< HEAD
 }
 
-//Lluita entre l'enemic i el jugador que retorna true si el jugador guanya. .
 function fight () {
   var attacker = 1; //1 si ataca el jugador, -1 si ataca l'enemic.
-  var playerWins = true;
 
   //torns d'atac mentre cap dels dos mor
   while (player.vida > 0 && enemigo.vida > 0) {
-    //TODO Es crea bucle infinit si l'enemic té atac i defensa = 0
     //Ataca el jugador
+
     if (attacker > 0) {
       attack = player.ataque - enemigo.defensa;
 
@@ -166,27 +214,17 @@ function fight () {
   }
 
   if (player.vida <= 0) {
-    playerWins = false;
     console.log("JUGADOR MORT");
+    return false;
   }
 
   if (enemigo.vida <= 0) {
-    player.xp += enemigo.xp;
+    console.log("ENEMIC MORT");
     player.mochila.push (enemigo.objetos);
-    refreshWeapons();
+    player.xp += enemigo.xp;
+    return true;
+
   }
-
-  updatePlayer ();
-  return playerWins;
-}
-
-//Segons les armes que té a les mans actualitza atac i defensa.
-function refreshWeapons() {
-  var object_right = objetos[player.manoderecha];
-  player.ataque = object_right.ataque;
-  player.defensa = object_right.defensa;
-
-  var object_left = objetos[player.manoizquierda];
-  player.ataque += object_left.ataque;
-  player.defensa += object_left.defensa;
+=======
+>>>>>>> ab52001ae752c03b323fd88b9ff3c26b1f8a4bb6
 }
