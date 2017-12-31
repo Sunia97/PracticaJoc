@@ -28,13 +28,9 @@ function readJSON (level) {
       mapa[j][i] = temp;
     }
   }
-<<<<<<< HEAD
-  console.log(level);
-  console.log(mapa);
-=======
 }
 
-//Mostra les dades del jugador i de l'equip.
+//l jugador i de l'equip.
 function showAttributes () {
   var objects = "";
 
@@ -71,7 +67,6 @@ function propertiesHands () {
     player.ataque += object_left.ataque;
     player.defensa += object_left.defensa;
   }
->>>>>>> ab52001ae752c03b323fd88b9ff3c26b1f8a4bb6
 }
 
 function startGame() {
@@ -87,13 +82,8 @@ function startGame() {
       }
     }
   }
-<<<<<<< HEAD
-=======
-
-  propertiesHands();
-  showAttributes();
->>>>>>> ab52001ae752c03b323fd88b9ff3c26b1f8a4bb6
   show();
+  showAttributes();
 }
 
 function show () {
@@ -136,8 +126,6 @@ function checkGame(x, y) {
     pintaImagen("you_lose.png", 0, 0);
     // TODO: que passa quan perd?
   } else {
-
-    //TODO Cal fer per baixar de nivell
     if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "D") {
       if (confirm("Vols pujar de nivell?")) {
         able = false;
@@ -186,45 +174,4 @@ function updatePlayer () {
   if (player.nivel % 2 == 0) {
     player.ataque ++;
   }
-<<<<<<< HEAD
-}
-
-function fight () {
-  var attacker = 1; //1 si ataca el jugador, -1 si ataca l'enemic.
-
-  //torns d'atac mentre cap dels dos mor
-  while (player.vida > 0 && enemigo.vida > 0) {
-    //Ataca el jugador
-
-    if (attacker > 0) {
-      attack = player.ataque - enemigo.defensa;
-
-      if (attack >= 0) {
-        enemigo.vida -= attack;
-      }
-    } else {
-      //Ataca l'enemic
-      attack = enemigo.ataque - player.defensa;
-
-      if (attack >= 0) {
-        player.vida -= attack;
-      }
-    }
-    attacker = - attacker;
-  }
-
-  if (player.vida <= 0) {
-    console.log("JUGADOR MORT");
-    return false;
-  }
-
-  if (enemigo.vida <= 0) {
-    console.log("ENEMIC MORT");
-    player.mochila.push (enemigo.objetos);
-    player.xp += enemigo.xp;
-    return true;
-
-  }
-=======
->>>>>>> ab52001ae752c03b323fd88b9ff3c26b1f8a4bb6
 }
