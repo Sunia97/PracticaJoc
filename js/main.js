@@ -18,13 +18,10 @@ function iniciarJuego() {
   //deleteStructureJSON(slot);
   getListOfGames();             // NOTE: Només és comprovació. No influeix en joc.
 
-  //downloadStructureJSON(slot);
-  // TODO: ENCARA NO FUNCIONA LA DESCARREGA DEL FITXER DEL SERVIDOR
-  //var gameJSON = downloadStructureJSON(slot);//game es el json object amb tots els nivells
-
-  // NOTE: TEMPORALMENT, UTILITZEM EL FITXER JSON LOCAL, NO EL DEL SERVIDOR
-  //gameJSON = structure;
-  //loadNewLevel(level);
+  downloadStructureJSON(slot, function(result) {
+    gameJSON = result;
+    loadNewLevel(level);
+  });
 
   //console.log("Partida acabada");
   //S'acaba el joc quan s'arriba al nivell 1

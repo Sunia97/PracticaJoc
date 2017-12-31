@@ -66,7 +66,12 @@
 
   #titol_equipo {
     @include title-style(22px);
-    @include margin(25px, 25px, 0px, 0px);
+    @include margin(25px, 25px, 0px, 25px);
+  }
+
+  #titol_jugador {
+    @include title-style(22px);
+    @include margin(25px, 25px, 0px, 25px);
   }
 
   #titol_controles {
@@ -80,7 +85,6 @@
   }
 
   #titol_navegacion {
-    color: white;
     @include title-style(22px);
     @include margin(25px, 25px, 0px, 25px);
 
@@ -97,11 +101,29 @@
     margin: 5px;
   }
 
+  #hands {
+    background-color: #C20E0E;
+    color: white;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height: 256px;
+  }
+
+  #mochila-section {
+    background-color: #C20E0E;
+    color: white;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height: 256px;
+  }
+
   #eines {
     background-color: #C20E0E;
+    color: white;
   }
 
   #navegacion {
+    color: white;
     background-color: black;
     border-color: #ff1515;
     border-left-style: solid;
@@ -112,7 +134,7 @@
     cursor: pointer;
   }
 
-  #equipo {
+  #jugador {
     background-color: #1e193c;
     color: white;
     border-color: #ff1515;

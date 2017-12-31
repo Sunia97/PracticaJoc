@@ -3,6 +3,7 @@ var url_server = "http://puigpedros.salleurl.edu/pwi/pac4/partida.php?token=";
 var token = "fa8a1b5b-55ff-4f03-b5f9-be0a95e713e2";
 
 
+
 /*
 FUNCIONS
  */
@@ -13,7 +14,7 @@ function uploadStructureJSON(slot) {
   $.ajax({
     type: 'POST',
     url: url_server + token + "&slot=" + slot,
-    data: {json: structure},//Com que el path està posat al html ho detecta com una variable
+    data: {json: JSON.stringify(structure)},//Com que el path està posat al html ho detecta com una variable
     complete: function(result){
      console.log("GAME SAVED. Success on POST from Server (uploadStructureJSON)");
     }
@@ -34,18 +35,18 @@ function uploadStructureJSON(slot) {
    });
  }
 
-//Per descarregar del servidor l'estructura de mapes en objecte json i retorna-lo.
-function downloadStructureJSON(slot) {
+//Per descarregar del servidor l'estructura de mapes. Es filtra la resposta,
+//(parse de response) i es retorna a través de la funció callback que rebem
+//com a paràmetre i que permet treballar amb la resposta AJAX.
+function downloadStructureJSON(slot, callback) {
 
   $.ajax({
     type: 'get',
     url: url_server + token + "&slot=" + slot,
-    //dataType: 'application/json',
-    success: function(result){
-
-      console.log("Success on GET from Server (downloadMapsJSON). Result:\n");
-      console.log(result);
-      //console.log(result[0].level);
+    success: function(response){
+      responseParsed = JSON.parse(response);
+      console.log("Parse de response fet, es crida al callback:");
+      callback(responseParsed);
     }
   });
 
