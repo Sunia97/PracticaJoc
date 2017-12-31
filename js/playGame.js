@@ -134,7 +134,7 @@ function checkGame(x, y) {
       if (confirm("Vols pujar de nivell?")) {
         able = false;
         level++;
-        setTimeout(2000,pintaImagen("BruixolaE.png",0,0));
+        setTimeout(2000,pintaImagen("BruixolaE.png",0,0)); //TODO: cal canviar aquesta imatge per un "pujant al seguent nivell" o algo així.
         loadNewLevel(level);
       } else {
         alert("esperem veure't aviat");
@@ -180,6 +180,8 @@ function updatePlayer () {
   }
 
 }
+
+
 
 /*
 function fight () {
