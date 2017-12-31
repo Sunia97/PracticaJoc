@@ -33,18 +33,38 @@ function showAttributes () {
   var objects = "";
 
   for (var i = 0; i < player.mochila.length; i++) {
-    var obj = player.mochila [i];
-    objects += "<button class='weapon'>" + obj;
-    objects += " Ataque: " + objetos[obj].ataque + " Defensa: " + objetos[obj].defensa;
-    objects += "</button>";
+    addWeaponButton(player.mochila [i]);
   }
 
-  $("#bag").innerHTML = "";
-  $("#bag").append(objects);
   $("#lives").text(player.vida);
   $("#level").text(player.nivel);
   $("#attack").text(player.ataque);
   $("#defense").text(player.defensa);
+}
+
+//Afegeix el botó d'una eina
+function addWeaponButton (obj) {
+  var object_button = "";
+  object_button += "<button class='weapon'>" + obj;
+  object_button += " Ataque: " + objetos[obj].ataque + " Defensa: " + objetos[obj].defensa;
+  object_button += "</button>";
+
+  $("#bag").append(object_button);
+}
+
+//Segons les armes que té a les mans actualitza atac i defensa.
+function propertiesHands () {
+  if (player.manoderecha != "") {
+    var object_right = objetos[player.manoderecha];
+    player.ataque = object_right.ataque;
+    player.defensa = object_right.defensa;
+  }
+
+  if (player.manoizquierda != "") {
+    var object_left = objetos[player.manoizquierda];
+    player.ataque += object_left.ataque;
+    player.defensa += object_left.defensa;
+  }
 }
 
 function startGame() {
@@ -61,7 +81,7 @@ function startGame() {
     }
   }
 
-  refreshWeapons();
+  propertiesHands();
   showAttributes();
   show();
 }
@@ -84,6 +104,7 @@ function show () {
         pintaPosicion(--x, y);
         break;
   }
+
   drawCompass(player.estadoPartida.direccion, 0, 0);
   checkGame(x, y);
 }
@@ -135,58 +156,4 @@ function updatePlayer () {
   if (player.nivel % 2 == 0) {
     player.ataque ++;
   }
-
-  showAttributes();
-}
-
-//Lluita entre l'enemic i el jugador que retorna true si el jugador guanya. .
-function fight () {
-  var attacker = 1; //1 si ataca el jugador, -1 si ataca l'enemic.
-  var playerWins = true;
-
-  //torns d'atac mentre cap dels dos mor
-  while (player.vida > 0 && enemigo.vida > 0) {
-    //TODO Es crea bucle infinit si l'enemic té atac i defensa = 0
-    //Ataca el jugador
-    if (attacker > 0) {
-      attack = player.ataque - enemigo.defensa;
-
-      if (attack >= 0) {
-        enemigo.vida -= attack;
-      }
-    } else {
-      //Ataca l'enemic
-      attack = enemigo.ataque - player.defensa;
-
-      if (attack >= 0) {
-        player.vida -= attack;
-      }
-    }
-    attacker = - attacker;
-  }
-
-  if (player.vida <= 0) {
-    playerWins = false;
-    console.log("JUGADOR MORT");
-  }
-
-  if (enemigo.vida <= 0) {
-    player.xp += enemigo.xp;
-    player.mochila.push (enemigo.objetos);
-    refreshWeapons();
-  }
-
-  updatePlayer ();
-  return playerWins;
-}
-
-//Segons les armes que té a les mans actualitza atac i defensa.
-function refreshWeapons() {
-  var object_right = objetos[player.manoderecha];
-  player.ataque = object_right.ataque;
-  player.defensa = object_right.defensa;
-
-  var object_left = objetos[player.manoizquierda];
-  player.ataque += object_left.ataque;
-  player.defensa += object_left.defensa;
 }
