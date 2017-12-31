@@ -104,6 +104,9 @@
   #header {
     background-color: #ff1515;
   }
+  #alerta-pared {
+    z-index: 2;
+  }
   #controles {
     background-color: #C20E0E;
     color: white;

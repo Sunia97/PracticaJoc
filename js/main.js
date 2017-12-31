@@ -6,6 +6,7 @@ var introMusic = new Audio('src/StrangerThings8 Bit.mp3');
 function iniciarJuego() {
 
   introMusic.play();
+  $("#alerta-pared").hide();
   introMusic.loop = true;
 
   var slot = "nueva";           // NOTE: Variarà segons el que vulgui el jugador (partida 1 o 2 guardada) o "nueva" a l'inici

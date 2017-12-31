@@ -83,9 +83,11 @@ function comprovaMoviment(x, y) {
 
   if (mapa[x][y] == "#") {
     console.log(x, y);
-    alert ("No pots travessar una paret!");
+    $("#alerta-pared").show();
+    //alert ("No pots travessar una paret!");
     ok = false;
   } else {
+    $("#alerta-pared").hide();
     ok = true;
   }
   return ok;

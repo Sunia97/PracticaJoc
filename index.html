@@ -48,6 +48,7 @@
       <nav id="controls_partida">
         <ul>
           <li href="#" class="button" id="start">Comenzar partida </li>
+          <li href="#" class="button" id="load">Cargar partida</li>
           <li href="#" class="button" id="save">Guardar partida</li>
         </ul>
       </nav>
@@ -57,6 +58,9 @@
 
       <section class="col" id="navegacion">
         <h2 id="titol_navegacion">Navegación</h2>
+        <div class="alert alert-danger" role="alert" id="alerta-pared">
+            No puedes atravesar una pared!
+        </div>
         <canvas id="visor" width="512" height="480"></canvas>
       </section>
 
