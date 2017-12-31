@@ -60,55 +60,63 @@
       </section>
 
       <section class="col" id="eines">
-          <div class= "row" id="controles">
-            <h2 id="titol_controles">Controles</h2>
+        <h2 id="titol_controles">Controles</h2>
 
-            <div id="botones_controles" class="container">
-              <div class="row justify-content-center">
-                <a href="#" class="button_control" id="movendavant" onclick="move('forward')" style="text-decoration:none;"> ⇧ </a>
-              </div>
-              <div class="row justify-content-around">
-                <a href="#" class="button_control"  id="movesquerra" onclick="rotate('left')" style="text-decoration:none;" > ⇦ </a>
-                <a href="#" class="button_control"  id="movdreta" onclick="rotate('right')" style="text-decoration:none;"> ⇨ </a>
-              </div>
-              <div class="row justify-content-center">
-                <a href="#"  class="button_control" id="movendarrere" onclick="move('backwards')" style="text-decoration:none;"> ⇩ </a>
-              </div>
+        <div class= "row" id="controles">
+          <div id="botones_controles" class="container">
+            <div class="row justify-content-center">
+              <button class="button_control" id="movendavant" onclick="move('forward')" style="text-decoration:none;"> ⇧ </button>
+            </div>
+            <div class="row justify-content-around">
+              <button class="button_control"  id="movesquerra" onclick="rotate('left')" style="text-decoration:none;" > ⇦ </button>
+              <button class="button_control"  id="movdreta" onclick="rotate('right')" style="text-decoration:none;"> ⇨ </button>
+            </div>
+            <div class="row justify-content-center">
+              <button class="button_control" id="movendarrere" onclick="move('backwards')" style="text-decoration:none;"> ⇩ </button>
             </div>
           </div>
+        </div>
 
-          <div class = "row justify-content-around" id= "bruixola">
-            <canvas id="compass" width="200" height="200"></canvas>
-          </div>
+        <div class = "row justify-content-around" id= "bruixola">
+          <canvas id="compass" width="200" height="200"></canvas>
+        </div>
       </section>
 
-      <section class="col" id="equipo">
+      <section class="col" id="jugador">
+        <h2 id="titol_jugador">Jugador</h2>
+
+        <div class="row" id="caracteristicas_jugador">
+          <p>Nombre/Sexo: <span id = "name"></span></p>
+          <p>Nivel: <span id = "level"></span></p>
+          <p>Ataque: <span id = "attack"></span></p>
+          <p>Defensa: <span id = "defense"></span></p>
+          <p>Vida: <span id = "lives"></span></p>
+        </div>
+      </section>
+    </div>
+
+    <div class="row">
+      <section class="col" id="hands">
         <h2 id="titol_equipo">Equipo</h2>
-        <p>Nombre/Sexo: <span id = "name"></span></p>
-        <p>Nivel: <span id = "level"></span></p>
-        <p>Ataque: <span id = "attack"></span></p>
-        <p>Defensa: <span id = "defense"></span></p>
-        <p>Vida: <span id = "lives"></span></p>
-
-        <section class="col" id="objetos">
-          <section class="row" id="hands">
-            <button class="col" id="left_hand">
-              Mano Izquierda
-              <img class = "row" src="media/images/provaObject.png"/>
-              A: 4 / D: 4
-            </button>
-            <button class="col" id="right_hand">
-              Mano Derecha
-              <img class = "row" src="media/images/provaObject.png"/>
-              A: 4 / D: 4
-            </button>
-          </section>
-
+        <div class="row" id="objectes-hands">
+          <button class="col" id="left_hand">
+            Mano Izquierda
+            <img class = "row" src="media/images/provaObject.png"/>
+            A: 4 / D: 4
+          </button>
+          <button class="col" id="right_hand">
+            Mano Derecha
+            <img class = "row" src="media/images/provaObject.png"/>
+            A: 4 / D: 4
+          </button>
+        </div>
       </section>
 
-        <!--NOTE Podriem posar un maxim d'objectes segons el nivell!-->
+      <section class="col" id="mochila-section">
         <h2 id="titol_objetos">Mochila</h2>
-        <section id="bag"></section>
+        <div class="row" id="objetos_mochila">
+          <div id="bag"></div>
+        </div>
 
       </section>
     </div>

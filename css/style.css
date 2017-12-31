@@ -58,7 +58,15 @@
     font-size: 22px;
     margin-left: 25px;
     margin-top: 25px;
-    margin-bottom: 0px;
+    margin-bottom: 25px;
+    margin-right: 0px;
+  }
+  #titol_jugador {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 22px;
+    margin-left: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
     margin-right: 0px;
   }
   #titol_controles {
@@ -78,7 +86,6 @@
     margin-right: 0px;
   }
   #titol_navegacion {
-    color: white;
     font-family: 'Press Start 2P', cursive;
     font-size: 22px;
     margin-left: 25px;
@@ -95,10 +102,26 @@
     padding: 15px;
     margin: 5px;
   }
+  #hands {
+    background-color: #C20E0E;
+    color: white;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height: 256px;
+  }
+  #mochila-section {
+    background-color: #C20E0E;
+    color: white;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    height: 256px;
+  }
   #eines {
     background-color: #C20E0E;
+    color: white;
   }
   #navegacion {
+    color: white;
     background-color: black;
     border-color: #ff1515;
     border-left-style: solid;
@@ -107,13 +130,13 @@
     background-color: #C20E0E;
     cursor: pointer;
   }
-  #equipo {
+  #jugador {
     background-color: #1e193c;
     color: white;
     border-color: #ff1515;
     border-right-style: solid;
   }
-  #equipo p {
+  #jugador p {
     margin-left: 25px;
     margin-top: 25px;
     margin-bottom: 25px;
