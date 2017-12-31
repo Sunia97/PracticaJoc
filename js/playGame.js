@@ -32,7 +32,7 @@ function readJSON (level) {
   console.log(mapa);
 }
 
-//Mostra les dades del jugador i de l'equip.
+//l jugador i de l'equip.
 function showAttributes () {
   var objects = "";
 
@@ -130,13 +130,11 @@ function checkGame(x, y) {
     pintaImagen("you_lose.png", 0, 0);
     // TODO: que passa quan perd?
   } else {
-
-    //TODO Cal fer per baixar de nivell
     if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "D") {
       if (confirm("Vols pujar de nivell?")) {
         able = false;
         level++;
-        setTimeout(2000,pintaImagen("BruixolaE.png",0,0));
+        setTimeout(2000,pintaImagen("BruixolaE.png",0,0)); //TODO: cal canviar aquesta imatge per un "pujant al seguent nivell" o algo així.
         loadNewLevel(level);
       } else {
         alert("esperem veure't aviat");
@@ -182,6 +180,8 @@ function updatePlayer () {
   }
 
 }
+
+
 
 /*
 function fight () {
