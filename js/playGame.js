@@ -28,10 +28,8 @@ function readJSON (level) {
       mapa[j][i] = temp;
     }
   }
-<<<<<<< HEAD
   console.log(level);
   console.log(mapa);
-=======
 }
 
 //Mostra les dades del jugador i de l'equip.
@@ -71,7 +69,6 @@ function propertiesHands () {
     player.ataque += object_left.ataque;
     player.defensa += object_left.defensa;
   }
->>>>>>> ab52001ae752c03b323fd88b9ff3c26b1f8a4bb6
 }
 
 function startGame() {
@@ -87,12 +84,9 @@ function startGame() {
       }
     }
   }
-<<<<<<< HEAD
-=======
 
   propertiesHands();
   showAttributes();
->>>>>>> ab52001ae752c03b323fd88b9ff3c26b1f8a4bb6
   show();
 }
 
@@ -186,9 +180,10 @@ function updatePlayer () {
   if (player.nivel % 2 == 0) {
     player.ataque ++;
   }
-<<<<<<< HEAD
+
 }
 
+/*
 function fight () {
   var attacker = 1; //1 si ataca el jugador, -1 si ataca l'enemic.
 
@@ -225,6 +220,4 @@ function fight () {
     return true;
 
   }
-=======
->>>>>>> ab52001ae752c03b323fd88b9ff3c26b1f8a4bb6
-}
+}*/
