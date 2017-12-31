@@ -78,7 +78,9 @@
           </div>
         </div>
 
-        <div class = "row justify-content-around" id= "bruixola">
+        <h2 id="titol_brujula">Brújula</h2>
+
+        <div class = "row justify-content-center" id="bruixola">
           <canvas id="compass" width="200" height="200"></canvas>
         </div>
       </section>
@@ -97,35 +99,78 @@
     </div>
 
     <div class="row">
+
       <section class="col" id="hands">
         <h2 id="titol_equipo">Equipo</h2>
-        <div class="row" id="objectes-hands">
-          <button class="col" id="left_hand">
-            Mano Izquierda
-            <img class = "row" src="media/images/provaObject.png"/>
-            A: 4 / D: 4
-          </button>
-          <button class="col" id="right_hand">
-            Mano Derecha
-            <img class = "row" src="media/images/provaObject.png"/>
-            A: 4 / D: 4
-          </button>
+        <div class="container" id="hands-buttons-container">
+          <div class="row justify-content-center" id="objectes-hands">
+            <button class="col" id="left_hand">
+              Mano Izquierda
+              <img class = "row" src="media/images/provaObject.png"/>
+              A: 4 / D: 4
+            </button>
+            <button class="col" id="right_hand">
+              Mano Derecha
+              <img class = "row" src="media/images/provaObject.png"/>
+              A: 4 / D: 4
+            </button>
+          </div>
         </div>
       </section>
 
       <section class="col" id="mochila-section">
         <h2 id="titol_objetos">Mochila</h2>
-        <div class="row" id="objetos_mochila">
-          <div id="bag"></div>
+
+        <div class="container" id="mochila-buttons-container">
+
+          <div class="row" id="fila-mochila-1">
+            <div class="col item" id="item1">
+              ITEM
+            </div>
+            <div class="col item" id="item2">
+              ITEM
+            </div>
+            <div class="col item" id="item3">
+              ITEM
+            </div>
+            <div class="col item" id="item4">
+              ITEM
+            </div>
+          </div>
+          <div class="row" id="fila-mochila-2">
+            <div class="col item" id="item5">
+              ITEM
+            </div>
+            <div class="col item" id="item6">
+              ITEM
+            </div>
+            <div class="col item" id="item7">
+              ITEM
+            </div>
+            <div class="col item" id="item8">
+              ITEM
+            </div>
+          </div>
+
         </div>
 
+        <!-- NOTE: TEMPORAL: -->
+        <div id="bag"></div>
+
+
+
+        <!--<div class="row" id="objetos_mochila">
+      </div>
+        </div> -->
+
       </section>
+
     </div>
 
     <footer id="footer" class="row">
       <div class="col">
         <div class="button" id="sound" onclick="soundEnable()">
-          Sound
+          Sonido
         </div>
       </div>
       <div class="col">

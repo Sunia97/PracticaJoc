@@ -79,6 +79,11 @@
     @include margin(25px, 25px, 0px, 25px);
   }
 
+  #titol_brujula {
+    @include title-style(22px);
+    @include margin(25px, 25px, 0px, 25px);
+  }
+
   #titol_objetos {
     @include title-style(22px);
     @include margin(25px, 25px, 0px, 25px);
@@ -102,19 +107,52 @@
   }
 
   #hands {
+    max-width: 545px;
     background-color: #C20E0E;
     color: white;
     padding-top: 15px;
     padding-bottom: 15px;
-    height: 256px;
+    border-color: #ff1515;
+    border-top-style: solid;
+    border-left-style: solid;
+    //border-bottom-style: solid;
   }
 
   #mochila-section {
     background-color: #C20E0E;
     color: white;
+    border-color: #ff1515;
+    border-top-style: solid;
+    border-right-style: solid;
     padding-top: 15px;
     padding-bottom: 15px;
-    height: 256px;
+  }
+
+  #fila-mochila-1 {
+    background-color: #C20E0E;
+    max-width: 555px;
+    border-color: #ff1515;
+    border-right-style: solid;
+  }
+
+  #fila-mochila-2 {
+    background-color: #C20E0E;
+    max-width: 555px;
+    border-color: #ff1515;
+    border-right-style: solid;
+  }
+
+  .col .item {
+    background-color: green;
+    @include margin(15px, 25px, 25px, 15px);
+  }
+
+  #item1 {
+    @include margin(15px, 0px, 25px, 15px);
+  }
+
+  #item5 {
+    @include margin(15px, 0px, 25px, 15px);
   }
 
   #eines {
@@ -130,6 +168,9 @@
   }
 
   #sound {
+    border-color: #ff1515;
+    border-top-style: solid;
+    border-bottom-style: solid;
     background-color: #C20E0E;
     cursor: pointer;
   }
@@ -145,19 +186,20 @@
     }
   }
 
-  #hands {
-    margin-top: 20px;
+  #left_hand {
+    @include margin(15px, 25px, 25px, 15px);
   }
 
-  #objetos {
-    background-color: #1e193c;
-    color: white;
-    border-color: #ff1515;
-    border-right-style: solid;
+  #right_hand {
+      @include margin(15px, 25px, 25px, 15px);
+  }
 
-    p {
-      @include margin(25px, 25px, 25px, 25px);
-    }
+  #objectes-hands {
+    background-color: #C20E0E;
+  }
+
+  #mochila-buttons-container {
+    @include margin(15px, 25px, 25px, 15px);
   }
 
   #footer {

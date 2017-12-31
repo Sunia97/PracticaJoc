@@ -28,6 +28,8 @@ function readJSON (level) {
       mapa[j][i] = temp;
     }
   }
+  console.log(level);
+  console.log(mapa);
 }
 
 //l jugador i de l'equip.
@@ -82,8 +84,10 @@ function startGame() {
       }
     }
   }
-  show();
+
+  propertiesHands();
   showAttributes();
+  show();
 }
 
 function show () {
@@ -174,4 +178,44 @@ function updatePlayer () {
   if (player.nivel % 2 == 0) {
     player.ataque ++;
   }
+
 }
+
+/*
+function fight () {
+  var attacker = 1; //1 si ataca el jugador, -1 si ataca l'enemic.
+
+  //torns d'atac mentre cap dels dos mor
+  while (player.vida > 0 && enemigo.vida > 0) {
+    //Ataca el jugador
+
+    if (attacker > 0) {
+      attack = player.ataque - enemigo.defensa;
+
+      if (attack >= 0) {
+        enemigo.vida -= attack;
+      }
+    } else {
+      //Ataca l'enemic
+      attack = enemigo.ataque - player.defensa;
+
+      if (attack >= 0) {
+        player.vida -= attack;
+      }
+    }
+    attacker = - attacker;
+  }
+
+  if (player.vida <= 0) {
+    console.log("JUGADOR MORT");
+    return false;
+  }
+
+  if (enemigo.vida <= 0) {
+    console.log("ENEMIC MORT");
+    player.mochila.push (enemigo.objetos);
+    player.xp += enemigo.xp;
+    return true;
+
+  }
+}*/

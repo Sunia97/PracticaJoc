@@ -77,6 +77,14 @@
     margin-bottom: 25px;
     margin-right: 0px;
   }
+  #titol_brujula {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 22px;
+    margin-left: 25px;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    margin-right: 0px;
+  }
   #titol_objetos {
     font-family: 'Press Start 2P', cursive;
     font-size: 22px;
@@ -103,18 +111,54 @@
     margin: 5px;
   }
   #hands {
+    max-width: 545px;
     background-color: #C20E0E;
     color: white;
     padding-top: 15px;
     padding-bottom: 15px;
-    height: 256px;
+    border-color: #ff1515;
+    border-top-style: solid;
+    border-left-style: solid;
   }
   #mochila-section {
     background-color: #C20E0E;
     color: white;
+    border-color: #ff1515;
+    border-top-style: solid;
+    border-right-style: solid;
     padding-top: 15px;
     padding-bottom: 15px;
-    height: 256px;
+  }
+  #fila-mochila-1 {
+    background-color: #C20E0E;
+    max-width: 555px;
+    border-color: #ff1515;
+    border-right-style: solid;
+  }
+  #fila-mochila-2 {
+    background-color: #C20E0E;
+    max-width: 555px;
+    border-color: #ff1515;
+    border-right-style: solid;
+  }
+  .col .item {
+    background-color: green;
+    margin-left: 25px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 25px;
+  }
+  #item1 {
+    margin-left: 0px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 25px;
+  }
+  #item5 {
+    margin-left: 0px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 25px;
   }
   #eines {
     background-color: #C20E0E;
@@ -127,6 +171,9 @@
     border-left-style: solid;
   }
   #sound {
+    border-color: #ff1515;
+    border-top-style: solid;
+    border-bottom-style: solid;
     background-color: #C20E0E;
     cursor: pointer;
   }
@@ -142,19 +189,25 @@
     margin-bottom: 25px;
     margin-right: 25px;
   }
-  #hands {
-    margin-top: 20px;
-  }
-  #objetos {
-    background-color: #1e193c;
-    color: white;
-    border-color: #ff1515;
-    border-right-style: solid;
-  }
-  #objetos p {
+  #left_hand {
     margin-left: 25px;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 25px;
+  }
+  #right_hand {
+    margin-left: 25px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-right: 25px;
+  }
+  #objectes-hands {
+    background-color: #C20E0E;
+  }
+  #mochila-buttons-container {
+    margin-left: 25px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     margin-right: 25px;
   }
   #footer {
