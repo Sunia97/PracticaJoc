@@ -49,13 +49,18 @@
     font-size: 30px;
   }
 
+  .hand {
+    width: 350px;
+    height: 150px;
+    text-align: center;
+  }
+
   #logo {
     @include margin(25px, 25px, 0px, 0px);
   }
 
   #controls_partida {
     @include margin(25px, 0px, 0px, 25px);
-
   }
 
   #titol_principal {
@@ -147,17 +152,23 @@
   }
 
   .col .item {
-    background-color: green;
-    @include margin(15px, 25px, 25px, 15px);
+    background-color: brown;
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
   }
 
+  .weapon {
+    padding: 5px;
+  }
+/*
   #item1 {
     @include margin(15px, 0px, 25px, 15px);
   }
 
   #item5 {
     @include margin(15px, 0px, 25px, 15px);
-  }
+  }*/
 
   #eines {
     background-color: #C20E0E;

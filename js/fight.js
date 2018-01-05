@@ -35,12 +35,18 @@ function attacks () {
   }
 
   if (attacker == player) {
+    $("#alerta-pared").text("El jugador ataca" + attack);
     attacker = enemigo;
     attacked = player;
   } else {
+    console.log("El enemigo ataca" + attack);
     attacked = enemigo;
     attacker = player;
   }
+  
+  $("#alerta-pared").show();
+  //TODO Mostrar titol d'atac
+  wait (3);
 }
 
 function enemyDies () {
@@ -55,5 +61,13 @@ function enemyDies () {
     //Afegeix un nou objecte al jugador.
     player.mochila.push(obj);
     addWeaponButton(obj);
+  }
+}
+
+function wait(seconds){
+   var start = new Date().getTime();
+   var end = start;
+   while(end < start + seconds * 1000) {
+     end = new Date().getTime();
   }
 }

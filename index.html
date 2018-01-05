@@ -24,7 +24,6 @@
   <body id="body" class="container">
 
     <div id="intro">
-
       <video autoplay muted loop id="video">
         <source src="media/video.mp4" type="video/mp4">
       </video>
@@ -34,7 +33,7 @@
           <img id="logo2" src="media/images/logo2.png" height="100" />
           <h1 id="title-intro">Dungeon Master</h1>
         </div>
-        <div class="row justify-content-center">
+        <div id="button_playGame" class="row justify-content-center">
           <button class="button" onclick="introSkip()">Play Game</button>
         </div>
       </div>
@@ -59,7 +58,7 @@
       <section class="col" id="navegacion">
         <h2 id="titol_navegacion">Navegación</h2>
         <div class="alert alert-danger" role="alert" id="alerta-pared">
-            No puedes atravesar una pared!
+            ¡No puedes atravesar una pared!
         </div>
         <canvas id="visor" width="512" height="480"></canvas>
       </section>
@@ -73,8 +72,8 @@
               <button class="button_control" id="movendavant" onclick="move('forward')" style="text-decoration:none;"> ⇧ </button>
             </div>
             <div class="row justify-content-around">
-              <button class="button_control"  id="movesquerra" onclick="rotate('left')" style="text-decoration:none;" > ⇦ </button>
-              <button class="button_control"  id="movdreta" onclick="rotate('right')" style="text-decoration:none;"> ⇨ </button>
+              <button class="button_control"  id="movesquerra" onclick="move('left')" style="text-decoration:none;" > ⇦ </button>
+              <button class="button_control"  id="movdreta" onclick="move('right')" style="text-decoration:none;"> ⇨ </button>
             </div>
             <div class="row justify-content-center">
               <button class="button_control" id="movendarrere" onclick="move('backwards')" style="text-decoration:none;"> ⇩ </button>
@@ -108,15 +107,11 @@
         <h2 id="titol_equipo">Equipo</h2>
         <div class="container" id="hands-buttons-container">
           <div class="row justify-content-center" id="objectes-hands">
-            <button class="col" id="left_hand">
+            <button class="col hand" id="left_hand" onclick="changeWeapon('#left_hand')" style="">
               Mano Izquierda
-              <img class = "row" src="media/images/provaObject.png"/>
-              A: 4 / D: 4
             </button>
-            <button class="col" id="right_hand">
+            <button class="col hand" id="right_hand" onclick="changeWeapon('#right_hand')" style="">
               Mano Derecha
-              <img class = "row" src="media/images/provaObject.png"/>
-              A: 4 / D: 4
             </button>
           </div>
         </div>
@@ -126,47 +121,19 @@
         <h2 id="titol_objetos">Mochila</h2>
 
         <div class="container" id="mochila-buttons-container">
-
           <div class="row" id="fila-mochila-1">
-            <div class="col item" id="item1">
-              ITEM
-            </div>
-            <div class="col item" id="item2">
-              ITEM
-            </div>
-            <div class="col item" id="item3">
-              ITEM
-            </div>
-            <div class="col item" id="item4">
-              ITEM
-            </div>
+            <div class="col item" id="item1">ESPACIO LIBRE</div>
+            <div class="col item" id="item2">ESPACIO LIBRE</div>
+            <div class="col item" id="item3">ESPACIO LIBRE</div>
+            <div class="col item" id="item4">ESPACIO LIBRE</div>
           </div>
           <div class="row" id="fila-mochila-2">
-            <div class="col item" id="item5">
-              ITEM
-            </div>
-            <div class="col item" id="item6">
-              ITEM
-            </div>
-            <div class="col item" id="item7">
-              ITEM
-            </div>
-            <div class="col item" id="item8">
-              ITEM
-            </div>
+            <div class="col item" id="item5">ESPACIO LIBRE</div>
+            <div class="col item" id="item6">ESPACIO LIBRE</div>
+            <div class="col item" id="item7">ESPACIO LIBRE</div>
+            <div class="col item" id="item8">ESPACIO LIBRE</div>
           </div>
-
         </div>
-
-        <!-- NOTE: TEMPORAL: -->
-        <div id="bag"></div>
-
-
-
-        <!--<div class="row" id="objetos_mochila">
-      </div>
-        </div> -->
-
       </section>
 
     </div>

@@ -7,9 +7,9 @@ var partida = {};
 var mapa = [];
 
 var objetos = {
-  garrote: {ataque:1, defensa:0},
-  llave: {ataque:1, defensa:0},
-  hacha: {ataque:2, defensa:1}
+  GARROTE: {ataque:1, defensa:0},
+  LLAVE: {ataque:1, defensa:0},
+  HACHA: {ataque:2, defensa:1}
 };
 
 var enemigo = {
@@ -18,7 +18,7 @@ var enemigo = {
   defensa:0,
   xp:0,
   img:"demogorgon.png",
-  objetos:["garrote", "llave"]
+  objetos:["GARROTE", "LLAVE"]
 };
 
 var player = {
@@ -30,7 +30,7 @@ var player = {
   defensa:0,
   manoderecha:"",
   manoizquierda:"",
-  mochila:["llave", "hacha"],
+  mochila:["LLAVE", "HACHA"],
   estadoPartida: {
     x:3,
     y:1,

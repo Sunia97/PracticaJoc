@@ -32,6 +32,11 @@
     display: inline-block;
     font-size: 30px;
   }
+  .hand {
+    width: 350px;
+    height: 150px;
+    text-align: center;
+  }
   #logo {
     margin-left: 25px;
     margin-top: 25px;
@@ -145,24 +150,22 @@
     border-right-style: solid;
   }
   .col .item {
-    background-color: green;
-    margin-left: 25px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-right: 25px;
+    background-color: brown;
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
   }
+  .weapon {
+    padding: 5px;
+  }
+  /*
   #item1 {
-    margin-left: 0px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-right: 25px;
+    @include margin(15px, 0px, 25px, 15px);
   }
+
   #item5 {
-    margin-left: 0px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-right: 25px;
-  }
+    @include margin(15px, 0px, 25px, 15px);
+  }*/
   #eines {
     background-color: #C20E0E;
     color: white;

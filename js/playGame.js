@@ -1,4 +1,7 @@
 numNivells = 3; //Nombre de nivells que tenim al joc
+objects = 0;//Nombre d'objectes que té el jugador
+left_weapon = 0;
+right_weapon = 0;
 
 //Funció que carrega un nivell del map i on es desenvolupa tot el joc amb crides a funcions
 function loadNewLevel(level) {
@@ -28,8 +31,6 @@ function readJSON (level) {
       mapa[j][i] = temp;
     }
   }
-  console.log(level);
-  console.log(mapa);
 }
 
 //l jugador i de l'equip.
@@ -40,6 +41,7 @@ function showAttributes () {
     addWeaponButton(player.mochila [i]);
   }
 
+  $("#name").text(player.nombre);
   $("#lives").text(player.vida);
   $("#level").text(player.nivel);
   $("#attack").text(player.ataque);
@@ -48,12 +50,13 @@ function showAttributes () {
 
 //Afegeix el botó d'una eina
 function addWeaponButton (obj) {
-  var object_button = "";
-  object_button += "<button class='weapon'>" + obj;
-  object_button += " Ataque: " + objetos[obj].ataque + " Defensa: " + objetos[obj].defensa;
-  object_button += "</button>";
+  console.log(obj + "//" + "item" + (objects + 1));
+  var id_object = "#item" + (objects + 1);
+  var object_button = "<img class='weapon' src='media/images/provaObject.png'>";
 
-  $("#bag").append(object_button);
+  objects ++;
+  $(id_object).text(obj);
+  $(id_object).append(object_button);
 }
 
 //Segons les armes que té a les mans actualitza atac i defensa.
@@ -62,6 +65,9 @@ function propertiesHands () {
     var object_right = objetos[player.manoderecha];
     player.ataque = object_right.ataque;
     player.defensa = object_right.defensa;
+  } else {
+    player.ataque = 0;
+    player.defensa = 0;
   }
 
   if (player.manoizquierda != "") {
@@ -69,6 +75,52 @@ function propertiesHands () {
     player.ataque += object_left.ataque;
     player.defensa += object_left.defensa;
   }
+
+  $("#attack").text(player.ataque);
+  $("#defense").text(player.defensa);
+}
+
+function changeWeapon (id_hand) {
+  var weapon = "";
+
+  if (id_hand == "#left_hand") {
+    left_weapon ++;
+    if (left_weapon == right_weapon) left_weapon ++;
+
+    if (left_weapon == player.mochila.length + 1) {
+      $(id_hand).text("Mano Izquierda ");
+      left_weapon = 0;
+      player.manoizquierda = "";
+    } else {
+      weapon = player.mochila[left_weapon - 1];
+      player.manoizquierda = weapon;
+      $(id_hand).text("Mano Izquierda");
+      $(id_hand).append ("<br/>" + weapon);
+      $(id_hand).append ("<img class = 'row' src='media/images/provaObject.png'/>");
+      $(id_hand).append ("<br/>Ataque: " + objetos[weapon].ataque);
+      $(id_hand).append ("<br/>Defensa: " + objetos[weapon].defensa);
+    }
+  } else {
+    right_weapon ++;
+    if (left_weapon == right_weapon) right_weapon ++;
+
+    if (right_weapon == player.mochila.length + 1) {
+      $(id_hand).text("Mano Derecha");
+      right_weapon = 0;
+      player.manoderecha = "";
+    } else {
+      weapon = player.mochila[right_weapon - 1];
+      player.manoderecha = weapon;
+      $(id_hand).text("Mano Derecha");
+      $(id_hand).append ("<br/>" + weapon);
+      $(id_hand).append ("<img class = 'row' src='media/images/provaObject.png'/>");
+      $(id_hand).append ("<br/>Ataque: " + objetos[weapon].ataque);
+      $(id_hand).append ("<br/>Defensa: " + objetos[weapon].defensa);
+    }
+  }
+  propertiesHands();
+
+//  var ataque = "A: 4 / D: 4";*/
 }
 
 function startGame() {
@@ -122,11 +174,9 @@ function checkGame(x, y) {
   }
 
   updatePlayer ();
-
   //Si està mort:
   if (player.vida <= 0) {
     estatPartida = 1;
-    alert("has perdut!");
     pintaImagen("you_lose.png", 0, 0);
     // TODO: que passa quan perd?
   } else {
@@ -152,6 +202,7 @@ function checkGame(x, y) {
               player.estadoPartida.y++;
               break;
         }
+
         show();
       }
     }
@@ -178,46 +229,4 @@ function updatePlayer () {
   if (player.nivel % 2 == 0) {
     player.ataque ++;
   }
-
 }
-
-
-
-/*
-function fight () {
-  var attacker = 1; //1 si ataca el jugador, -1 si ataca l'enemic.
-
-  //torns d'atac mentre cap dels dos mor
-  while (player.vida > 0 && enemigo.vida > 0) {
-    //Ataca el jugador
-
-    if (attacker > 0) {
-      attack = player.ataque - enemigo.defensa;
-
-      if (attack >= 0) {
-        enemigo.vida -= attack;
-      }
-    } else {
-      //Ataca l'enemic
-      attack = enemigo.ataque - player.defensa;
-
-      if (attack >= 0) {
-        player.vida -= attack;
-      }
-    }
-    attacker = - attacker;
-  }
-
-  if (player.vida <= 0) {
-    console.log("JUGADOR MORT");
-    return false;
-  }
-
-  if (enemigo.vida <= 0) {
-    console.log("ENEMIC MORT");
-    player.mochila.push (enemigo.objetos);
-    player.xp += enemigo.xp;
-    return true;
-
-  }
-}*/

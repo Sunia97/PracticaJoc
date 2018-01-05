@@ -1,15 +1,14 @@
 function move (movement) {
-
   if (movement == "right" || movement == "left") {
     rotate (movement);
   } else {
     walk (movement);
   }
+
   show();
 }
 
 function walk (movement) {
-  console.log(mapa);
   x = player.estadoPartida.x;
   y = player.estadoPartida.y;
 
@@ -29,6 +28,7 @@ function walk (movement) {
         }
       }
       break;
+
     //Si player mira al Sud:
     case 1:
       if (movement == "forward") {
@@ -44,6 +44,7 @@ function walk (movement) {
         }
       }
     break;
+
     //Si player mira a l'Est:
     case 2:
       if (movement == "forward") {
@@ -59,6 +60,7 @@ function walk (movement) {
         }
       }
     break;
+
     //Si player mira a l'Oest:
     case 3:
     if (movement == "forward") {
@@ -73,16 +75,14 @@ function walk (movement) {
         player.estadoPartida.x++;
       }
     }
-  break;
+    break;
   }
-  //console.log(player.estadoPartida.x, player.estadoPartida.y);
-  show();
 }
 
 function comprovaMoviment(x, y) {
 
   if (mapa[x][y] == "#") {
-    console.log(x, y);
+    $("#alerta-pared").text("¡No puedes atravesar una pared!");
     $("#alerta-pared").show();
     //alert ("No pots travessar una paret!");
     ok = false;
@@ -112,8 +112,6 @@ function rotate (rotation) {
         else player.estadoPartida.direccion = 0;
         break;
     }
-
-    show();
 }
 
 function drawCompass(direccio, x, y) {
