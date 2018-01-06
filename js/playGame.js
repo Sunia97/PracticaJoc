@@ -52,7 +52,7 @@ function showAttributes () {
 function addWeaponButton (obj) {
   console.log(obj + "//" + "item" + (objects + 1));
   var id_object = "#item" + (objects + 1);
-  var object_button = "<img class='weapon' src='media/images/provaObject.png'>";
+  var object_button = "<img class='weapon' src='media/images/" + objetos[obj].path + "'>";
 
   objects ++;
   $(id_object).text(obj);
@@ -96,7 +96,7 @@ function changeWeapon (id_hand) {
       player.manoizquierda = weapon;
       $(id_hand).text("Mano Izquierda");
       $(id_hand).append ("<br/>" + weapon);
-      $(id_hand).append ("<img class = 'row' src='media/images/provaObject.png'/>");
+      $(id_hand).append ("<img class = 'row_center' src='media/images/" + objetos[weapon].path + "'/>");
       $(id_hand).append ("<br/>Ataque: " + objetos[weapon].ataque);
       $(id_hand).append ("<br/>Defensa: " + objetos[weapon].defensa);
     }
@@ -113,7 +113,7 @@ function changeWeapon (id_hand) {
       player.manoderecha = weapon;
       $(id_hand).text("Mano Derecha");
       $(id_hand).append ("<br/>" + weapon);
-      $(id_hand).append ("<img class = 'row' src='media/images/provaObject.png'/>");
+      $(id_hand).append ("<img class = 'row_center' src='media/images/" + objetos[weapon].path + "'/>");
       $(id_hand).append ("<br/>Ataque: " + objetos[weapon].ataque);
       $(id_hand).append ("<br/>Defensa: " + objetos[weapon].defensa);
     }
@@ -188,6 +188,7 @@ function checkGame(x, y) {
         loadNewLevel(level);
       } else {
         alert("esperem veure't aviat");
+        //movem el jugador una casella enrere per evitar que torni a activar l'alerta.
         switch (player.estadoPartida.direccion) {
             case 0:
               player.estadoPartida.y++;
@@ -229,4 +230,25 @@ function updatePlayer () {
   if (player.nivel % 2 == 0) {
     player.ataque ++;
   }
+}
+
+function reiniciar() {
+  level = -2;
+  //restablim tots els valors a 0 o al
+  player.manoderecha = "";
+  player.manoizquierda ="";
+  player.mochila = ["LLAVE", "HACHA"];
+  player.vida = 10;
+  player.nivel = 1;
+  player.xp = 0;
+  player.ataque = 0;
+  player.defensa = 0;
+  //forcem el pintat dels dos botons de les mans.
+  $("#right_hand").text("Mano Derecha");
+  $("#left_hand").text("Mano Izquierda");
+
+  objects = 0;
+  left_weapon = 0;
+  right_weapon = 0;
+  loadNewLevel(level);
 }

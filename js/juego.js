@@ -7,9 +7,10 @@ var partida = {};
 var mapa = [];
 
 var objetos = {
-  GARROTE: {ataque:1, defensa:0},
-  LLAVE: {ataque:1, defensa:0},
-  HACHA: {ataque:2, defensa:1}
+  GARROTE: {ataque:1, defensa:0, path:"garrote_2.png"},
+  LLAVE: {ataque:2, defensa:0, path:"tirachinas_2.png"},
+  HACHA: {ataque:3, defensa:1, path:"hacha_2.png"},
+  ESCUDO: {ataque:0, defensa:4, path:"escudo_2.png"}
 };
 
 var enemigo = {
@@ -30,7 +31,7 @@ var player = {
   defensa:0,
   manoderecha:"",
   manoizquierda:"",
-  mochila:["LLAVE", "HACHA"],
+  mochila:["LLAVE", "HACHA", "GARROTE", "ESCUDO"],
   estadoPartida: {
     x:3,
     y:1,
