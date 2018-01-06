@@ -31,7 +31,7 @@ var player = {
   defensa:0,
   manoderecha:"",
   manoizquierda:"",
-  mochila:["LLAVE", "HACHA", "GARROTE", "ESCUDO"],
+  mochila:["LLAVE", "HACHA"],
   estadoPartida: {
     x:3,
     y:1,
