@@ -35,18 +35,20 @@ function attacks () {
   }
 
   if (attacker == player) {
-    $("#alerta-pared").text("El jugador ataca" + attack);
     attacker = enemigo;
     attacked = player;
   } else {
-    console.log("El enemigo ataca" + attack);
     attacked = enemigo;
     attacker = player;
   }
-  
-  $("#alerta-pared").show();
-  //TODO Mostrar titol d'atac
+
+  console.log("ataque");
+
+  //TODO Mostrar titol d'atac (que no apareix fins que es mor)
+  $("#alerta-pared").text("Jugador: " + jugador.vida + " Enemigo: " + enemigo.vida);
+  //$("#alerta-pared").show();
   wait (3);
+  //$("#alerta-pared").hide();
 }
 
 function enemyDies () {

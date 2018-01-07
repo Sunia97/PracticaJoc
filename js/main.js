@@ -81,5 +81,7 @@ function loadAssets () {
   objetos.llave = {"path" : "llave.png" };
 
   enemigo.img = "demogorgon.png";
+  enemigo.vida = 5;
+  addWeaponEnemy("hacha");
   resetProperties ();
 }

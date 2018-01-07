@@ -288,3 +288,9 @@ function resetProperties () {
   player.ataque = 0;
   player.defensa = 0;
 }
+
+function addWeaponEnemy (weapon){
+  enemigo.objetos.push(weapon);
+  enemigo.ataque += objetos[weapon].ataque;
+  enemigo.defensa += objetos[weapon].defensa;
+}
