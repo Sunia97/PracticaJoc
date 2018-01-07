@@ -72,8 +72,5 @@ function loadAssets () {
   objetos.tirachinas = {"ataque" : 2, "defensa" : 0, "path" : "tirachinas_2.png" };
   objetos.llave = {"path" : "tirachinas_2.png" };
   enemigo.img = "demogorgon.png";
-  player.nivel = 1;
-  player.ataque = 0;
-  player.defensa = 0;
-  player.manoderecha = "";
+  resetProperties ();
 }

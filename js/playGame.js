@@ -95,10 +95,11 @@ function changeWeapon (id_hand) {
       weapon = player.mochila[left_weapon - 1];
       player.manoizquierda = weapon;
       $(id_hand).text("Mano Izquierda");
-      $(id_hand).append ("<br/>" + weapon);
-      $(id_hand).append ("<br/><img class = 'row_center' src='media/images/" + objetos[weapon].path + "'/>");
-      $(id_hand).append ("<br/>Ataque: " + objetos[weapon].ataque);
-      $(id_hand).append ("<br/>Defensa: " + objetos[weapon].defensa);
+      $(id_hand).append ("<br/>" + weapon + "<br/><img class = 'row_center' src='media/images/objects/" + objetos[weapon].path + "'/>");
+
+      if (weapon != "llave") {
+        $(id_hand).append ("<br/>Ataque: " + objetos[weapon].ataque + "<br/>Defensa: " + objetos[weapon].defensa);
+      }
     }
   } else {
     right_weapon ++;
@@ -112,12 +113,14 @@ function changeWeapon (id_hand) {
       weapon = player.mochila[right_weapon - 1];
       player.manoderecha = weapon;
       $(id_hand).text("Mano Derecha");
-      $(id_hand).append ("<br/>" + weapon);
-      $(id_hand).append ("<br/><img class = 'row_center' src='media/images/" + objetos[weapon].path + "'/>");
-      $(id_hand).append ("<br/>Ataque: " + objetos[weapon].ataque);
-      $(id_hand).append ("<br/>Defensa: " + objetos[weapon].defensa);
+      $(id_hand).append ("<br/>" + weapon + "<br/><img class = 'row_center' src='media/images/objects/" + objetos[weapon].path + "'/>");
+
+      if (weapon != "llave") {
+        $(id_hand).append ("<br/>Ataque: " + objetos[weapon].ataque + "<br/>Defensa: " + objetos[weapon].defensa);
+      }
     }
   }
+  console.log("WEAPON : " + weapon);
   propertiesHands();
 }
 
@@ -186,7 +189,7 @@ function checkGame(x, y) {
             break;
         }
     }
-    
+
     if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "D" && containsKey) {
       if (!containsKey) alert("Necesitas una llave para subir de nivel");
       if (confirm("¿Quieres subir de nivel?")) {
@@ -240,17 +243,8 @@ function updatePlayer () {
   }
 }
 
-function reiniciar() {
-  level = -2;
-  //restablim tots els valors a 0 o al
-  player.manoderecha = "";
-  player.manoizquierda ="";
-  player.mochila = ["LLAVE", "HACHA"];
-  player.vida = 10;
-  player.nivel = 1;
-  player.xp = 0;
-  player.ataque = 0;
-  player.defensa = 0;
+function restart() {
+  resetProperties ();
   //forcem el pintat dels dos botons de les mans.
   $("#right_hand").text("Mano Derecha");
   $("#left_hand").text("Mano Izquierda");
@@ -259,4 +253,19 @@ function reiniciar() {
   left_weapon = 0;
   right_weapon = 0;
   loadNewLevel(level);
+}
+
+function resetProperties () {
+  level = -2;
+  player.nivel = 1;
+  player.ataque = 0;
+  player.defensa = 0;
+  player.manoderecha = "";
+  player.manoizquierda ="";
+  player.mochila = ["llave", "garrote"];
+  player.vida = 10;
+  player.nivel = 1;
+  player.xp = 0;
+  player.ataque = 0;
+  player.defensa = 0;
 }
