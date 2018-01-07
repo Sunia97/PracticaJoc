@@ -214,7 +214,7 @@ function checkGame(x, y) {
       show();
     }
     if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "O" || mapa[player.estadoPartida.x][player.estadoPartida.y] == "K") {
-      checkObject();
+      checkObject(random_obj);
       show();
     }
   }
