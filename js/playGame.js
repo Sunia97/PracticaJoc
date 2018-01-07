@@ -186,9 +186,9 @@ function checkGame(x, y) {
             break;
         }
     }
-    if (!containsKey) alert("Necesitas una llave para subir de nivel");
+    
     if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "D" && containsKey) {
-
+      if (!containsKey) alert("Necesitas una llave para subir de nivel");
       if (confirm("¿Quieres subir de nivel?")) {
         able = false;
         level++;
