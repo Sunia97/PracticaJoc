@@ -47,7 +47,11 @@ function mapaToImg(x, y) {
     return enemigo.img;
   }
   if (mapa[x][y] == "K") {
-    return "path_key.png";
+    return "path_llave.png";
+  }
+
+  if (mapa[x][y] == "K") {
+    return "path_llave.png";
   }
 }
 
@@ -70,9 +74,12 @@ function introSkip () {
 function loadAssets () {
   objetos.hacha = {"ataque" : 3, "defensa" : 1, "path" : "hacha.png" };
   objetos.escudo = {"ataque" : 0, "defensa" : 4, "path" : "escudo.png" };
-  objetos.garrote = {"ataque" : 1, "defensa" : 0, "path" : "garrote.png" };
-  objetos.tirachinas = {"ataque" : 2, "defensa" : 0, "path" : "tirachinas.png" };
+  objetos.garrote = {"ataque" : 1, "defensa" : 1, "path" : "garrote.png" };
+  objetos.tirachinas = {"ataque" : 1, "defensa" : 0, "path" : "tirachinas.png" };
+  objetos.espada = {"ataque" : 2, "defensa" : 3, "path" : "espada.png" };
+  objetos.pistola = {"ataque" : 4, "defensa" : 2, "path" : "pistola.png" };
   objetos.llave = {"path" : "llave.png" };
+
   enemigo.img = "demogorgon.png";
   resetProperties ();
 }
