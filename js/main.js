@@ -9,17 +9,18 @@ function iniciarJuego() {
   $("#save-game-panel").hide();
   $("#load-game-panel").hide();
   $("#game-saved-panel").hide();
-    $("#game-loaded-panel").hide();
+  $("#game-loaded-panel").hide();
   introMusic.loop = true;
 
+  var slot = "nueva";           // NOTE: Variarà segons el que vulgui el jugador (partida 1 o 2 guardada) o "nueva" a l'inici
+  //deleteStructureJSON(slot);
+  //uploadStructureJSON(slot);
   loadAssets();
 
-  var slot = "nueva";           // NOTE: Variarà segons el que vulgui el jugador (partida 1 o 2 guardada) o "nueva" a l'inici
-
   // NOTE: Descarreguem estructura de partida nova
-  downloadStructureJSON ("nueva", function callback(result) {
+  downloadStructureJSON (slot, function callback(result) {
     gameJSON = result;
-    loadNewLevel();
+    loadNewLevel(-2);
     console.log("Callback fet. gameJSON carregat des del server.");
   });
 }
@@ -41,10 +42,23 @@ function mapaToImg(x, y) {
   if (mapa[x][y] == "K") {
     return "path_llave.png";
   }
-
-  if (mapa[x][y] == "K") {
-    return "path_llave.png";
+  //Apareix un objecte
+  if (mapa[x][y] == "O") {
+    var obj = getRandomObject ();
+    while (obj == "llave") {
+      obj = getRandomObject ();
+    }
+    return ("path_" + obj + ".png");
   }
+}
+
+function getRandomObject () {
+    var result;
+    var count = 0;
+    for (var prop in objetos)
+        if (Math.random() < 1/++count)
+           result = prop;
+    return result;
 }
 
 function soundEnable () {

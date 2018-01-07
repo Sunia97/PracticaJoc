@@ -4,18 +4,18 @@ left_weapon = 0;
 right_weapon = 0;
 
 //Funció que carrega un nivell del map i on es desenvolupa tot el joc amb crides a funcions
-function loadNewLevel() {
-  if (player.estadoPartida.nivel < 0) {
-    readJSON ();
-    startGame(); //carrega la posició del jugador i el que calgui
+function loadNewLevel(level) {
+  if (level < 0) {
+    readJSON (level);
+    startGame(level); //carrega la posició del jugador i el que calgui
   }
 }
 
-function readJSON () {
+function readJSON (level) {
   //Busca el mapa corresponent al nivell
   // Utilitzem numNivells ja que gameJSON.size no funcionava.
   for (var z = 0; z < numNivells; z++) {
-    if (gameJSON[z].level == player.estadoPartida.nivel) {
+    if (gameJSON[z].level == level) {
       break;
     }
   }
@@ -33,7 +33,7 @@ function readJSON () {
   }
 }
 
-function startGame() {
+function startGame(level) {
 
   player.estadoPartida.x = gameJSON[3].estadoPartida.x;
   player.estadoPartida.y = gameJSON[3].estadoPartida.y;
@@ -52,13 +52,13 @@ function startGame() {
   }
 */
   propertiesHands();
-  showAttributes();
+  showAttributes(level);
   show();
 }
 
 //l jugador i de l'equip.
-function showAttributes () {
-  if (player.estadoPartida.nivel == -2) {
+function showAttributes (level) {
+  if (level == -2) {
     for (var i = 1; i < 9 && level == -2; i++) {
       $("#item" + i).text("ESPACIO LIBRE");
     }
@@ -152,8 +152,6 @@ function changeWeapon (id_hand) {
   propertiesHands();
 }
 
-<<<<<<< HEAD
-=======
 function startGame() {
   //Busca la posició del jugador
   fi = 0;
@@ -172,7 +170,6 @@ function startGame() {
   show();
 }
 
->>>>>>> 02c85a2e37539ac1926aadd25795645330fc5eaa
 function show () {
   x = player.estadoPartida.x;
   y = player.estadoPartida.y;
@@ -213,11 +210,11 @@ function checkGame(x, y) {
   } else {
 
     if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "D") {
-        checkDoor();
-        show();
+      checkDoor();
+      show();
     }
-    if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "K") {
-      checkKey();
+    if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "O" || mapa[player.estadoPartida.x][player.estadoPartida.y] == "K") {
+      checkObject();
       show();
     }
   }
@@ -228,7 +225,7 @@ function checkDoor () {
     if (confirm("Vols pujar de nivell?")) {
       able = false;
       player.estadoPartida.nivel++;
-      loadNewLevel();
+      loadNewLevel(player.estadoPartida.nivel);
     } else {
       alert("esperem veure't aviat");
       stepBackwards();
@@ -258,12 +255,12 @@ function stepBackwards () {
     }
 }
 
-function checkKey () {
-    player.mochila.push ("llave");
-    addWeaponButton("llave");
-    $("#alerta-pared").text("Has encontrado una llave.");
-    $("#alerta-pared").show();
-    mapa[player.estadoPartida.x][player.estadoPartida.y] = ".";
+function checkObject (obj) {
+  player.mochila.push (obj);
+  addWeaponButton(obj);
+  $("#alerta-pared").text("Has encontrado el objeto: " + obj);
+  $("#alerta-pared").show();
+  mapa[player.estadoPartida.x][player.estadoPartida.y] = ".";
 }
 
 //Actualitza el nivell, defensa i atac del jugador
@@ -297,7 +294,7 @@ function restart() {
   objects = 0;
   left_weapon = 0;
   right_weapon = 0;
-  loadNewLevel();
+  loadNewLevel(-2);
 }
 
 function resetProperties () {
