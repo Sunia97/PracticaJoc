@@ -2,6 +2,7 @@ numNivells = 3; //Nombre de nivells que tenim al joc
 objects = 0;//Nombre d'objectes que té el jugador
 left_weapon = 0;
 right_weapon = 0;
+level = -2;
 
 //Funció que carrega un nivell del map i on es desenvolupa tot el joc amb crides a funcions
 function loadNewLevel(level) {
@@ -35,12 +36,12 @@ function readJSON (level) {
 
 //l jugador i de l'equip.
 function showAttributes () {
-  var objects = "";
-
-  for (var i = 0; i < player.mochila.length; i++) {
-    addWeaponButton(player.mochila [i]);
+  if (level == -2) {
+    for (var i = 1; i < 9 && level == -2; i++) {
+      $("#item" + i).text("ESPACIO LIBRE");
+    }
   }
-
+  
   $("#name").text(player.nombre);
   $("#lives").text(player.vida);
   $("#level").text(player.nivel);
@@ -137,7 +138,6 @@ function startGame() {
       if (mapa[x][y] == "P") {
         player.estadoPartida.x = x;
         player.estadoPartida.y = y;
-        console.log(x, y);
         fi = 1;
       }
     }
