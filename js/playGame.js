@@ -13,15 +13,15 @@ function loadNewLevel(level) {
 
 function readJSON (level) {
   //Busca el mapa corresponent al nivell
-  console.log("hola");
   // Utilitzem numNivells ja que gameJSON.size no funcionava.
   for (var z = 0; z < numNivells; z++) {
     if (gameJSON[z].level == level) {
       break;
     }
   }
-  player.estadoPartida.direccion = gameJSON[z].direction;
-  mapa= gameJSON[z].map;//Assigna el nivell (mapa) que toca a mapa
+  player.estadoPartida.direccion = gameJSON[3].estadoPartida.direccion;
+
+  mapa = gameJSON[z].map;//Assigna el nivell (mapa) que toca a mapa
 
   //Fa la trasposada de la matriu Mapa, per guardar-la igual que al json.
   for (var i = 0; i < 10; i++) {
@@ -31,6 +31,29 @@ function readJSON (level) {
       mapa[j][i] = temp;
     }
   }
+}
+
+function startGame() {
+
+  player.estadoPartida.x = gameJSON[3].estadoPartida.x;
+  player.estadoPartida.y = gameJSON[3].estadoPartida.y;
+/*
+  //Busca la posició del jugador
+  fi = 0;
+  for (x = 0; x < 10 && fi == 0; x++) {
+    for (y = 0; y < 10 && fi == 0; y++) {
+      if (mapa[x][y] == "P") {
+        player.estadoPartida.x = x;
+        player.estadoPartida.y = y;
+        console.log(x, y);
+        fi = 1;
+      }
+    }
+  }
+*/
+  propertiesHands();
+  showAttributes();
+  show();
 }
 
 //l jugador i de l'equip.
@@ -121,25 +144,6 @@ function changeWeapon (id_hand) {
   propertiesHands();
 
 //  var ataque = "A: 4 / D: 4";*/
-}
-
-function startGame() {
-  //Busca la posició del jugador
-  fi = 0;
-  for (x = 0; x < 10 && fi == 0; x++) {
-    for (y = 0; y < 10 && fi == 0; y++) {
-      if (mapa[x][y] == "P") {
-        player.estadoPartida.x = x;
-        player.estadoPartida.y = y;
-        console.log(x, y);
-        fi = 1;
-      }
-    }
-  }
-
-  propertiesHands();
-  showAttributes();
-  show();
 }
 
 function show () {

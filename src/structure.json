@@ -46,5 +46,22 @@ structure = [
       ["#","#","#","#","#","#","#","#","#","#"]
     ],
     "direction": 0
+  },
+  {
+    "nombre": "Jugador",
+    "vida": 10,
+    "nivel": 1,
+    "xp": 0,
+    "ataque": 0,
+    "defensa": 0,
+    "manoderecha":"",
+    "manoizquierda":"",
+    "mochila": ["LLAVE", "HACHA"],
+    "estadoPartida": {
+      "x":1,
+      "y":1,
+      "nivel":-2,
+      "direccion":0
+    }
   }
 ]
