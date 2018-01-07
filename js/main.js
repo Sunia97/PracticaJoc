@@ -45,6 +45,9 @@ function mapaToImg(x, y) {
   if (mapa[x][y] == "E") {
     return enemigo.img;
   }
+  if (mapa[x][y] == "K") {
+    return "path_key.png";
+  }
 }
 
 function soundEnable () {

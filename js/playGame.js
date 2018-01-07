@@ -181,33 +181,67 @@ function checkGame(x, y) {
     // TODO: que passa quan perd?
   } else {
     if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "D") {
-      if (confirm("Vols pujar de nivell?")) {
-        able = false;
-        level++;
-        setTimeout(2000,pintaImagen("BruixolaE.png",0,0)); //TODO: cal canviar aquesta imatge per un "pujant al seguent nivell" o algo així.
-        loadNewLevel(level);
-      } else {
-        alert("esperem veure't aviat");
-        //movem el jugador una casella enrere per evitar que torni a activar l'alerta.
-        switch (player.estadoPartida.direccion) {
-            case 0:
-              player.estadoPartida.y++;
-              break;
-            case 1:
-              player.estadoPartida.y--;
-              break;
-            case 2:
-              player.estadoPartida.y--;
-              break;
-            case 3:
-              player.estadoPartida.y++;
-              break;
-        }
-
+        checkDoor();
         show();
-      }
+    }
+    if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "K") {
+      checkKey();
+      show();
     }
   }
+}
+
+function checkDoor () {
+  if (player.manoderecha == "LLAVE" || player.manoizquierda == "LLAVE"){
+    if (confirm("Vols pujar de nivell?")) {
+      able = false;
+      level++;
+      loadNewLevel(level);
+    } else {
+      alert("esperem veure't aviat");
+      //movem el jugador una casella enrere per evitar que torni a activar l'alerta.
+      switch (player.estadoPartida.direccion) {
+          case 0:
+            player.estadoPartida.y++;
+            break;
+          case 1:
+            player.estadoPartida.y--;
+            break;
+          case 2:
+            player.estadoPartida.x--;
+            break;
+          case 3:
+            player.estadoPartida.x++;
+            break;
+        }
+    }
+  } else {
+    $("#alerta-pared").text("Necessitas una llave para abrirla");
+    $("#alerta-pared").show();
+    switch (player.estadoPartida.direccion) {
+        case 0:
+          player.estadoPartida.y++;
+          break;
+        case 1:
+          player.estadoPartida.y--;
+          break;
+        case 2:
+          player.estadoPartida.x--;
+          break;
+        case 3:
+          player.estadoPartida.x++;
+          break;
+      }
+  }
+
+}
+
+function checkKey () {
+    player.mochila.push("LLAVE");
+    addWeaponButton("LLAVE");
+    $("#alerta-pared").text("Has encontrado una llave.");
+    $("#alerta-pared").show();
+    mapa[player.estadoPartida.x][player.estadoPartida.y] = ".";
 }
 
 //Actualitza el nivell, defensa i atac del jugador

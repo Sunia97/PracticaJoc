@@ -8,7 +8,7 @@ var mapa = [];
 
 var objetos = {
   GARROTE: {ataque:1, defensa:0, path:"garrote_2.png"},
-  LLAVE: {ataque:2, defensa:0, path:"tirachinas_2.png"},
+  LLAVE: {ataque:0, defensa:0, path:"clau.png"},
   HACHA: {ataque:3, defensa:1, path:"hacha_2.png"},
   ESCUDO: {ataque:0, defensa:4, path:"escudo_2.png"}
 };
@@ -31,7 +31,7 @@ var player = {
   defensa:0,
   manoderecha:"",
   manoizquierda:"",
-  mochila:["LLAVE", "HACHA"],
+  mochila:["HACHA"],
   estadoPartida: {
     x:3,
     y:1,
@@ -57,6 +57,19 @@ function pintaImagen(src, x, y) {
     context.drawImage(this, x, y);
   };
 }
+
+function pintaImagen(src, x, y) {
+  // Consigue el canvas
+  var canvas = document.getElementById('visor');
+  var context = canvas.getContext('2d');
+  var base_image = new Image();
+  base_image.src = "./media/images/"+src;
+  base_image.onload = function () {
+    // Pinta imagen en el canvas
+    context.drawImage(this, x, y);
+  };
+}
+
 
 /* Pinta al visor lo que hay en el mapa */
 function pintaPosicion(x, y) {
