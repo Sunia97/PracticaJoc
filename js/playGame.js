@@ -64,7 +64,7 @@ function showAttributes () {
       $("#item" + i).text("ESPACIO LIBRE");
     }
   }
-  
+
   $("#name").text(player.nombre);
   $("#lives").text(player.vida);
   $("#level").text(player.nivel);
@@ -153,27 +153,6 @@ function changeWeapon (id_hand) {
   propertiesHands();
 }
 
-<<<<<<< HEAD
-=======
-function startGame() {
-  //Busca la posició del jugador
-  fi = 0;
-  for (x = 0; x < 10 && fi == 0; x++) {
-    for (y = 0; y < 10 && fi == 0; y++) {
-      if (mapa[x][y] == "P") {
-        player.estadoPartida.x = x;
-        player.estadoPartida.y = y;
-        fi = 1;
-      }
-    }
-  }
-
-  propertiesHands();
-  showAttributes();
-  show();
-}
-
->>>>>>> 02c85a2e37539ac1926aadd25795645330fc5eaa
 function show () {
   x = player.estadoPartida.x;
   y = player.estadoPartida.y;
