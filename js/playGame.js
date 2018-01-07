@@ -50,6 +50,7 @@ function showAttributes () {
 
 //Afegeix el botó d'una eina
 function addWeaponButton (obj) {
+  console.log(obj);
   var id_object = "#item" + (objects + 1);
   var object_button = "<br/><img class='weapon' src='media/images/objects/" + objetos[obj].path + "'>";
 
@@ -182,35 +183,57 @@ function checkGame(x, y) {
   } else {
 
     if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "D") {
-      if (player.manoderecha != "llave" && player.manoizquierda != "llave") alert("Necesitas coger una llave para subir de nivel");
-      else {
-        if (confirm("¿Quieres subir de nivel?")) {
-          able = false;
-          level++;
-          setTimeout(2000,pintaImagen("BruixolaE.png",0,0)); //TODO: cal canviar aquesta imatge per un "pujant al seguent nivell" o algo així.
-          loadNewLevel(level);
-        } else {
-          alert("¡Te esperamos!");
-        }
-      }
-      switch (player.estadoPartida.direccion) {
-          case 0:
-            player.estadoPartida.y++;
-            break;
-          case 1:
-            player.estadoPartida.y--;
-            break;
-          case 2:
-            player.estadoPartida.y--;
-            break;
-          case 3:
-            player.estadoPartida.y++;
-            break;
-      }
-
+        checkDoor();
+        show();
+    }
+    if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "K") {
+      checkKey();
       show();
     }
   }
+}
+
+function checkDoor () {
+  if (player.manoderecha == "LLAVE" || player.manoizquierda == "LLAVE"){
+    if (confirm("Vols pujar de nivell?")) {
+      able = false;
+      level++;
+      loadNewLevel(level);
+    } else {
+      alert("esperem veure't aviat");
+      stepBackwards();
+    }
+  } else {
+    $("#alerta-pared").text("Necessitas una llave para abrirla");
+    $("#alerta-pared").show();
+    stepBackwards();
+  }
+}
+
+//movem el jugador una casella enrere
+function stepBackwards () {
+  switch (player.estadoPartida.direccion) {
+      case 0:
+        player.estadoPartida.y++;
+        break;
+      case 1:
+        player.estadoPartida.y--;
+        break;
+      case 2:
+        player.estadoPartida.x--;
+        break;
+      case 3:
+        player.estadoPartida.x++;
+        break;
+    }
+}
+
+function checkKey () {
+    player.mochila.push("llave");
+    addWeaponButton("llave");
+    $("#alerta-pared").text("Has encontrado una llave.");
+    $("#alerta-pared").show();
+    mapa[player.estadoPartida.x][player.estadoPartida.y] = ".";
 }
 
 //Actualitza el nivell, defensa i atac del jugador
@@ -254,7 +277,7 @@ function resetProperties () {
   player.defensa = 0;
   player.manoderecha = "";
   player.manoizquierda ="";
-  player.mochila = ["llave", "garrote"];
+  player.mochila = [];
   player.vida = 10;
   player.nivel = 1;
   player.xp = 0;

@@ -47,6 +47,9 @@ function mapaToImg(x, y) {
   if (mapa[x][y] == "E") {
     return enemigo.img;
   }
+  if (mapa[x][y] == "K") {
+    return "path_key.png";
+  }
 }
 
 function soundEnable () {
@@ -70,7 +73,7 @@ function loadAssets () {
   objetos.escudo = {"ataque" : 0, "defensa" : 4, "path" : "escudo_2.png" };
   objetos.garrote = {"ataque" : 1, "defensa" : 0, "path" : "garrote_2.png" };
   objetos.tirachinas = {"ataque" : 2, "defensa" : 0, "path" : "tirachinas_2.png" };
-  objetos.llave = {"path" : "tirachinas_2.png" };
+  objetos.llave = {"path" : "llave_2.png" };
   enemigo.img = "demogorgon.png";
   resetProperties ();
 }
