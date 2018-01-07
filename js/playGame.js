@@ -2,6 +2,7 @@ numNivells = 3; //Nombre de nivells que tenim al joc
 objects = 0;//Nombre d'objectes que té el jugador
 left_weapon = 0;
 right_weapon = 0;
+var id_llave;
 
 //Funció que carrega un nivell del map i on es desenvolupa tot el joc amb crides a funcions
 function loadNewLevel(level) {
@@ -19,7 +20,7 @@ function readJSON (level) {
       break;
     }
   }
-  player.estadoPartida.direccion = gameJSON[3].estadoPartida.direccion;
+  player.estadoPartida.direccion = gameJSON[2].estadoPartida.direccion;
 
   mapa = gameJSON[z].map;//Assigna el nivell (mapa) que toca a mapa
 
@@ -35,8 +36,8 @@ function readJSON (level) {
 
 function startGame(level) {
 
-  player.estadoPartida.x = gameJSON[3].estadoPartida.x;
-  player.estadoPartida.y = gameJSON[3].estadoPartida.y;
+  player.estadoPartida.x = gameJSON[2].estadoPartida.x;
+  player.estadoPartida.y = gameJSON[2].estadoPartida.y;
 /*
   //Busca la posició del jugador
   fi = 0;
@@ -75,6 +76,8 @@ function showAttributes (level) {
 function addWeaponButton (obj) {
   var id_object = "#item" + (objects + 1);
   var object_button = "<br/><img class='weapon' src='media/images/objects/" + objetos[obj].path + "'>";
+
+  if (obj == "llave") id_llave = id_object;
 
   objects ++;
   $(id_object).text(obj);
@@ -229,6 +232,17 @@ function checkDoor () {
     if (confirm("Vols pujar de nivell?")) {
       able = false;
       player.estadoPartida.nivel++;
+      player.mochila.pop("llave");
+      if (manoderecha == "llave") {
+        manoderecha = "";
+        $("right_hand").text("Mano Derecha");
+      }
+      if (manoizquierda == "llave") {
+        manoizquierda = "";
+        $("left_hand").text("Mano Izquierda");
+      }
+      player.mochila.pop("llave");
+      $(id_llave).text("ESPACIO LIBRE");
       loadNewLevel(player.estadoPartida.nivel);
     } else {
       alert("esperem veure't aviat");
