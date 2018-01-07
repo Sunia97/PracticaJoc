@@ -42,8 +42,6 @@ function mapaToImg(x, y) {
   if (mapa[x][y] == "K") {
     return "path_llave.png";
   }
-<<<<<<< HEAD
-=======
   //Apareix un objecte
   if (mapa[x][y] == "O") {
     var obj = getRandomObject ();
@@ -52,7 +50,6 @@ function mapaToImg(x, y) {
     }
     return ("path_" + obj + ".png");
   }
->>>>>>> 1dbb66c2aa584707ad8b9b4ecce7dc8c34edac0b
 }
 
 function getRandomObject () {

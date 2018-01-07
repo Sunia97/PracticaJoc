@@ -61,6 +61,8 @@ function enemyDies () {
     var obj = enemigo.objetos[i];
 
     //Afegeix un nou objecte al jugador.
+    $("#alerta-pared").text("Has ganado y obtienes sus armas.");
+    $("#alerta-pared").show();
     player.mochila.push(obj);
     addWeaponButton(obj);
   }

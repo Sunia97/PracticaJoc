@@ -152,8 +152,6 @@ function changeWeapon (id_hand) {
   propertiesHands();
 }
 
-<<<<<<< HEAD
-=======
 function startGame() {
   //Busca la posició del jugador
   fi = 0;
@@ -172,7 +170,6 @@ function startGame() {
   show();
 }
 
->>>>>>> 1dbb66c2aa584707ad8b9b4ecce7dc8c34edac0b
 function show () {
   x = player.estadoPartida.x;
   y = player.estadoPartida.y;
