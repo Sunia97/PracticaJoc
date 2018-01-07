@@ -50,7 +50,6 @@ function showAttributes () {
 
 //Afegeix el botó d'una eina
 function addWeaponButton (obj) {
-  console.log(obj);
   var id_object = "#item" + (objects + 1);
   var object_button = "<br/><img class='weapon' src='media/images/objects/" + objetos[obj].path + "'>";
 
@@ -72,9 +71,15 @@ function propertiesHands () {
 
   if (player.manoizquierda != "") {
     var object_left = objetos[player.manoizquierda];
-    player.ataque += object_left.ataque;
-    player.defensa += object_left.defensa;
+    if (object_left.ataque == undefined) {
+      player.ataque = 0;
+      player.defensa = 0;
+    } else {
+      player.ataque += object_left.ataque;
+      player.defensa += object_left.defensa;
+    }
   }
+
 
   $("#attack").text(player.ataque);
   $("#defense").text(player.defensa);
@@ -194,7 +199,7 @@ function checkGame(x, y) {
 }
 
 function checkDoor () {
-  if (player.manoderecha == "LLAVE" || player.manoizquierda == "LLAVE"){
+  if (player.manoderecha == "llave" || player.manoizquierda == "llave"){
     if (confirm("Vols pujar de nivell?")) {
       able = false;
       level++;
@@ -229,7 +234,7 @@ function stepBackwards () {
 }
 
 function checkKey () {
-    player.mochila.push("llave");
+    player.mochila.push ("llave");
     addWeaponButton("llave");
     $("#alerta-pared").text("Has encontrado una llave.");
     $("#alerta-pared").show();
