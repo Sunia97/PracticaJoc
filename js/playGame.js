@@ -213,8 +213,12 @@ function checkGame(x, y) {
       checkDoor();
       show();
     }
-    if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "O" || mapa[player.estadoPartida.x][player.estadoPartida.y] == "K") {
+    if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "O") {
       checkObject(random_obj);
+      show();
+    }
+    if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "K") {
+      checkObject("llave");
       show();
     }
   }
