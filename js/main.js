@@ -1,4 +1,3 @@
-var level = -2;
 var gameJSON = "";
 var introMusic = new Audio('src/StrangerThings8 Bit.mp3');
 
@@ -20,14 +19,14 @@ function iniciarJuego() {
 /*
   downloadStructureJSON (slot, function callback(result) {
     gameJSON = result;
-    loadNewLevel(level);
+    loadNewLevel();
     console.log("Callback fet. gameJSON carregat des del server.");
   });
 */
 
   // NOTE: TEMPORALMENT, UTILITZEM EL FITXER JSON LOCAL, NO EL DEL SERVIDOR
   gameJSON = structure;
-  loadNewLevel(level);
+  loadNewLevel();
 
   //console.log("Partida acabada");
   //S'acaba el joc quan s'arriba al nivell 1
@@ -69,11 +68,11 @@ function introSkip () {
 //Carrega els objectes amb les seves imatges i les propietats inicials.
 //Per no modificar el juego.js
 function loadAssets () {
-  objetos.hacha = {"ataque" : 3, "defensa" : 1, "path" : "hacha_2.png" };
-  objetos.escudo = {"ataque" : 0, "defensa" : 4, "path" : "escudo_2.png" };
-  objetos.garrote = {"ataque" : 1, "defensa" : 0, "path" : "garrote_2.png" };
-  objetos.tirachinas = {"ataque" : 2, "defensa" : 0, "path" : "tirachinas_2.png" };
-  objetos.llave = {"path" : "llave_2.png" };
+  objetos.hacha = {"ataque" : 3, "defensa" : 1, "path" : "hacha.png" };
+  objetos.escudo = {"ataque" : 0, "defensa" : 4, "path" : "escudo.png" };
+  objetos.garrote = {"ataque" : 1, "defensa" : 0, "path" : "garrote.png" };
+  objetos.tirachinas = {"ataque" : 2, "defensa" : 0, "path" : "tirachinas.png" };
+  objetos.llave = {"path" : "llave.png" };
   enemigo.img = "demogorgon.png";
   resetProperties ();
 }
