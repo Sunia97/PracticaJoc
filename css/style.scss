@@ -50,7 +50,6 @@
   }
 
   .hand {
-    width: 350px;
     height: 150px;
     text-align: center;
   }
@@ -156,6 +155,7 @@
     margin: 5px;
     padding: 5px;
     text-align: center;
+    vertical-align: center;
   }
 
   .weapon {
@@ -199,14 +199,6 @@
     p {
       @include margin(25px, 25px, 25px, 25px);
     }
-  }
-
-  #left_hand {
-    @include margin(15px, 25px, 25px, 15px);
-  }
-
-  #right_hand {
-      @include margin(15px, 25px, 25px, 15px);
   }
 
   #objectes-hands {

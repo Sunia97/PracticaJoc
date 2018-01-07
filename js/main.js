@@ -13,8 +13,14 @@ function iniciarJuego() {
     $("#game-loaded-panel").hide();
   introMusic.loop = true;
 
+<<<<<<< HEAD
   //uploadStructureJSON("2");   // NOTE: Només per pujar els mapes al servidor per part dels desenvolupadors.
                                 //Comentar-ho quan ja estan pujats el primer cop!
+=======
+  loadAssets();
+
+  var slot = "nueva";           // NOTE: Variarà segons el que vulgui el jugador (partida 1 o 2 guardada) o "nueva" a l'inici
+>>>>>>> 02c85a2e37539ac1926aadd25795645330fc5eaa
 
   // NOTE: Descarreguem estructura de partida nova
   downloadStructureJSON ("nueva", function callback(result) {
@@ -38,6 +44,9 @@ function mapaToImg(x, y) {
   if (mapa[x][y] == "E") {
     return enemigo.img;
   }
+  if (mapa[x][y] == "K") {
+    return "path_key.png";
+  }
 }
 
 function soundEnable () {
@@ -54,4 +63,16 @@ function soundEnable () {
 
 function introSkip () {
   $("#intro").remove();
+}
+
+//Carrega els objectes amb les seves imatges i les propietats inicials.
+//Per no modificar el juego.js
+function loadAssets () {
+  objetos.hacha = {"ataque" : 3, "defensa" : 1, "path" : "hacha_2.png" };
+  objetos.escudo = {"ataque" : 0, "defensa" : 4, "path" : "escudo_2.png" };
+  objetos.garrote = {"ataque" : 1, "defensa" : 0, "path" : "garrote_2.png" };
+  objetos.tirachinas = {"ataque" : 2, "defensa" : 0, "path" : "tirachinas_2.png" };
+  objetos.llave = {"path" : "llave_2.png" };
+  enemigo.img = "demogorgon.png";
+  resetProperties ();
 }
