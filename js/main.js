@@ -1,5 +1,6 @@
 var gameJSON = "";
 var introMusic = new Audio('src/StrangerThings8 Bit.mp3');
+var random_obj = "";
 
 /* Inicializar el juego */
 function iniciarJuego() {
@@ -44,11 +45,11 @@ function mapaToImg(x, y) {
   }
   //Apareix un objecte
   if (mapa[x][y] == "O") {
-    var obj = getRandomObject ();
-    while (obj == "llave") {
-      obj = getRandomObject ();
+    random_obj = getRandomObject ();
+    while (random_obj == "llave") {
+      random_obj = getRandomObject ();
     }
-    return ("path_" + obj + ".png");
+    return ("path_" + random_obj + ".png");
   }
 }
 
@@ -56,8 +57,7 @@ function getRandomObject () {
     var result;
     var count = 0;
     for (var prop in objetos)
-        if (Math.random() < 1/++count)
-           result = prop;
+        if (Math.random() < 1/++count) result = prop;
     return result;
 }
 
