@@ -282,11 +282,11 @@ function restart() {
 function resetProperties () {
   level = -2;
   player.nivel = 1;
-  player.ataque = 0;
+  player.ataque = 5;
   player.defensa = 0;
   player.manoderecha = "";
   player.manoizquierda ="";
-  player.mochila = [];
+  player.mochila = ["HACHA"];
   player.vida = 10;
   player.nivel = 1;
   player.xp = 0;

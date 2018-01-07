@@ -6,10 +6,9 @@ function fight () {
   var playerWins = true;
 
   //torns d'atac mentre cap dels dos mor
-  $("#alerta-pared").text("Jugador: " + jugador.vida + " Enemigo: " + enemigo.vida);
-  $("#alerta-pared").show();
   while (player.vida > 0 && enemigo.vida > 0) {
-
+    $("#alerta-pared").text("Jugador: " + jugador.vida + " Enemigo: " + enemigo.vida);
+    $("#alerta-pared").show();
     attacks();
   }
 

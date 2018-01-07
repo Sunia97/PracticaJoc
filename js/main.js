@@ -74,3 +74,4 @@ function loadAssets () {
   addWeaponEnemy("hacha");
   resetProperties ();
 }
+ 
