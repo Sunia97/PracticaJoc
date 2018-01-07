@@ -33,7 +33,6 @@
     font-size: 30px;
   }
   .hand {
-    width: 350px;
     height: 150px;
     text-align: center;
   }
@@ -193,18 +192,6 @@
     margin-left: 25px;
     margin-top: 25px;
     margin-bottom: 25px;
-    margin-right: 25px;
-  }
-  #left_hand {
-    margin-left: 25px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-right: 25px;
-  }
-  #right_hand {
-    margin-left: 25px;
-    margin-top: 15px;
-    margin-bottom: 15px;
     margin-right: 25px;
   }
   #objectes-hands {

@@ -52,7 +52,7 @@ function showAttributes () {
 function addWeaponButton (obj) {
   console.log(obj + "//" + "item" + (objects + 1));
   var id_object = "#item" + (objects + 1);
-  var object_button = "<img class='weapon' src='media/images/" + objetos[obj].path + "'>";
+  var object_button = "<img class='weapon' src='media/images/objects/" + objetos[obj].path + "'>";
 
   objects ++;
   $(id_object).text(obj);
@@ -88,7 +88,7 @@ function changeWeapon (id_hand) {
     if (left_weapon == right_weapon) left_weapon ++;
 
     if (left_weapon == player.mochila.length + 1) {
-      $(id_hand).text("Mano Izquierda ");
+      $(id_hand).text("Mano Izquierda");
       left_weapon = 0;
       player.manoizquierda = "";
     } else {
@@ -96,7 +96,7 @@ function changeWeapon (id_hand) {
       player.manoizquierda = weapon;
       $(id_hand).text("Mano Izquierda");
       $(id_hand).append ("<br/>" + weapon);
-      $(id_hand).append ("<img class = 'row_center' src='media/images/" + objetos[weapon].path + "'/>");
+      $(id_hand).append ("<br/><img class = 'row_center' src='media/images/" + objetos[weapon].path + "'/>");
       $(id_hand).append ("<br/>Ataque: " + objetos[weapon].ataque);
       $(id_hand).append ("<br/>Defensa: " + objetos[weapon].defensa);
     }
@@ -113,14 +113,12 @@ function changeWeapon (id_hand) {
       player.manoderecha = weapon;
       $(id_hand).text("Mano Derecha");
       $(id_hand).append ("<br/>" + weapon);
-      $(id_hand).append ("<img class = 'row_center' src='media/images/" + objetos[weapon].path + "'/>");
+      $(id_hand).append ("<br/><img class = 'row_center' src='media/images/" + objetos[weapon].path + "'/>");
       $(id_hand).append ("<br/>Ataque: " + objetos[weapon].ataque);
       $(id_hand).append ("<br/>Defensa: " + objetos[weapon].defensa);
     }
   }
   propertiesHands();
-
-//  var ataque = "A: 4 / D: 4";*/
 }
 
 function startGame() {
@@ -180,14 +178,24 @@ function checkGame(x, y) {
     pintaImagen("you_lose.png", 0, 0);
     // TODO: que passa quan perd?
   } else {
-    if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "D") {
-      if (confirm("Vols pujar de nivell?")) {
+    var containsKey = false;
+
+    for (var i = 0; i < player.mochila.length; i++) {
+        if (player.mochila[i] === "llave") {
+            containsKey = true;
+            break;
+        }
+    }
+    if (!containsKey) alert("Necesitas una llave para subir de nivel");
+    if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "D" && containsKey) {
+
+      if (confirm("¿Quieres subir de nivel?")) {
         able = false;
         level++;
         setTimeout(2000,pintaImagen("BruixolaE.png",0,0)); //TODO: cal canviar aquesta imatge per un "pujant al seguent nivell" o algo així.
         loadNewLevel(level);
       } else {
-        alert("esperem veure't aviat");
+        alert("¡Te esperamos!");
         //movem el jugador una casella enrere per evitar que torni a activar l'alerta.
         switch (player.estadoPartida.direccion) {
             case 0:

@@ -50,7 +50,6 @@
   }
 
   .hand {
-    width: 350px;
     height: 150px;
     text-align: center;
   }
@@ -199,14 +198,6 @@
     p {
       @include margin(25px, 25px, 25px, 25px);
     }
-  }
-
-  #left_hand {
-    @include margin(15px, 25px, 25px, 15px);
-  }
-
-  #right_hand {
-      @include margin(15px, 25px, 25px, 15px);
   }
 
   #objectes-hands {

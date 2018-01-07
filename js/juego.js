@@ -7,31 +7,29 @@ var partida = {};
 var mapa = [];
 
 var objetos = {
-  GARROTE: {ataque:1, defensa:0, path:"garrote_2.png"},
-  LLAVE: {ataque:2, defensa:0, path:"tirachinas_2.png"},
-  HACHA: {ataque:3, defensa:1, path:"hacha_2.png"},
-  ESCUDO: {ataque:0, defensa:4, path:"escudo_2.png"}
+  garrote: {ataque:1, defensa:0},
+  llave: {}
 };
 
 var enemigo = {
-  vida:2,
-  ataque:1,
-  defensa:0,
-  xp:0,
-  img:"demogorgon.png",
-  objetos:["GARROTE", "LLAVE"]
-};
-
-var player = {
-  nombre:"jugador",
-  vida:10,
-  nivel:1,
-  xp:0,
+  vida:0,
   ataque:0,
   defensa:0,
-  manoderecha:"",
+  xp:0,
+  img:"",
+  objetos:[]
+}
+
+var player = {
+  nombre:"",
+  vida:10,
+  nivel:0,
+  xp:0,
+  ataque:2,
+  defensa:2,
+  manoderecha:"garrot",
   manoizquierda:"",
-  mochila:["LLAVE", "HACHA"],
+  mochila:[],
   estadoPartida: {
     x:3,
     y:1,
@@ -43,7 +41,7 @@ var player = {
 /* Se llama al cargar todos los elementos de la página */
 window.onload = function () {
   iniciarJuego();
-};
+}
 
 /*  Pinta imagen en el visor */
 function pintaImagen(src, x, y) {
@@ -55,7 +53,7 @@ function pintaImagen(src, x, y) {
   base_image.onload = function () {
     // Pinta imagen en el canvas
     context.drawImage(this, x, y);
-  };
+  }
 }
 
 /* Pinta al visor lo que hay en el mapa */

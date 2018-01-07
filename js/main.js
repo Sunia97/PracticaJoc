@@ -9,6 +9,8 @@ function iniciarJuego() {
   $("#alerta-pared").hide();
   introMusic.loop = true;
 
+  loadAssets();
+
   var slot = "nueva";           // NOTE: Variarà segons el que vulgui el jugador (partida 1 o 2 guardada) o "nueva" a l'inici
 
   //uploadStructureJSON(slot);   // NOTE: Només per pujar els mapes al servidor. Comentar-ho quan ja estan pujats!
@@ -59,4 +61,19 @@ function soundEnable () {
 
 function introSkip () {
   $("#intro").remove();
+}
+
+//Carrega els objectes amb les seves imatges i les propietats inicials.
+//Per no modificar el juego.js
+function loadAssets () {
+  objetos.hacha = {"ataque" : 3, "defensa" : 1, "path" : "hacha_2.png" };
+  objetos.escudo = {"ataque" : 0, "defensa" : 4, "path" : "escudo_2.png" };
+  objetos.garrote = {"ataque" : 1, "defensa" : 0, "path" : "garrote_2.png" };
+  objetos.tirachinas = {"ataque" : 2, "defensa" : 0, "path" : "tirachinas_2.png" };
+  objetos.llave = {"path" : "tirachinas_2.png" };
+  enemigo.img = "demogorgon.png";
+  player.nivel = 1;
+  player.ataque = 0;
+  player.defensa = 0;
+  player.manoderecha = "";
 }
