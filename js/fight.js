@@ -43,7 +43,7 @@ function attacks () {
     attacked = enemigo;
     attacker = player;
   }
-  
+
   $("#alerta-pared").show();
   //TODO Mostrar titol d'atac
   wait (3);
@@ -51,16 +51,20 @@ function attacks () {
 
 function enemyDies () {
   player.xp += enemigo.xp;
+  if (player.mochila.size < 8) {
+     //afegeix al jugador les eines de l'enemic
+    var size = enemigo.objetos.length;
 
-  //afegeix al jugador les eines de l'enemic
-  var size = enemigo.objetos.length;
+    for (var i = 0; i < size; i++) {
+      var obj = enemigo.objetos[i];
 
-  for (var i = 0; i < size; i++) {
-    var obj = enemigo.objetos[i];
-
-    //Afegeix un nou objecte al jugador.
-    player.mochila.push(obj);
-    addWeaponButton(obj);
+      //Afegeix un nou objecte al jugador.
+      player.mochila.push(obj);
+      addWeaponButton(obj);
+    }
+  } else {
+    $("#alerta-pared").text("No tienes espacio en la mochila!");
+    $("#alerta-pared").show();
   }
 }
 

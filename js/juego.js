@@ -27,7 +27,7 @@ var player = {
   xp:0,
   ataque:2,
   defensa:2,
-  manoderecha:"garrot",
+  manoderecha:"garrote",
   manoizquierda:"",
   mochila:[],
   estadoPartida: {

@@ -1,3 +1,4 @@
+
 var level = -2;
 var gameJSON = "";
 var introMusic = new Audio('src/StrangerThings8 Bit.mp3');
@@ -8,8 +9,6 @@ function iniciarJuego() {
   introMusic.play();
   $("#alerta-pared").hide();
   introMusic.loop = true;
-
-  loadAssets();
 
   var slot = "nueva";           // NOTE: Variarà segons el que vulgui el jugador (partida 1 o 2 guardada) o "nueva" a l'inici
 
@@ -50,6 +49,9 @@ function mapaToImg(x, y) {
   if (mapa[x][y] == "K") {
     return "path_key.png";
   }
+  if (mapa[x][y] == "O"){
+    return randomizeObjects(objetos.size() - 1); //Nombre d'objectes diferents menys la clau
+  }
 }
 
 function soundEnable () {
@@ -66,14 +68,126 @@ function introSkip () {
   $("#intro").remove();
 }
 
-//Carrega els objectes amb les seves imatges i les propietats inicials.
-//Per no modificar el juego.js
-function loadAssets () {
-  objetos.hacha = {"ataque" : 3, "defensa" : 1, "path" : "hacha_2.png" };
-  objetos.escudo = {"ataque" : 0, "defensa" : 4, "path" : "escudo_2.png" };
-  objetos.garrote = {"ataque" : 1, "defensa" : 0, "path" : "garrote_2.png" };
-  objetos.tirachinas = {"ataque" : 2, "defensa" : 0, "path" : "tirachinas_2.png" };
-  objetos.llave = {"path" : "llave_2.png" };
-  enemigo.img = "demogorgon.png";
-  resetProperties ();
+//Classes per les caselles (excepte pels enemics i els jugador)
+var wall = {
+  img:"media/images/dungeon_wall.png",         //Imatge que es mostrarà en la posició
+  action:"Block"                               //Accions de la classe (per exemple: bloquejar usuari, cridar a una funció per iniciar un combat, superar nivell...)
+};
+
+var door = {
+  img:"media/images/dungeon_door.png",
+  action:"Exit"
+};
+
+var air = {
+  img:"media/images/dungeon_step.png",
+  action:null
+};
+
+
+/*
+FUNCIONS
+ */
+
+/* Inicializar el juego */
+function iniciarJuego() {
+
+  var slot = "";           // NOTE: Variarà segons el que vulgui el jugador (partida 1 o 2 guardada) o "nueva" a l'inici
+
+  //uploadStructureJSON(slot);   // NOTE: Només per pujar els mapes al servidor. Comentar-ho quan ja estan pujats!
+  //deleteStructureJSON(slot);
+  getListOfGames();             // NOTE: Només és comprovació. No influeix en joc.
+
+  //var gameJSON = downloadStructureJSON(slot);//game es el json object amb tots els nivells
+
+  var level = -2;
+  while (level < 1) {
+  //  level = loadNewLevel(level, gameJSON);
+  }
+
+  mapa = [["##########"],["#········#"],["#········#"],["#········#"],["#········#"],["#····#···#"],["#····P···#"],["#········#"],["#········#"],["##########"]];
+
+  //S'acaba el joc quan s'arriba al nivell 1
+  setPlayer();
+}
+
+
+// TODO: Posar aquestes funcions de logica de moviments en un altre .js
+
+function move (moviment) {
+  switch (player.estadoPartida.direccion) {
+      case 0:
+        if (moviment == "forward") player.estadoPartida.y--;
+        else player.estadoPartida.y++;
+        break;
+      case 1:
+        if (moviment == "forward") player.estadoPartida.y++;
+        else player.estadoPartida.y--;
+        break;
+      case 2:
+        if (moviment == "forward") player.estadoPartida.x++;
+        else player.estadoPartida.x--;
+        break;
+      case 3:
+        if (moviment == "forward") player.estadoPartida.x--;
+        else player.estadoPartida.x++;
+        break;
+  }
+}
+
+function rotate (rotacio) {
+  switch (player.estadoPartida.direccion) {
+      case 0:
+        if (rotacio == "left") player.estadoPartida.direccion = 3;
+        else player.estadoPartida.direccion = 2;
+        break;
+      case 1:
+        if (rotacio == "left") player.estadoPartida.direccion = 2;
+        else player.estadoPartida.direccion = 3;
+        break;
+      case 2:
+        if (rotacio == "left") player.estadoPartida.direccion = 0;
+        else player.estadoPartida.direccion = 1;
+        break;
+      case 3:
+        if (rotacio == "left") player.estadoPartida.direccion = 1;
+        else player.estadoPartida.direccion = 0;
+        break;
+    }
+}
+
+function show () {
+  x = player.estadoPartida.x;
+  y = player.estadoPartida.y;
+
+  switch (player.estadoPartida.direccion) {
+      case 0:
+        pintaPosicion(x, y--);
+        break;
+      case 1:
+        pintaPosicion(x, y++);
+        break;
+      case 2:
+        pintaPosicion(x++, y);
+        break;
+      case 3:
+        pintaPosicion(x--, y);
+        break;
+    }
+}
+
+/* Convierte lo que hay en el mapa en un archivo de imagen */
+function mapaToImg(x, y) {
+  if (mapa[x][y] == "#") {
+    return "media/images/dungeon_wall.png";
+  }
+  if (mapa[x][y] == ".") {
+    return "media/images/dungeon_step.png";
+  }
+  /*if (mapa[x][y] == "D") {
+    return "media/images/dungeon_door.png";
+  }
+  if (mapa[x][y] == "E") {
+    return "media/images/dungeon_enemy.png";
+  }*/
 }
