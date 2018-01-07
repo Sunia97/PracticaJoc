@@ -13,10 +13,11 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:600|Press+Start+2P" rel="stylesheet">
     <script src="js/juego.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/loadMap.js"></script>
+    <script src="js/serverConnections.js"></script>
     <script src="js/playGame.js"></script>
     <script src="js/movements.js"></script>
     <script src="js/fight.js"></script>
+    <script src="js/saveUtilities.js"></script>
     <script src="jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="src/structure.json"></script>
   </head>
@@ -46,12 +47,62 @@
 
       <nav id="controls_partida">
         <ul>
+<<<<<<< HEAD
+          <li href="#" class="button" id="start" onclick="loadNewLevel(-2)">Comenzar partida </li>
+          <li href="#" class="button" id="load" onclick="showLoad()">Cargar partida</li>
+          <li href="#" class="button" id="save" onclick="showSave()"> Guardar partida</li>
+=======
           <li href="#" class="button" id="start" onclick="restart()">Comenzar partida </li>
           <li href="#" class="button" id="load">Cargar partida</li>
           <li href="#" class="button" id="save">Guardar partida</li>
+>>>>>>> 02c85a2e37539ac1926aadd25795645330fc5eaa
         </ul>
       </nav>
     </header>
+
+    <!-- NOTE: Panell per guardar partida -->
+    <div id="save-game-panel" class="container save-game">
+      <div class="row justify-content-center">
+        <p id="title-save">¿Quieres guardar la partida?</p>
+      </div>
+      <div id="buttons-save" class="row justify-content-center">
+        <button id="button-slot1" class="button save-button" onclick="saveGame(1)">Guardar en Slot 1</button>
+        <button id="button-slot2" class="button save-button" onclick="saveGame(2)">Guardar en Slot 2</button>
+        <button id="button-save-cancel" class="button save-button" onclick="cancelSave()">Cancelar</button>
+      </div>
+    </div>
+
+    <!-- NOTE: Panell partida guardada -->
+    <div id="game-saved-panel" class="container save-game">
+      <div class="row justify-content-center">
+        <p id="title-save1">Partida guardada</p>
+      </div>
+      <div class="row justify-content-center">
+        <button id="saved-ok" class="button save-button" onclick="hideSavedPanel()">OK</button>
+      </div>
+    </div>
+
+    <!-- NOTE: Panell de carregar partida -->
+    <div id="load-game-panel" class="container save-game">
+      <div class="row justify-content-center">
+        <p id="title-load">Elige el slot de la partida a cargar</p>
+      </div>
+      <div id="buttons-load" class="row justify-content-center">
+        <button id="load-slot1" class="button save-button" onclick="loadGame(1)">Cargar Slot 1</button>
+        <button id="load-slot2" class="button save-button" onclick="loadGame(2)">Cargar Slot 2</button>
+        <button id="button-load-cancel" class="button save-button" onclick="cancelLoad()">Cancelar</button>
+      </div>
+    </div>
+
+    <!-- NOTE: Panell partida carregada-->
+    <div id="game-loaded-panel" class="container save-game">
+      <div class="row justify-content-center">
+        <p id="title-load2">Partida cargada</p>
+      </div>
+      <div class="row justify-content-center">
+        <button id="load-ok" class="button save-button" onclick="hideLoadedPanel()">¡A jugar!</button>
+      </div>
+    </div>
 
     <div class="row">
 

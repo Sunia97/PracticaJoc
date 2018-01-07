@@ -6,30 +6,22 @@ function iniciarJuego() {
 
   introMusic.play();
   $("#alerta-pared").hide();
+  $("#save-game-panel").hide();
+  $("#load-game-panel").hide();
+  $("#game-saved-panel").hide();
+    $("#game-loaded-panel").hide();
   introMusic.loop = true;
 
   loadAssets();
 
   var slot = "nueva";           // NOTE: Variarà segons el que vulgui el jugador (partida 1 o 2 guardada) o "nueva" a l'inici
 
-  //uploadStructureJSON(slot);   // NOTE: Només per pujar els mapes al servidor. Comentar-ho quan ja estan pujats!
-  //deleteStructureJSON(slot);
-  getListOfGames();             // NOTE: Només és comprovació. No influeix en joc.
-
-/*
-  downloadStructureJSON (slot, function callback(result) {
+  // NOTE: Descarreguem estructura de partida nova
+  downloadStructureJSON ("nueva", function callback(result) {
     gameJSON = result;
     loadNewLevel();
     console.log("Callback fet. gameJSON carregat des del server.");
   });
-*/
-
-  // NOTE: TEMPORALMENT, UTILITZEM EL FITXER JSON LOCAL, NO EL DEL SERVIDOR
-  gameJSON = structure;
-  loadNewLevel();
-
-  //console.log("Partida acabada");
-  //S'acaba el joc quan s'arriba al nivell 1
 }
 
 /* Convierte lo que hay en el mapa en un archivo de imagen */
@@ -56,6 +48,8 @@ function mapaToImg(x, y) {
 }
 
 function soundEnable () {
+  getListOfGames();
+
   if (introMusic.paused) {
     introMusic.play();
     $("#sound").css("color", "white");

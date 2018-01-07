@@ -22,6 +22,21 @@ function uploadStructureJSON(slot) {
 
  }
 
+ function saveGameStructureJSON(slot) {
+
+   console.log("Es guarda aquesta partida:");
+   console.log(gameJSON[3]);
+   $.ajax({
+     type: 'POST',
+     url: url_server + token + "&slot=" + slot,
+     data: {json: JSON.stringify(gameJSON)},//Com que el path està posat al html ho detecta com una variable
+     complete: function(result){
+      console.log("GAME SAVED. Success on POST from Server (uploadStructureJSON)");
+     }
+   });
+
+  }
+
  //Per descarregar la llista d'slots amb partides guardades del servidor
  function getListOfGames() {
 
