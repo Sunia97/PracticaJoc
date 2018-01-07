@@ -237,7 +237,7 @@ function checkDoor () {
 }
 
 function checkKey () {
-    player.mochila.push("LLAVE");
+    player.mochila.push("LLAVE")
     addWeaponButton("LLAVE");
     $("#alerta-pared").text("Has encontrado una llave.");
     $("#alerta-pared").show();
