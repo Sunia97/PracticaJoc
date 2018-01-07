@@ -6,7 +6,10 @@ function fight () {
   var playerWins = true;
 
   //torns d'atac mentre cap dels dos mor
+  $("#alerta-pared").text("Jugador: " + jugador.vida + " Enemigo: " + enemigo.vida);
+  $("#alerta-pared").show();
   while (player.vida > 0 && enemigo.vida > 0) {
+
     attacks();
   }
 
@@ -35,18 +38,18 @@ function attacks () {
   }
 
   if (attacker == player) {
-    $("#alerta-pared").text("El jugador ataca" + attack);
     attacker = enemigo;
     attacked = player;
   } else {
-    console.log("El enemigo ataca" + attack);
     attacked = enemigo;
     attacker = player;
   }
-  
-  $("#alerta-pared").show();
-  //TODO Mostrar titol d'atac
-  wait (3);
+
+  console.log(player.vida, enemigo.vida);
+
+  //TODO Mostrar titol d'atac (que no apareix fins que es mor)
+  wait (1);
+  //$("#alerta-pared").hide();
 }
 
 function enemyDies () {

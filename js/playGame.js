@@ -2,21 +2,20 @@ numNivells = 3; //Nombre de nivells que tenim al joc
 objects = 0;//Nombre d'objectes que té el jugador
 left_weapon = 0;
 right_weapon = 0;
-level = -2;
 
 //Funció que carrega un nivell del map i on es desenvolupa tot el joc amb crides a funcions
-function loadNewLevel(level) {
-  if (level < 0) {
-    readJSON (level);
+function loadNewLevel() {
+  if (player.estadoPartida.nivel < 0) {
+    readJSON ();
     startGame(); //carrega la posició del jugador i el que calgui
   }
 }
 
-function readJSON (level) {
+function readJSON () {
   //Busca el mapa corresponent al nivell
   // Utilitzem numNivells ja que gameJSON.size no funcionava.
   for (var z = 0; z < numNivells; z++) {
-    if (gameJSON[z].level == level) {
+    if (gameJSON[z].level == player.estadoPartida.nivel) {
       break;
     }
   }
@@ -59,7 +58,7 @@ function startGame() {
 
 //l jugador i de l'equip.
 function showAttributes () {
-  if (level == -2) {
+  if (player.estadoPartida.nivel == -2) {
     for (var i = 1; i < 9 && level == -2; i++) {
       $("#item" + i).text("ESPACIO LIBRE");
     }
@@ -207,8 +206,8 @@ function checkDoor () {
   if (player.manoderecha == "llave" || player.manoizquierda == "llave"){
     if (confirm("Vols pujar de nivell?")) {
       able = false;
-      level++;
-      loadNewLevel(level);
+      player.estadoPartida.nivel++;
+      loadNewLevel();
     } else {
       alert("esperem veure't aviat");
       stepBackwards();
@@ -277,7 +276,7 @@ function restart() {
   objects = 0;
   left_weapon = 0;
   right_weapon = 0;
-  loadNewLevel(level);
+  loadNewLevel();
 }
 
 function resetProperties () {
@@ -293,4 +292,10 @@ function resetProperties () {
   player.xp = 0;
   player.ataque = 0;
   player.defensa = 0;
+}
+
+function addWeaponEnemy (weapon){
+  enemigo.objetos.push(weapon);
+  enemigo.ataque += objetos[weapon].ataque;
+  enemigo.defensa += objetos[weapon].defensa;
 }

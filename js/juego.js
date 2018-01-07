@@ -12,7 +12,7 @@ var objetos = {
 };
 
 var enemigo = {
-  vida:0,
+  vida:10,
   ataque:0,
   defensa:0,
   xp:0,
