@@ -50,9 +50,8 @@ function showAttributes () {
 
 //Afegeix el botó d'una eina
 function addWeaponButton (obj) {
-  console.log(obj + "//" + "item" + (objects + 1));
   var id_object = "#item" + (objects + 1);
-  var object_button = "<img class='weapon' src='media/images/objects/" + objetos[obj].path + "'>";
+  var object_button = "<br/><img class='weapon' src='media/images/objects/" + objetos[obj].path + "'>";
 
   objects ++;
   $(id_object).text(obj);
@@ -95,7 +94,7 @@ function changeWeapon (id_hand) {
       weapon = player.mochila[left_weapon - 1];
       player.manoizquierda = weapon;
       $(id_hand).text("Mano Izquierda");
-      $(id_hand).append ("<br/>" + weapon + "<br/><img class = 'row_center' src='media/images/objects/" + objetos[weapon].path + "'/>");
+      $(id_hand).append ("<br/><br/>" + weapon + "<br/><img class = 'row_center' src='media/images/objects/" + objetos[weapon].path + "'/>");
 
       if (weapon != "llave") {
         $(id_hand).append ("<br/>Ataque: " + objetos[weapon].ataque + "<br/>Defensa: " + objetos[weapon].defensa);
@@ -113,14 +112,14 @@ function changeWeapon (id_hand) {
       weapon = player.mochila[right_weapon - 1];
       player.manoderecha = weapon;
       $(id_hand).text("Mano Derecha");
-      $(id_hand).append ("<br/>" + weapon + "<br/><img class = 'row_center' src='media/images/objects/" + objetos[weapon].path + "'/>");
+      $(id_hand).append ("<br/><br/>" + weapon + "<br/><img class = 'row_center' src='media/images/objects/" + objetos[weapon].path + "'/>");
 
       if (weapon != "llave") {
         $(id_hand).append ("<br/>Ataque: " + objetos[weapon].ataque + "<br/>Defensa: " + objetos[weapon].defensa);
       }
     }
   }
-  console.log("WEAPON : " + weapon);
+
   propertiesHands();
 }
 
@@ -181,42 +180,35 @@ function checkGame(x, y) {
     pintaImagen("you_lose.png", 0, 0);
     // TODO: que passa quan perd?
   } else {
-    var containsKey = false;
 
-    for (var i = 0; i < player.mochila.length; i++) {
-        if (player.mochila[i] === "llave") {
-            containsKey = true;
-            break;
+    if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "D") {
+      if (player.manoderecha != "llave" && player.manoizquierda != "llave") alert("Necesitas coger una llave para subir de nivel");
+      else {
+        if (confirm("¿Quieres subir de nivel?")) {
+          able = false;
+          level++;
+          setTimeout(2000,pintaImagen("BruixolaE.png",0,0)); //TODO: cal canviar aquesta imatge per un "pujant al seguent nivell" o algo així.
+          loadNewLevel(level);
+        } else {
+          alert("¡Te esperamos!");
         }
-    }
-
-    if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "D" && containsKey) {
-      if (!containsKey) alert("Necesitas una llave para subir de nivel");
-      if (confirm("¿Quieres subir de nivel?")) {
-        able = false;
-        level++;
-        setTimeout(2000,pintaImagen("BruixolaE.png",0,0)); //TODO: cal canviar aquesta imatge per un "pujant al seguent nivell" o algo així.
-        loadNewLevel(level);
-      } else {
-        alert("¡Te esperamos!");
-        //movem el jugador una casella enrere per evitar que torni a activar l'alerta.
-        switch (player.estadoPartida.direccion) {
-            case 0:
-              player.estadoPartida.y++;
-              break;
-            case 1:
-              player.estadoPartida.y--;
-              break;
-            case 2:
-              player.estadoPartida.y--;
-              break;
-            case 3:
-              player.estadoPartida.y++;
-              break;
-        }
-
-        show();
       }
+      switch (player.estadoPartida.direccion) {
+          case 0:
+            player.estadoPartida.y++;
+            break;
+          case 1:
+            player.estadoPartida.y--;
+            break;
+          case 2:
+            player.estadoPartida.y--;
+            break;
+          case 3:
+            player.estadoPartida.y++;
+            break;
+      }
+
+      show();
     }
   }
 }
