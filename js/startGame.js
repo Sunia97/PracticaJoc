@@ -43,7 +43,7 @@ function startGame(level) {
   player.nombre = gameJSON[2].nombre;
   player.nivel = gameJSON[2].nivel;
   player.ataque = gameJSON[2].ataque;
-
+  player.vida = gameJSON[2].vida;
 
   propertiesHands();
   showAttributes(level);

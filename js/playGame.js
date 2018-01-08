@@ -153,10 +153,8 @@ function checkGame(x, y) {
   updatePlayer ();
   //Si està mort:
   if (player.vida <= 0) {
-    console.log("entra a perd");
     estatPartida = 1;
     pintaImagen("you_lose.png", 0, 0);
-    // TODO: que passa quan perd?
   } else {
 
     if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "D") {

@@ -49,7 +49,6 @@ function pintaImagen(src, x, y) {
   var context = canvas.getContext('2d');
   var base_image = new Image();
   base_image.src = "./media/images/"+src;
-  console.log("mostra " + src);
   base_image.onload = function () {
     // Pinta imagen en el canvas
     context.drawImage(this, x, y);
