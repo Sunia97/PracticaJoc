@@ -13,13 +13,12 @@ function iniciarJuego() {
   $("#game-loaded-panel").hide();
   introMusic.loop = true;
 
-  var slot = "nueva";           // NOTE: Variarà segons el que vulgui el jugador (partida 1 o 2 guardada) o "nueva" a l'inici
   //deleteStructureJSON(slot);
-  //uploadStructureJSON(slot);
+  //uploadStructureJSON(1);
   loadAssets();
 
   // NOTE: Descarreguem estructura de partida nova
-  downloadStructureJSON (slot, function callback(result) {
+  downloadStructureJSON ("nueva", function callback(result) {
     gameJSON = result;
     loadNewLevel(-2);
     console.log("Callback fet. gameJSON carregat des del server.");

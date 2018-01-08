@@ -14,7 +14,6 @@ function readJSON (level) {
       break;
     }
   }
-  player.estadoPartida.direccion = gameJSON[2].estadoPartida.direccion;
 
   mapa = gameJSON[z].map;//Assigna el nivell (mapa) que toca a mapa
 
@@ -28,43 +27,18 @@ function readJSON (level) {
   }
 }
 
-function startGame() {
-  //Busca la posició del jugador
-  fi = 0;
-  for (x = 0; x < 10 && fi == 0; x++) {
-    for (y = 0; y < 10 && fi == 0; y++) {
-      if (mapa[x][y] == "P") {
-        player.estadoPartida.x = x;
-        player.estadoPartida.y = y;
-        fi = 1;
-      }
-    }
-  }
-
-  propertiesHands();
-  showAttributes();
-  show();
-}
-
 function startGame(level) {
+  player.estadoPartida.direccion = gameJSON[2].estadoPartida.direccion;
   player.estadoPartida.x = gameJSON[2].estadoPartida.x;
   player.estadoPartida.y = gameJSON[2].estadoPartida.y;
+  player.nombre = gameJSON[2].nombre;
+  player.nivel = gameJSON[2].nivel;
+  player.ataque = gameJSON[2].ataque;
+
+
   propertiesHands();
   showAttributes(level);
   show();
-}
-
-
-function restart() {
-  resetProperties ();
-  //forcem el pintat dels dos botons de les mans.
-  $("#right_hand").text("Mano Derecha");
-  $("#left_hand").text("Mano Izquierda");
-
-  objects = 0;
-  left_weapon = 0;
-  right_weapon = 0;
-  loadNewLevel(-2);
 }
 
 function resetProperties () {

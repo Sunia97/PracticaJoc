@@ -25,7 +25,7 @@ function uploadStructureJSON(slot) {
  function saveGameStructureJSON(slot) {
 
    console.log("Es guarda aquesta partida:");
-   console.log(gameJSON[3]);
+   console.log(gameJSON[2]);
    $.ajax({
      type: 'POST',
      url: url_server + token + "&slot=" + slot,
@@ -75,6 +75,17 @@ function deleteStructureJSON(slot) {
     url: url_server + token + "&slot=" + slot,
     success: function(result){
       console.log("Success on DELETE from Server (deleteStructureJSON)\n");
+    }
+  });
+}
+
+function deleteAndSaveGameJSON(slot) {
+  $.ajax({
+    type: 'DELETE',
+    url: url_server + token + "&slot=" + slot,
+    success: function(result){
+      console.log("Success on DELETE from Server (deleteStructureJSON)\n");
+      saveGameStructureJSON(slot);
     }
   });
 }
