@@ -88,7 +88,7 @@ function loadAssets () {
   objetos.tirachinas = {"ataque" : 1, "defensa" : 0, "path" : "tirachinas.png" };
   objetos.espada = {"ataque" : 2, "defensa" : 3, "path" : "espada.png" };
   objetos.pistola = {"ataque" : 4, "defensa" : 2, "path" : "pistola.png" };
-  objetos.cuchillo = {"ataque" : 3, "defensa" : 2, "path" : "pistola.png" };
+  objetos.cuchillo = {"ataque" : 3, "defensa" : 2, "path" : "cuchillo.png" };
   objetos.llave = {"path" : "llave.png" };
 
   enemigo.img = "demogorgon.png";

@@ -42,11 +42,9 @@ function attacks () {
     attacker = player;
   }
 
-  console.log("JUGADOR: " + player.vida + "// ENEMIGO: " + enemigo.vida);
-
   //TODO Mostrar titol d'atac (que no apareix fins que es mor)
-  $("#alerta-info").text("Jugador: " + player.vida + " Enemigo: " + enemigo.vida);
-  $("#alerta-info").show();
+  //$("#alerta-info").text("Jugador: " + player.vida + " Enemigo: " + enemigo.vida);
+  //$("#alerta-info").show();
   //wait (3);
   //$("#alerta-info").hide();
 }
