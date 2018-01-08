@@ -12,11 +12,26 @@ function showAttributes (isNewGame) {
 
   if (isNewGame == true) {
     objects = 0;
+
+    $("#left_hand").text("Mano Izquierda");
+    left_weapon = 0;
+
+    $("#right_hand").text("Mano Derecha");
+    right_weapon = 0;
+
     for (var i = 0; i < 8; i++) {
       $("#item" + (i+1)).text("ESPACIO LIBRE");
     }
   }else {
+
     objects = 0;
+
+    $("#left_hand").text("Mano Izquierda");
+    left_weapon = 0;
+
+    $("#right_hand").text("Mano Derecha");
+    right_weapon = 0;
+
     for (var j = 0; j < player.mochila.length; j++) {
       addWeaponButton(player.mochila[j]);
     }
@@ -244,7 +259,7 @@ function checkObject (obj) {
   player.mochila.push (obj);
   addWeaponButton(obj);
   $("#alerta-info").text("Has encontrado el objeto: " + obj);
-  
+
   $("#alerta-info").show();
   mapa[player.estadoPartida.x][player.estadoPartida.y] = ".";
 }
