@@ -28,7 +28,6 @@ function fight () {
   return playerWins;
 }
 
-//TODO Es crea bucle infinit si l'enemic té atac i defensa = 0
 function attacks () {
   var attack = attacker.ataque - attacked.defensa;
 
@@ -43,20 +42,13 @@ function attacks () {
     attacked = enemigo;
     attacker = player;
   }
+  console.log (attack);
 
-<<<<<<< HEAD
-  console.log(player.vida, enemigo.vida);
-
-  //TODO Mostrar titol d'atac (que no apareix fins que es mor)
-  wait (1);
-  //$("#alerta-pared").hide();
-=======
   //TODO Mostrar titol d'atac (que no apareix fins que es mor)
   //$("#alerta-info").text("Jugador: " + player.vida + " Enemigo: " + enemigo.vida);
   //$("#alerta-info").show();
   //wait (3);
   //$("#alerta-info").hide();
->>>>>>> 71917630b8a901601ee2ad6d1843536d5a1d4a34
 }
 
 function enemyDies () {
