@@ -20,7 +20,6 @@ function readJSON (level) {
       break;
     }
   }
-  player.estadoPartida.direccion = gameJSON[2].estadoPartida.direccion;
 
   mapa = gameJSON[z].map;//Assigna el nivell (mapa) que toca a mapa
 
@@ -59,8 +58,14 @@ function startGame() {
 * Carrega una partida guardada.
 **/
 function startGame(level) {
+  player.estadoPartida.direccion = gameJSON[2].estadoPartida.direccion;
   player.estadoPartida.x = gameJSON[2].estadoPartida.x;
   player.estadoPartida.y = gameJSON[2].estadoPartida.y;
+  player.nombre = gameJSON[2].nombre;
+  player.nivel = gameJSON[2].nivel;
+  player.ataque = gameJSON[2].ataque;
+
+
   propertiesHands();
   showAttributes(level);
   show();
@@ -82,7 +87,7 @@ function restart() {
 }
 
 /**
-* Reinicia les propietats del jugador. 
+* Reinicia les propietats del jugador.
 **/
 function resetProperties () {
   level = -2;

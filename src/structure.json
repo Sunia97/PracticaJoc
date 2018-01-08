@@ -40,7 +40,7 @@ structure = [
     "defensa": 0,
     "manoderecha":"",
     "manoizquierda":"",
-    "mochila": ["LLAVE", "HACHA"],
+    "mochila": [],
     "estadoPartida": {
       "x":1,
       "y":1,
