@@ -1,6 +1,7 @@
 var gameJSON = "";
 var introMusic = new Audio('src/StrangerThings8 Bit.mp3');
 var random_obj = "";
+  var randomNum = 0;
 
 /*hello*/
 
@@ -35,6 +36,13 @@ function iniciarJuego() {
 
 /* Convierte lo que hay en el mapa en un archivo de imagen */
 function mapaToImg(x, y) {
+  if (mapa[x][y] == "O") {
+    random_obj = getRandomObject ();
+    while (random_obj == "llave") {
+      random_obj = getRandomObject ();
+    }
+    return ("path_" + random_obj + ".png");
+  }
   if (mapa[x][y] == "#") {
     return "dungeon_wall.png";
   }
@@ -53,21 +61,16 @@ function mapaToImg(x, y) {
     return "path_llave.png";
   }
   //Apareix un objecte
-  if (mapa[x][y] == "O") {
-    random_obj = getRandomObject ();
-    while (random_obj == "llave") {
-      random_obj = getRandomObject ();
-    }
-    return ("path_" + random_obj + ".png");
-  }
+
 }
 
 function getRandomObject () {
-    var result;
-    var count = 0;
-    for (var prop in objetos)
-        if (Math.random() < 1/++count) result = prop;
-    return result;
+  var objects = Object.keys(objetos);
+  console.log(objects[randomNum]);
+    random_obj = objects[randomNum];
+    randomNum++;
+
+    return random_obj;
 }
 
 function soundEnable () {
@@ -100,7 +103,7 @@ function loadAssets () {
   objetos.pistola = {"ataque" : 4, "defensa" : 2, "path" : "pistola.png" };
   objetos.cuchillo = {"ataque" : 3, "defensa" : 2, "path" : "cuchillo.png" };
   objetos.llave = {"path" : "llave.png" };
+
   enemigo.img = "demogorgon.png";
   //resetProperties ();
 }
- 

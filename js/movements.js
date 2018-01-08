@@ -5,6 +5,7 @@ function move (movement) {
   } else {
     walk (movement);
   }
+  console.log("he entrat a move");
 
   show();
 }

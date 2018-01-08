@@ -3,19 +3,25 @@ var attacked = enemigo;
 
 //Lluita entre l'enemic i el jugador que retorna true si el jugador guanya. .
 function fight () {
-  var playerWins = true;
+  var playerWins = 1; //guanya el jugador
 
   //torns d'atac mentre cap dels dos mor
   while (player.vida > 0 && enemigo.vida > 0) {
-    $("#alerta-pared").text("Jugador: " + jugador.vida + " Enemigo: " + enemigo.vida);
-    $("#alerta-pared").show();
-    attacks();
+    if (attacks() == 0) {
+      playerWins = 0; //empat
+      $("#alerta-pared").text("Empate");
+      $("#alerta-pared").show();
+      console.log("empat");
+      break;
+    }
   }
 
   //El jugador mor
   if (player.vida <= 0) {
-    playerWins = false;
+    playerWins = -1;
     console.log("JUGADOR MORT");
+    $("#lives").text(player.vida);
+    pintaImagen("you_lose.png",0,0);
   }
 
   //L'enemic mor
@@ -31,18 +37,22 @@ function fight () {
 function attacks () {
   var attack = attacker.ataque - attacked.defensa;
 
-  if (attack >= 0) {
+  if (attack > 0) {
     attacked.vida -= attack;
   }
 
   if (attacker == player) {
+
+    console.log ("PLAYER " + attack);
     attacker = enemigo;
     attacked = player;
   } else {
+
+    console.log ("ENEMY" + attack);
     attacked = enemigo;
     attacker = player;
   }
-  console.log (attack);
+  return attack;
 
   //TODO Mostrar titol d'atac (que no apareix fins que es mor)
   //$("#alerta-info").text("Jugador: " + player.vida + " Enemigo: " + enemigo.vida);

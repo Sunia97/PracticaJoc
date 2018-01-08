@@ -1,70 +1,42 @@
-numNivells = 3; //Nombre de nivells que tenim al joc
-objects = 0;//Nombre d'objectes que té el jugador
-left_weapon = 0;
-right_weapon = 0;
+var numNivells = 3; //Nombre de nivells que tenim al joc
+var objects = 0;//Nombre d'objectes que té el jugador
+var left_weapon = 0;//Nombre de l'arma de la mà dreta
+var right_weapon = 0;//Nombre de l'arma de la mà esquerra
+var id_llave;
 
-//Funció que carrega un nivell del map i on es desenvolupa tot el joc amb crides a funcions
-function loadNewLevel(level) {
-  if (level < 0) {
-    readJSON (level);
-    startGame(level); //carrega la posició del jugador i el que calgui
-  } else if (level == 0) {
-    pintaImagen()
-  } else {
-    alert("Alguna cosa ha anat malament carregant el nivell. Refresca la pàgina siusplau.")
-  }
-}
+/**
+* Mostra en pantalla les dades i els objectes del jugador.
+* @param {number} level Nivell en el que es troba el jugador
+**/
+function showAttributes (isNewGame) {
 
-function readJSON (level) {
-  //Busca el mapa corresponent al nivell
-  // Utilitzem numNivells ja que gameJSON.size no funcionava.
-  for (var z = 0; z < numNivells; z++) {
-    if (gameJSON[z].level == level) {
-      break;
+  if (isNewGame == true) {
+    objects = 0;
+
+    $("#left_hand").text("Mano Izquierda");
+    left_weapon = 0;
+
+    $("#right_hand").text("Mano Derecha");
+    right_weapon = 0;
+
+    for (var i = 0; i < 8; i++) {
+      $("#item" + (i+1)).text("ESPACIO LIBRE");
     }
-  }
-  player.estadoPartida.direccion = gameJSON[3].estadoPartida.direccion;
+  }else {
 
-  mapa = gameJSON[z].map;//Assigna el nivell (mapa) que toca a mapa
+    objects = 0;
 
-  //Fa la trasposada de la matriu Mapa, per guardar-la igual que al json.
-  for (var i = 0; i < 10; i++) {
-    for (var j = 0; j < i; j++) {
-      var temp = mapa[i][j];
-      mapa[i][j] = mapa[j][i];
-      mapa[j][i] = temp;
+    $("#left_hand").text("Mano Izquierda");
+    left_weapon = 0;
+
+    $("#right_hand").text("Mano Derecha");
+    right_weapon = 0;
+
+    for (var j = 0; j < player.mochila.length; j++) {
+      addWeaponButton(player.mochila[j]);
     }
-  }
-}
-
-function startGame(level) {
-
-  player.estadoPartida.x = gameJSON[3].estadoPartida.x;
-  player.estadoPartida.y = gameJSON[3].estadoPartida.y;
-/*
-  //Busca la posició del jugador
-  fi = 0;
-  for (x = 0; x < 10 && fi == 0; x++) {
-    for (y = 0; y < 10 && fi == 0; y++) {
-      if (mapa[x][y] == "P") {
-        player.estadoPartida.x = x;
-        player.estadoPartida.y = y;
-        console.log(x, y);
-        fi = 1;
-      }
-    }
-  }
-*/
-  propertiesHands();
-  showAttributes(level);
-  show();
-}
-
-//l jugador i de l'equip.
-function showAttributes (level) {
-  if (level == -2) {
-    for (var i = 1; i < 9 && level == -2; i++) {
-      $("#item" + i).text("ESPACIO LIBRE");
+    for (var y = j; y < 8; y++) {
+      $("#item" + (y+1)).text("ESPACIO LIBRE");
     }
   }
 
@@ -73,19 +45,27 @@ function showAttributes (level) {
   $("#level").text(player.nivel);
   $("#attack").text(player.ataque);
   $("#defense").text(player.defensa);
+  $("#xp").text(player.xp);
 }
 
-//Afegeix el botó d'una eina
+/**
+* Afegeix a la motxilla una arma
+* @param {string} obj Objecte a afegir
+**/
 function addWeaponButton (obj) {
   var id_object = "#item" + (objects + 1);
   var object_button = "<br/><img class='weapon' src='media/images/objects/" + objetos[obj].path + "'>";
+
+  if (obj == "llave") id_llave = id_object;
 
   objects ++;
   $(id_object).text(obj);
   $(id_object).append(object_button);
 }
 
-//Segons les armes que té a les mans actualitza atac i defensa.
+/**
+* Segons les armes que té a les mans actualitza atac i defensa.
+**/
 function propertiesHands () {
   if (player.manoderecha != "") {
     var object_right = objetos[player.manoderecha];
@@ -107,11 +87,14 @@ function propertiesHands () {
     }
   }
 
-
   $("#attack").text(player.ataque);
   $("#defense").text(player.defensa);
 }
 
+/**
+* Canvia l'arma que el jugador té a la mà
+* @param {string} id_hand Id del botó de la mà a canviar
+**/
 function changeWeapon (id_hand) {
   var weapon = "";
 
@@ -156,28 +139,13 @@ function changeWeapon (id_hand) {
   propertiesHands();
 }
 
-function startGame() {
-  //Busca la posició del jugador
-  fi = 0;
-  for (x = 0; x < 10 && fi == 0; x++) {
-    for (y = 0; y < 10 && fi == 0; y++) {
-      if (mapa[x][y] == "P") {
-        player.estadoPartida.x = x;
-        player.estadoPartida.y = y;
-        fi = 1;
-      }
-    }
-  }
-
-  propertiesHands();
-  showAttributes();
-  show();
-}
-
+/**
+* Mostra la casella que el jugador té davant
+**/
 function show () {
   x = player.estadoPartida.x;
   y = player.estadoPartida.y;
-
+  console.log("Soc el show")
   switch (player.estadoPartida.direccion) {
       case 0:
         pintaPosicion(x, y - 1);
@@ -197,27 +165,27 @@ function show () {
   checkGame(x, y);
 }
 
-//Rep la casella que el jugador té davant
+/**
+*Rep la casella que el jugador té davant
+**/
 function checkGame(x, y) {
 
   if (mapa[x][y] == "E") {
     esViu = fight();
-    if (esViu == true) mapa[x][y] = "·";
+    if (esViu == 1) mapa[x][y] = "·";
   }
 
   updatePlayer ();
-  //Si està mort:
-  if (player.vida <= 0) {
-    estatPartida = 1;
-    pintaImagen("you_lose.png", 0, 0);
-    // TODO: que passa quan perd?
-  } else {
-
+  //Si està viu:
+  if (player.vida > 0) {
+    //console.log("entra a perd")
+    //pintaImagen("you_lose.png", 0, 0);
     if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "D") {
       checkDoor();
       show();
     }
     if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "O") {
+      console.log("hla");
       checkObject(random_obj);
       show();
     }
@@ -228,24 +196,40 @@ function checkGame(x, y) {
   }
 }
 
+/**
+* El jugador es troba una porta i entra en ella.
+**/
 function checkDoor () {
   if (player.manoderecha == "llave" || player.manoizquierda == "llave"){
     if (confirm("Vols pujar de nivell?")) {
       able = false;
       player.estadoPartida.nivel++;
+      player.mochila.pop("llave");
+      if (manoderecha == "llave") {
+        manoderecha = "";
+        $("right_hand").text("Mano Derecha");
+      }
+      if (manoizquierda == "llave") {
+        manoizquierda = "";
+        $("left_hand").text("Mano Izquierda");
+      }
+      player.mochila.pop("llave");
+      $(id_llave).text("ESPACIO LIBRE");
       loadNewLevel(player.estadoPartida.nivel);
     } else {
       alert("esperem veure't aviat");
       stepBackwards();
     }
   } else {
-    $("#alerta-pared").text("Necessitas una llave para abrirla");
-    $("#alerta-pared").show();
+    $("#alerta-info").text("Necessitas una llave para abrirla");
+    $("#alerta-info").show();
     stepBackwards();
   }
 }
 
-//movem el jugador una casella enrere
+/**
+* movem el jugador una casella enrere
+**/
 function stepBackwards () {
   switch (player.estadoPartida.direccion) {
       case 0:
@@ -263,15 +247,22 @@ function stepBackwards () {
     }
 }
 
+/**
+* El jugador es troba un objecte i avança per agafar-lo.
+* @param {string} obj Objecte trobat
+**/
 function checkObject (obj) {
   player.mochila.push (obj);
   addWeaponButton(obj);
-  $("#alerta-pared").text("Has encontrado el objeto: " + obj);
-  $("#alerta-pared").show();
+  $("#alerta-info").text("Has encontrado el objeto: " + obj);
+
+  $("#alerta-info").show();
   mapa[player.estadoPartida.x][player.estadoPartida.y] = ".";
 }
 
-//Actualitza el nivell, defensa i atac del jugador
+/**
+* Actualitza el nivell, defensa i atac del jugador
+**/
 function updatePlayer () {
   //XP acumulats d'altres nivells.
   var xp = 0;
@@ -293,36 +284,21 @@ function updatePlayer () {
   }
 }
 
-function restart() {
-  resetProperties ();
-  //forcem el pintat dels dos botons de les mans.
-  $("#right_hand").text("Mano Derecha");
-  $("#left_hand").text("Mano Izquierda");
+/**
+* Afegeix una arma aleatòria a l'enemic
+**/
+function addWeaponEnemy (){
+  weapon = getRandomObject ();
+  while (weapon == "llave") {
+    weapon = getRandomObject ();
+  }
 
-  objects = 0;
-  left_weapon = 0;
-  right_weapon = 0;
-  loadNewLevel(-2);
-}
-
-function resetProperties () {
-  level = -2;
-  player.nivel = 1;
-  player.ataque = 5;
-  player.defensa = 0;
-  player.manoderecha = "";
-  player.manoizquierda ="";
-  player.mochila = ["HACHA"];
-  player.vida = 10;
-  player.nivel = 1;
-  player.xp = 0;
-  player.ataque = 0;
-  player.defensa = 0;
-}
-
-function addWeaponEnemy (weapon){
-  
-  enemigo.objetos.push(weapon);
+  enemigo.objetos = [weapon];
   enemigo.ataque += objetos[weapon].ataque;
   enemigo.defensa += objetos[weapon].defensa;
+  enemigo.vida = Math.floor(Math.random() * 10 + 1);
+  enemigo.xp = 5 * Math.floor(Math.random() * (player.nivel + 1) + 1);
+
+  $("#alerta-info").text("Tiene: " + enemigo.objetos + "/ XP: " + enemigo.xp + "/ Vida: " + enemigo.vida + " Avanza para luchar");
+  $("#alerta-info").show();
 }
