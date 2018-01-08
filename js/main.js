@@ -1,5 +1,5 @@
 var gameJSON = "";
-var introMusic = new Audio('src/StrangerThings8 Bit.mp3');
+var introMusic = new Audio('other/StrangerThings8 Bit.mp3');
 var random_obj = "";
 
 /*hello*/
