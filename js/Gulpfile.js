@@ -7,7 +7,7 @@ var imagemin = require('gulp-imagemin');
 
 
 gulp.task('beautify', function() {
-  gulp.src('./css/*.js')
+  gulp.src('css/*.js')
     .pipe(beautify({indent_size: 2}))
     .pipe(gulp.dest('build/styles'))
 });
