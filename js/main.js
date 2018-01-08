@@ -13,8 +13,9 @@ function iniciarJuego() {
   $("#game-loaded-panel").hide();
   introMusic.loop = true;
 
-  //deleteStructureJSON(slot);
-  //uploadStructureJSON(1);
+  //deleteStructureJSON("2");
+  //uploadStructureJSON("2");
+  //getListOfGames();
   loadAssets();
 
   // NOTE: Descarreguem estructura de partida nova
