@@ -146,7 +146,6 @@ function show () {
   x = player.estadoPartida.x;
   y = player.estadoPartida.y;
 
-  console.log(player);
   switch (player.estadoPartida.direccion) {
       case 0:
         pintaPosicion(x, y - 1);

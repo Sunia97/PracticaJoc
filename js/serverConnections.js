@@ -16,7 +16,7 @@ function uploadStructureJSON(slot) {
     url: url_server + token + "&slot=" + slot,
     data: {json: JSON.stringify(structure)},//Com que el path està posat al html ho detecta com una variable
     complete: function(result){
-     console.log("GAME SAVED. Success on POST from Server (uploadStructureJSON)");
+     console.log("Success on POST from Server (uploadStructureJSON)");
     }
   });
 
@@ -24,8 +24,6 @@ function uploadStructureJSON(slot) {
 
  function saveGameStructureJSON(slot) {
 
-   console.log("Es guarda aquesta partida:");
-   console.log(gameJSON[2]);
    $.ajax({
      type: 'POST',
      url: url_server + token + "&slot=" + slot,
@@ -59,10 +57,9 @@ function downloadStructureJSON(slot, callback) {
     type: 'get',
     url: url_server + token + "&slot=" + slot,
     success: function(response){
+      console.log("Success on GET from Server (downloadStructureJSON");
       responseParsed = JSON.parse(response);
       //console.log("Parse de response fet, es crida al callback:");
-      console.log("Partida descarregada:");
-      console.log(responseParsed[2]);
       callback(responseParsed);
     }
   });
