@@ -145,7 +145,7 @@ function changeWeapon (id_hand) {
 function show () {
   x = player.estadoPartida.x;
   y = player.estadoPartida.y;
-  console.log("Soc el show")
+  console.log("Soc el show");
   switch (player.estadoPartida.direccion) {
       case 0:
         pintaPosicion(x, y - 1);
@@ -285,7 +285,7 @@ function updatePlayer () {
   }
 
   $("#level").text(player.nivel);
-  $("#vida").text(player.vida);
+  $("#lives").text(player.vida);
   $("#xp").text(player.xp);
 }
 
