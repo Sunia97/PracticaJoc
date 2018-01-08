@@ -6,23 +6,23 @@ var random_obj = "";
 function iniciarJuego() {
 
   introMusic.play();
-  $("#alerta-pared").hide();
+  $("#alerta-info").hide();
   $("#save-game-panel").hide();
   $("#load-game-panel").hide();
   $("#game-saved-panel").hide();
   $("#game-loaded-panel").hide();
   introMusic.loop = true;
 
-  var slot = "nueva";           // NOTE: Variarà segons el que vulgui el jugador (partida 1 o 2 guardada) o "nueva" a l'inici
-  //deleteStructureJSON(slot);
-  //uploadStructureJSON(slot);
+  //deleteStructureJSON("2");
+  //uploadStructureJSON("2");
+  //getListOfGames();
   loadAssets();
 
   // NOTE: Descarreguem estructura de partida nova
-  downloadStructureJSON (slot, function callback(result) {
+  downloadStructureJSON ("nueva", function callback(result) {
     gameJSON = result;
-    loadNewLevel(-2);
-    console.log("Callback fet. gameJSON carregat des del server.");
+    loadNewLevel(-2, true);//Per defecte, paràmetres: Nivell -2 i isNewGame = true
+    //console.log("Callback fet. gameJSON carregat des del server.");
   });
 }
 
@@ -38,6 +38,8 @@ function mapaToImg(x, y) {
     return "dungeon_door.png";
   }
   if (mapa[x][y] == "E") {
+    //Afegeix la vida i una arma aleatòria a l'enemic
+    addWeaponEnemy();
     return enemigo.img;
   }
   if (mapa[x][y] == "K") {
@@ -62,7 +64,10 @@ function getRandomObject () {
 }
 
 function soundEnable () {
-  getListOfGames();
+  //getListOfGames();
+
+  console.log("player te els valor actualitzats:");
+  console.log(player);
 
   if (introMusic.paused) {
     introMusic.play();
@@ -86,10 +91,9 @@ function loadAssets () {
   objetos.tirachinas = {"ataque" : 1, "defensa" : 0, "path" : "tirachinas.png" };
   objetos.espada = {"ataque" : 2, "defensa" : 3, "path" : "espada.png" };
   objetos.pistola = {"ataque" : 4, "defensa" : 2, "path" : "pistola.png" };
+  objetos.cuchillo = {"ataque" : 3, "defensa" : 2, "path" : "cuchillo.png" };
   objetos.llave = {"path" : "llave.png" };
   enemigo.img = "demogorgon.png";
-  enemigo.vida = 5;
-  addWeaponEnemy("hacha");
-  resetProperties ();
+  //resetProperties ();
 }
  

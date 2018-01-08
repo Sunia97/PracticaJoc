@@ -44,14 +44,24 @@ function attacks () {
     attacker = player;
   }
 
+<<<<<<< HEAD
   console.log(player.vida, enemigo.vida);
 
   //TODO Mostrar titol d'atac (que no apareix fins que es mor)
   wait (1);
   //$("#alerta-pared").hide();
+=======
+  //TODO Mostrar titol d'atac (que no apareix fins que es mor)
+  //$("#alerta-info").text("Jugador: " + player.vida + " Enemigo: " + enemigo.vida);
+  //$("#alerta-info").show();
+  //wait (3);
+  //$("#alerta-info").hide();
+>>>>>>> 71917630b8a901601ee2ad6d1843536d5a1d4a34
 }
 
 function enemyDies () {
+  $("#alerta-info").text("¡Has vencido! Recibes: " + enemigo.objetos);
+  $("#alerta-info").show();
   player.xp += enemigo.xp;
 
   //afegeix al jugador les eines de l'enemic
@@ -65,6 +75,7 @@ function enemyDies () {
     $("#alerta-pared").show();
     player.mochila.push(obj);
     addWeaponButton(obj);
+    $("#xp").text(player.xp);
   }
 }
 

@@ -1,4 +1,5 @@
 function move (movement) {
+  $("#alerta-info").hide();
   if (movement == "right" || movement == "left") {
     rotate (movement);
   } else {
@@ -82,12 +83,11 @@ function walk (movement) {
 function comprovaMoviment(x, y) {
 
   if (mapa[x][y] == "#") {
-    $("#alerta-pared").text("¡No puedes atravesar una pared!");
-    $("#alerta-pared").show();
+    $("#alerta-info").text("¡No puedes atravesar una pared!");
+    $("#alerta-info").show();
     //alert ("No pots travessar una paret!");
     ok = false;
   } else {
-    $("#alerta-pared").hide();
     ok = true;
   }
   return ok;
