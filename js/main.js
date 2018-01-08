@@ -6,7 +6,7 @@ var random_obj = "";
 function iniciarJuego() {
 
   introMusic.play();
-  $("#alerta-pared").hide();
+  $("#alerta-info").hide();
   $("#save-game-panel").hide();
   $("#load-game-panel").hide();
   $("#game-saved-panel").hide();
@@ -38,6 +38,8 @@ function mapaToImg(x, y) {
     return "dungeon_door.png";
   }
   if (mapa[x][y] == "E") {
+    //Afegeix la vida i una arma aleatòria a l'enemic
+    addWeaponEnemy();
     return enemigo.img;
   }
   if (mapa[x][y] == "K") {
@@ -86,10 +88,9 @@ function loadAssets () {
   objetos.tirachinas = {"ataque" : 1, "defensa" : 0, "path" : "tirachinas.png" };
   objetos.espada = {"ataque" : 2, "defensa" : 3, "path" : "espada.png" };
   objetos.pistola = {"ataque" : 4, "defensa" : 2, "path" : "pistola.png" };
+  objetos.cuchillo = {"ataque" : 3, "defensa" : 2, "path" : "pistola.png" };
   objetos.llave = {"path" : "llave.png" };
 
   enemigo.img = "demogorgon.png";
-  enemigo.vida = 5;
-  addWeaponEnemy("hacha");
   resetProperties ();
 }

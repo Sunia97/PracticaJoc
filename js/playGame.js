@@ -1,10 +1,13 @@
 numNivells = 3; //Nombre de nivells que tenim al joc
 objects = 0;//Nombre d'objectes que té el jugador
-left_weapon = 0;
-right_weapon = 0;
+left_weapon = 0;//Nombre de l'arma de la mà dreta
+right_weapon = 0;//Nombre de l'arma de la mà esquerra
 var id_llave;
 
-//l jugador i de l'equip.
+/**
+* Mostra en pantalla les dades i els objectes del jugador.
+* @param {number} level Nivell en el que es troba el jugador
+**/
 function showAttributes (level) {
   if (level == -2) {
     for (var i = 1; i < 9 && level == -2; i++) {
@@ -17,9 +20,13 @@ function showAttributes (level) {
   $("#level").text(player.nivel);
   $("#attack").text(player.ataque);
   $("#defense").text(player.defensa);
+  $("#xp").text(player.xp);
 }
 
-//Afegeix el botó d'una eina
+/**
+* Afegeix a la motxilla una arma
+* @param {string} obj Objecte a afegir
+**/
 function addWeaponButton (obj) {
   var id_object = "#item" + (objects + 1);
   var object_button = "<br/><img class='weapon' src='media/images/objects/" + objetos[obj].path + "'>";
@@ -31,7 +38,9 @@ function addWeaponButton (obj) {
   $(id_object).append(object_button);
 }
 
-//Segons les armes que té a les mans actualitza atac i defensa.
+/**
+* Segons les armes que té a les mans actualitza atac i defensa.
+**/
 function propertiesHands () {
   if (player.manoderecha != "") {
     var object_right = objetos[player.manoderecha];
@@ -53,11 +62,14 @@ function propertiesHands () {
     }
   }
 
-
   $("#attack").text(player.ataque);
   $("#defense").text(player.defensa);
 }
 
+/**
+* Canvia l'arma que el jugador té a la mà
+* @param {string} id_hand Id del botó de la mà a canviar
+**/
 function changeWeapon (id_hand) {
   var weapon = "";
 
@@ -102,6 +114,9 @@ function changeWeapon (id_hand) {
   propertiesHands();
 }
 
+/**
+* Mostra la casella que el jugador té davant
+**/
 function show () {
   x = player.estadoPartida.x;
   y = player.estadoPartida.y;
@@ -125,7 +140,9 @@ function show () {
   checkGame(x, y);
 }
 
-//Rep la casella que el jugador té davant
+/**
+*Rep la casella que el jugador té davant
+**/
 function checkGame(x, y) {
 
   if (mapa[x][y] == "E") {
@@ -156,6 +173,9 @@ function checkGame(x, y) {
   }
 }
 
+/**
+* El jugador es troba una porta i entra en ella.
+**/
 function checkDoor () {
   if (player.manoderecha == "llave" || player.manoizquierda == "llave"){
     if (confirm("Vols pujar de nivell?")) {
@@ -178,13 +198,15 @@ function checkDoor () {
       stepBackwards();
     }
   } else {
-    $("#alerta-pared").text("Necessitas una llave para abrirla");
-    $("#alerta-pared").show();
+    $("#alerta-info").text("Necessitas una llave para abrirla");
+    $("#alerta-info").show();
     stepBackwards();
   }
 }
 
-//movem el jugador una casella enrere
+/**
+* movem el jugador una casella enrere
+**/
 function stepBackwards () {
   switch (player.estadoPartida.direccion) {
       case 0:
@@ -202,15 +224,21 @@ function stepBackwards () {
     }
 }
 
+/**
+* El jugador es troba un objecte i avança per agafar-lo.
+* @param {string} obj Objecte trobat
+**/
 function checkObject (obj) {
   player.mochila.push (obj);
   addWeaponButton(obj);
-  $("#alerta-pared").text("Has encontrado el objeto: " + obj);
-  $("#alerta-pared").show();
+  $("#alerta-info").text("Has encontrado el objeto: " + obj);
+  $("#alerta-info").show();
   mapa[player.estadoPartida.x][player.estadoPartida.y] = ".";
 }
 
-//Actualitza el nivell, defensa i atac del jugador
+/**
+* Actualitza el nivell, defensa i atac del jugador
+**/
 function updatePlayer () {
   //XP acumulats d'altres nivells.
   var xp = 0;
@@ -232,8 +260,21 @@ function updatePlayer () {
   }
 }
 
-function addWeaponEnemy (weapon){
-  enemigo.objetos.push(weapon);
+/**
+* Afegeix una arma aleatòria a l'enemic
+**/
+function addWeaponEnemy (){
+  weapon = getRandomObject ();
+  while (weapon == "llave") {
+    weapon = getRandomObject ();
+  }
+
+  enemigo.objetos = [weapon];
   enemigo.ataque += objetos[weapon].ataque;
   enemigo.defensa += objetos[weapon].defensa;
+  enemigo.vida = Math.floor(Math.random() * 10 + 1);
+  enemigo.xp = 5 * Math.floor(Math.random() * (player.nivel + 1) + 1);
+
+  $("#alerta-info").text("Tiene: " + enemigo.objetos + "/ XP: " + enemigo.xp + "/ Vida: " + enemigo.vida + " Avanza para luchar");
+  $("#alerta-info").show();
 }

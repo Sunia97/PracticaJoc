@@ -1,4 +1,7 @@
-//Funció que carrega un nivell del map i on es desenvolupa tot el joc amb crides a funcions
+/**
+ * carrega un nivell del map i on es desenvolupa tot el joc amb crides a funcions
+ * @param {number} level Nivell a carregar
+ */
 function loadNewLevel(level) {
   if (level < 0) {
     readJSON (level);
@@ -6,9 +9,12 @@ function loadNewLevel(level) {
   }
 }
 
+/**
+ * Llegeix la informació json i la guarda
+ * @param {number} level Nivell a carregar
+ */
 function readJSON (level) {
   //Busca el mapa corresponent al nivell
-  // Utilitzem numNivells ja que gameJSON.size no funcionava.
   for (var z = 0; z < numNivells; z++) {
     if (gameJSON[z].level == level) {
       break;
@@ -28,6 +34,9 @@ function readJSON (level) {
   }
 }
 
+/**
+ * Cerca la posició del jugador en el mapa i reinicia la informació en pantalla.
+ */
 function startGame() {
   //Busca la posició del jugador
   fi = 0;
@@ -46,6 +55,9 @@ function startGame() {
   show();
 }
 
+/**
+* Carrega una partida guardada.
+**/
 function startGame(level) {
   player.estadoPartida.x = gameJSON[2].estadoPartida.x;
   player.estadoPartida.y = gameJSON[2].estadoPartida.y;
@@ -54,7 +66,9 @@ function startGame(level) {
   show();
 }
 
-
+/**
+* Reinicia una partida i el que es mostra en pantalla.
+**/
 function restart() {
   resetProperties ();
   //forcem el pintat dels dos botons de les mans.
@@ -67,6 +81,9 @@ function restart() {
   loadNewLevel(-2);
 }
 
+/**
+* Reinicia les propietats del jugador. 
+**/
 function resetProperties () {
   level = -2;
   player.nivel = 1;
