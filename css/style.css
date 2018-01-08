@@ -262,7 +262,7 @@
   }
   .save-game {
     position: fixed;
-    bottom: 1;
+    top: auto;
     background: black;
     color: white;
     width: 100%;
