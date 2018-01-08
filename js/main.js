@@ -1,11 +1,11 @@
 var gameJSON = "";
 var introMusic = new Audio('other/StrangerThings8 Bit.mp3');
 var random_obj = "";
-  var randomNum = 0;
+var randomNum = 0;
 
-/*hello*/
-
-/* Inicializar el juego */
+/**
+* Inicializar el juego
+**/
 function iniciarJuego() {
 
   introMusic.play();
@@ -21,21 +21,20 @@ function iniciarJuego() {
   $("#game-deleted-panel").hide();
   introMusic.loop = true;
 
-  //deleteStructureJSON("2");
-  //uploadStructureJSON("2");
-  //getListOfGames();
   loadAssets();
 
   // NOTE: Descarreguem estructura de partida nova
   downloadStructureJSON ("nueva", function callback(result) {
     gameJSON = result;
     loadNewLevel(-2, true);//Per defecte, paràmetres: Nivell -2 i isNewGame = true
-    //console.log("Callback fet. gameJSON carregat des del server.");
   });
 }
 
-/* Convierte lo que hay en el mapa en un archivo de imagen */
+/**
+* Convierte lo que hay en el mapa en un archivo de imagen
+**/
 function mapaToImg(x, y) {
+  //Apareix un objecte
   if (mapa[x][y] == "O") {
     random_obj = getRandomObject ();
     while (random_obj == "llave") {
@@ -43,27 +42,33 @@ function mapaToImg(x, y) {
     }
     return ("path_" + random_obj + ".png");
   }
+  //Apareix la paret
   if (mapa[x][y] == "#") {
     return "dungeon_wall.png";
   }
+  //Hi ha el jugador o un espai buit
   if (mapa[x][y] == "." || mapa[x][y] == "P") {
     return "dungeon_step.png";
   }
+  //Apareix la porta
   if (mapa[x][y] == "D") {
     return "dungeon_door.png";
   }
+  //Apareix un enemic
   if (mapa[x][y] == "E") {
     //Afegeix la vida i una arma aleatòria a l'enemic
     addWeaponEnemy();
     return enemigo.img;
   }
+  //Apareix la clau
   if (mapa[x][y] == "K") {
     return "path_llave.png";
   }
-  //Apareix un objecte
-
 }
 
+/**
+* Genera un objecte aleatori
+**/
 function getRandomObject () {
   var result;
     var count = 0;
@@ -72,12 +77,10 @@ function getRandomObject () {
     return result;
 }
 
+/**
+* Activa el so
+**/
 function soundEnable () {
-  //getListOfGames();
-
-  console.log("player te els valor actualitzats:");
-  console.log(player);
-
   if (introMusic.paused) {
     introMusic.play();
     $("#sound").css("color", "white");
@@ -87,12 +90,16 @@ function soundEnable () {
   }
 }
 
+/**
+* Salta el video del principi
+**/
 function introSkip () {
   $("#intro").remove();
 }
 
-//Carrega els objectes amb les seves imatges i les propietats inicials.
-//Per no modificar el juego.js
+/**
+*Carrega els objectes amb les seves imatges i les propietats inicials per no modificar el juego.js
+**/
 function loadAssets () {
   objetos.hacha = {"ataque" : 3, "defensa" : 1, "path" : "hacha.png" };
   objetos.escudo = {"ataque" : 0, "defensa" : 4, "path" : "escudo.png" };
@@ -104,5 +111,4 @@ function loadAssets () {
   objetos.llave = {"path" : "llave.png" };
 
   enemigo.img = "demogorgon.png";
-  //resetProperties ();
 }
