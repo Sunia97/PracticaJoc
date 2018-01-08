@@ -31,12 +31,26 @@ function loadGame (slotCarregar) {
   $("#game-loaded-panel").show();
 }
 
+function deleteGame (slotDelete) {
+  deleteAndResetStructureJSON(slotDelete);
+  $("#delete-game-panel").hide();
+  $("#game-deleted-panel").show();
+}
+
 function showLoad() {
   $("#load-game-panel").show();
 }
 
 function showSave() {
   $("#save-game-panel").show();
+}
+
+function showDelete() {
+  $("#delete-game-panel").show();
+}
+
+function cancelDelete() {
+  $("#delete-game-panel").hide();
 }
 
 function cancelSave() {
@@ -53,4 +67,8 @@ function hideSavedPanel() {
 
 function hideLoadedPanel() {
   $("#game-loaded-panel").hide();
+}
+
+function hideDeletedPanel() {
+  $("#game-deleted-panel").hide();
 }
