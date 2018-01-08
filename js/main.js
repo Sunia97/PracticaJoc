@@ -1,32 +1,48 @@
 var gameJSON = "";
-var introMusic = new Audio('src/StrangerThings8 Bit.mp3');
+var introMusic = new Audio('other/StrangerThings8 Bit.mp3');
 var random_obj = "";
+  var randomNum = 0;
+
+/*hello*/
 
 /* Inicializar el juego */
 function iniciarJuego() {
 
   introMusic.play();
+
   $("#alerta-info").hide();
+
   $("#save-game-panel").hide();
   $("#load-game-panel").hide();
+  $("#delete-game-panel").hide();
+
   $("#game-saved-panel").hide();
   $("#game-loaded-panel").hide();
+  $("#game-deleted-panel").hide();
   introMusic.loop = true;
 
-  //deleteStructureJSON(slot);
-  //uploadStructureJSON(1);
+  //deleteStructureJSON("2");
+  //uploadStructureJSON("2");
+  //getListOfGames();
   loadAssets();
 
   // NOTE: Descarreguem estructura de partida nova
   downloadStructureJSON ("nueva", function callback(result) {
     gameJSON = result;
-    loadNewLevel(-2);
-    console.log("Callback fet. gameJSON carregat des del server.");
+    loadNewLevel(-2, true);//Per defecte, paràmetres: Nivell -2 i isNewGame = true
+    //console.log("Callback fet. gameJSON carregat des del server.");
   });
 }
 
 /* Convierte lo que hay en el mapa en un archivo de imagen */
 function mapaToImg(x, y) {
+  if (mapa[x][y] == "O") {
+    random_obj = getRandomObject ();
+    while (random_obj == "llave") {
+      random_obj = getRandomObject ();
+    }
+    return ("path_" + random_obj + ".png");
+  }
   if (mapa[x][y] == "#") {
     return "dungeon_wall.png";
   }
@@ -45,17 +61,11 @@ function mapaToImg(x, y) {
     return "path_llave.png";
   }
   //Apareix un objecte
-  if (mapa[x][y] == "O") {
-    random_obj = getRandomObject ();
-    while (random_obj == "llave") {
-      random_obj = getRandomObject ();
-    }
-    return ("path_" + random_obj + ".png");
-  }
+
 }
 
 function getRandomObject () {
-    var result;
+  var result;
     var count = 0;
     for (var prop in objetos)
         if (Math.random() < 1/++count) result = prop;
@@ -63,7 +73,10 @@ function getRandomObject () {
 }
 
 function soundEnable () {
-  getListOfGames();
+  //getListOfGames();
+
+  console.log("player te els valor actualitzats:");
+  console.log(player);
 
   if (introMusic.paused) {
     introMusic.play();
@@ -91,5 +104,5 @@ function loadAssets () {
   objetos.llave = {"path" : "llave.png" };
 
   enemigo.img = "demogorgon.png";
-  resetProperties ();
+  //resetProperties ();
 }

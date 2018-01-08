@@ -1,7 +1,5 @@
 //FUNCIÓ PER GUARDAR PARTIDA
 function saveGame (slotGuardar) {
-  console.log("gameJSON fins ara:" );
-  console.log(gameJSON[2]);
 
   if (slotGuardar == 1 || slotGuardar == 2) {
     gameJSON[2] = player;
@@ -20,14 +18,23 @@ function loadGame (slotCarregar) {
 
   downloadStructureJSON (slotCarregar, function callback(result) {
     gameJSON = result;
-    console.log("Partida carregada:");
-    console.log(gameJSON[2]);
-    loadNewLevel(gameJSON[2].estadoPartida.nivel);
-    console.log("Callback fet. gameJSON carregat des del server.");
+
+    if (slotCarregar == "nueva") {
+      loadNewLevel(gameJSON[2].estadoPartida.nivel, true);
+    }else {
+      loadNewLevel(gameJSON[2].estadoPartida.nivel, false);
+    }
+    //console.log("Callback fet. gameJSON carregat des del server.");
   });
 
   $("#load-game-panel").hide();
   $("#game-loaded-panel").show();
+}
+
+function deleteGame (slotDelete) {
+  deleteAndResetStructureJSON(slotDelete);
+  $("#delete-game-panel").hide();
+  $("#game-deleted-panel").show();
 }
 
 function showLoad() {
@@ -36,6 +43,14 @@ function showLoad() {
 
 function showSave() {
   $("#save-game-panel").show();
+}
+
+function showDelete() {
+  $("#delete-game-panel").show();
+}
+
+function cancelDelete() {
+  $("#delete-game-panel").hide();
 }
 
 function cancelSave() {
@@ -52,4 +67,8 @@ function hideSavedPanel() {
 
 function hideLoadedPanel() {
   $("#game-loaded-panel").hide();
+}
+
+function hideDeletedPanel() {
+  $("#game-deleted-panel").hide();
 }

@@ -1,17 +1,42 @@
-numNivells = 3; //Nombre de nivells que tenim al joc
-objects = 0;//Nombre d'objectes que té el jugador
-left_weapon = 0;//Nombre de l'arma de la mà dreta
-right_weapon = 0;//Nombre de l'arma de la mà esquerra
+var numNivells = 3; //Nombre de nivells que tenim al joc
+var objects = 0;//Nombre d'objectes que té el jugador
+var left_weapon = 0;//Nombre de l'arma de la mà dreta
+var right_weapon = 0;//Nombre de l'arma de la mà esquerra
 var id_llave;
 
 /**
 * Mostra en pantalla les dades i els objectes del jugador.
 * @param {number} level Nivell en el que es troba el jugador
 **/
-function showAttributes (level) {
-  if (level == -2) {
-    for (var i = 1; i < 9 && level == -2; i++) {
-      $("#item" + i).text("ESPACIO LIBRE");
+function showAttributes (isNewGame) {
+
+  if (isNewGame == true) {
+    objects = 0;
+
+    $("#left_hand").text("Mano Izquierda");
+    left_weapon = 0;
+
+    $("#right_hand").text("Mano Derecha");
+    right_weapon = 0;
+
+    for (var i = 0; i < 8; i++) {
+      $("#item" + (i+1)).text("ESPACIO LIBRE");
+    }
+  }else {
+
+    objects = 0;
+
+    $("#left_hand").text("Mano Izquierda");
+    left_weapon = 0;
+
+    $("#right_hand").text("Mano Derecha");
+    right_weapon = 0;
+
+    for (var j = 0; j < player.mochila.length; j++) {
+      addWeaponButton(player.mochila[j]);
+    }
+    for (var y = j; y < 8; y++) {
+      $("#item" + (y+1)).text("ESPACIO LIBRE");
     }
   }
 
@@ -120,7 +145,7 @@ function changeWeapon (id_hand) {
 function show () {
   x = player.estadoPartida.x;
   y = player.estadoPartida.y;
-
+  console.log("Soc el show")
   switch (player.estadoPartida.direccion) {
       case 0:
         pintaPosicion(x, y - 1);
@@ -147,21 +172,29 @@ function checkGame(x, y) {
 
   if (mapa[x][y] == "E") {
     esViu = fight();
-    if (esViu == true) mapa[x][y] = "·";
+    if (esViu == 1) mapa[x][y] = "·";
   }
 
   updatePlayer ();
+<<<<<<< HEAD
   //Si està mort:
   if (player.vida <= 0) {
     estatPartida = 1;
     pintaImagen("you_lose.png", 0, 0);
   } else {
 
+=======
+  //Si està viu:
+  if (player.vida > 0) {
+    //console.log("entra a perd")
+    //pintaImagen("you_lose.png", 0, 0);
+>>>>>>> 3582e7c1f5f2eb75e19a18c041db78d7a48ddb42
     if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "D") {
       checkDoor();
       show();
     }
     if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "O") {
+      console.log("hla");
       checkObject(random_obj);
       show();
     }
@@ -228,9 +261,10 @@ function stepBackwards () {
 * @param {string} obj Objecte trobat
 **/
 function checkObject (obj) {
-  player.mochila.push (obj);
+  getObject(obj);
   addWeaponButton(obj);
   $("#alerta-info").text("Has encontrado el objeto: " + obj);
+
   $("#alerta-info").show();
   mapa[player.estadoPartida.x][player.estadoPartida.y] = ".";
 }
@@ -251,12 +285,17 @@ function updatePlayer () {
     player.defensa --;
     player.vida += player.nivel * 10;
     console.log("PUJA NIVELL " + player.nivel);
+    $("#level").text ("Nivel:" + player.nivel);
   }
 
   //Cada dos nivells es puja 1 d'atac
   if (player.nivel % 2 == 0) {
     player.ataque ++;
   }
+
+  $("#level").text(player.nivel);
+  $("#vida").text(player.vida);
+  $("#xp").text(player.xp);
 }
 
 /**
@@ -276,4 +315,35 @@ function addWeaponEnemy (){
 
   $("#alerta-info").text("Tiene: " + enemigo.objetos + "/ XP: " + enemigo.xp + "/ Vida: " + enemigo.vida + " Avanza para luchar");
   $("#alerta-info").show();
+}
+
+function getObject (obj) {
+  console.log(objects);
+  if (objects < 8) {
+    player.mochila.push(obj);
+  } else {
+    //busca el pijor objecte
+    var worst_obj = player.mochila [0];
+    var worst_prop = worst_obj.ataque + worst_obj.defensa;
+    var iterations = 0;
+
+    for (var i = 0; i < player.mochila.length; i ++){
+      if ((obj.ataque + obj.defensa) < worst_prop && obj != "llave") {
+        worst_obj = player.mochila [i];
+        iterations = i;
+      }
+    }
+
+    console.log(obj + "iterations " + iterations);
+    player.mochila.pop (worst_obj);
+    player.mochila.push (obj);
+
+    $("#item" + iterations).text(obj);
+    var object_button = "<br/><img class='weapon' src='media/images/objects/" + objetos[obj].path + "'>";
+    if (obj == "llave") id_llave = id_object;
+    $(id_object).append(object_button);
+
+
+    //TODO treure el boto i treure de la ma
+  }
 }

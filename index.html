@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" type="text/css" media="all" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:600|Press+Start+2P" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:600%7CPress+Start+2P" rel="stylesheet">
     <script src="js/juego.js"></script>
     <script src="js/main.js"></script>
     <script src="js/serverConnections.js"></script>
@@ -20,7 +20,7 @@
     <script src="js/fight.js"></script>
     <script src="js/saveUtilities.js"></script>
     <script src="jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="src/structure.json"></script>
+    <script src="other/structure.json"></script>
   </head>
 
   <body id="body" class="container">
@@ -32,7 +32,7 @@
 
       <div id="intro-container" class="container">
         <div class="row justify-content-center">
-          <img id="logo2" src="media/images/logo2.png" height="100" />
+          <img id="logo2" src="media/images/logo2.png" height="100" alt="logo"/>
           <h1 id="title-intro">Dungeon Master</h1>
         </div>
         <div id="button_playGame" class="row justify-content-center">
@@ -43,17 +43,40 @@
 
     <header class="row" id="header">
 
-      <img id="logo" src="media/images/title.png" height="80" />
+      <img id="logo" src="media/images/title.png" height="80" alt="logo"/>
       <h1 id="titol_principal">Dungeon Master</h1>
 
       <nav id="controls_partida">
         <ul>
-          <li href="#" class="button" id="start" onclick="loadGame(0)">Comenzar partida </li>
-          <li href="#" class="button" id="load" onclick="showLoad()">Cargar partida</li>
-          <li href="#" class="button" id="save" onclick="showSave()"> Guardar partida</li>
+          <li class="button" id="start" onclick="loadGame(0)">Comenzar partida </li>
+          <li class="button" id="load" onclick="showLoad()">Cargar partida</li>
+          <li class="button" id="save" onclick="showSave()"> Guardar partida</li>
+          <li class="button" id="delete" onclick="showDelete()"> Eliminar partida</li>
         </ul>
       </nav>
     </header>
+
+    <!-- NOTE: Panell per eliminar partida -->
+    <div id="delete-game-panel" class="container save-game">
+      <div class="row justify-content-center">
+        <p id="title-delete">¿Qué Slot quieres eliminar?</p>
+      </div>
+      <div id="buttons-delete" class="row justify-content-center">
+        <button id="button-slot1-delete" class="button save-button" onclick="deleteGame(1)">Slot 1</button>
+        <button id="button-slot2-delete" class="button save-button" onclick="deleteGame(2)">Slot 2</button>
+        <button id="button-delete-cancel" class="button save-button" onclick="cancelDelete()">Cancelar</button>
+      </div>
+    </div>
+
+    <!-- NOTE: Panell partida eliminada -->
+    <div id="game-deleted-panel" class="container save-game">
+      <div class="row justify-content-center">
+        <p id="title-delete1">Partida eliminada</p>
+      </div>
+      <div class="row justify-content-center">
+        <button id="deleted-ok" class="button save-button" onclick="hideDeletedPanel()">OK</button>
+      </div>
+    </div>
 
     <!-- NOTE: Panell per guardar partida -->
     <div id="save-game-panel" class="container save-game">
@@ -138,7 +161,6 @@
         <h2 id="titol_jugador">Jugador</h2>
 
         <div class="row" id="caracteristicas_jugador">
-          <p>Nombre/Sexo: <span id = "name"></span></p>
           <p>Nivel: <span id = "level"></span></p>
           <p>XP: <span id = "xp"></span></p>
           <p>Ataque: <span id = "attack"></span></p>

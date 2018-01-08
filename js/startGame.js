@@ -2,10 +2,11 @@
  * carrega un nivell del map i on es desenvolupa tot el joc amb crides a funcions
  * @param {number} level Nivell a carregar
  */
-function loadNewLevel(level) {
+function loadNewLevel(level, isNewGame) {
+  playerWins = 0;
   if (level < 0) {
     readJSON (level);
-    startGame(level); //carrega la posició del jugador i el que calgui
+    startGame(isNewGame); //carrega la posició del jugador i el que calgui
   }
 }
 
@@ -36,19 +37,28 @@ function readJSON (level) {
 /**
 * Carrega una partida guardada.
 **/
-function startGame(level) {
+function startGame(isNewGame) {
+
   player.estadoPartida.direccion = gameJSON[2].estadoPartida.direccion;
   player.estadoPartida.x = gameJSON[2].estadoPartida.x;
   player.estadoPartida.y = gameJSON[2].estadoPartida.y;
   player.nombre = gameJSON[2].nombre;
   player.nivel = gameJSON[2].nivel;
   player.ataque = gameJSON[2].ataque;
+<<<<<<< HEAD
   player.vida = gameJSON[2].vida;
+=======
+  player.defensa = gameJSON[2].defensa;
+  player.manoderecha = gameJSON[2].manoderecha;
+  player.manoizquierda = gameJSON[2].manoizquierda;
+  player.mochila = gameJSON[2].mochila;
+>>>>>>> 3582e7c1f5f2eb75e19a18c041db78d7a48ddb42
 
   propertiesHands();
-  showAttributes(level);
+  showAttributes(isNewGame);
   show();
 }
+<<<<<<< HEAD
 
 /**
 * Reinicia les propietats del jugador.
@@ -67,3 +77,5 @@ function resetProperties () {
   player.ataque = 0;
   player.defensa = 0;
 }
+=======
+>>>>>>> 3582e7c1f5f2eb75e19a18c041db78d7a48ddb42

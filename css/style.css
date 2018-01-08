@@ -158,14 +158,6 @@
   .weapon {
     padding: 5px;
   }
-  /*
-  #item1 {
-    @include margin(15px, 0px, 25px, 15px);
-  }
-
-  #item5 {
-    @include margin(15px, 0px, 25px, 15px);
-  }*/
   #eines {
     background-color: #C20E0E;
     color: white;
@@ -197,6 +189,18 @@
   }
   #objectes-hands {
     background-color: #C20E0E;
+  }
+  #left_hand {
+    color: white;
+    border-style: none;
+    background-color: brown;
+    margin: 5px;
+  }
+  #right_hand {
+    color: white;
+    border-style: none;
+    background-color: brown;
+    margin: 5px;
   }
   #mochila-buttons-container {
     margin-left: 25px;
@@ -258,12 +262,12 @@
   }
   .save-game {
     position: fixed;
-    bottom: 1;
+    top: auto;
     background: black;
     color: white;
     width: 100%;
-    padding: 20px;
-    z-index: 2;
+    padding: 50px;
+    z-index: 3;
   }
   .save-button {
     margin: 20px;
