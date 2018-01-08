@@ -176,19 +176,10 @@ function checkGame(x, y) {
   }
 
   updatePlayer ();
-<<<<<<< HEAD
-  //Si està mort:
-  if (player.vida <= 0) {
-    estatPartida = 1;
-    pintaImagen("you_lose.png", 0, 0);
-  } else {
-
-=======
   //Si està viu:
   if (player.vida > 0) {
     //console.log("entra a perd")
     //pintaImagen("you_lose.png", 0, 0);
->>>>>>> 3582e7c1f5f2eb75e19a18c041db78d7a48ddb42
     if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "D") {
       checkDoor();
       show();

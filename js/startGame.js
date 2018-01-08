@@ -45,37 +45,12 @@ function startGame(isNewGame) {
   player.nombre = gameJSON[2].nombre;
   player.nivel = gameJSON[2].nivel;
   player.ataque = gameJSON[2].ataque;
-<<<<<<< HEAD
-  player.vida = gameJSON[2].vida;
-=======
   player.defensa = gameJSON[2].defensa;
   player.manoderecha = gameJSON[2].manoderecha;
   player.manoizquierda = gameJSON[2].manoizquierda;
   player.mochila = gameJSON[2].mochila;
->>>>>>> 3582e7c1f5f2eb75e19a18c041db78d7a48ddb42
 
   propertiesHands();
   showAttributes(isNewGame);
   show();
 }
-<<<<<<< HEAD
-
-/**
-* Reinicia les propietats del jugador.
-**/
-function resetProperties () {
-  level = -2;
-  player.nivel = 1;
-  player.ataque = 0;
-  player.defensa = 0;
-  player.manoderecha = "";
-  player.manoizquierda ="";
-  player.mochila = [];
-  player.vida = 10;
-  player.nivel = 1;
-  player.xp = 0;
-  player.ataque = 0;
-  player.defensa = 0;
-}
-=======
->>>>>>> 3582e7c1f5f2eb75e19a18c041db78d7a48ddb42
