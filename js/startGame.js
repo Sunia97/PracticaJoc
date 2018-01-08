@@ -34,27 +34,6 @@ function readJSON (level) {
 }
 
 /**
- * Cerca la posició del jugador en el mapa i reinicia la informació en pantalla.
- */
-function startGame() {
-  //Busca la posició del jugador
-  fi = 0;
-  for (x = 0; x < 10 && fi == 0; x++) {
-    for (y = 0; y < 10 && fi == 0; y++) {
-      if (mapa[x][y] == "P") {
-        player.estadoPartida.x = x;
-        player.estadoPartida.y = y;
-        fi = 1;
-      }
-    }
-  }
-
-  propertiesHands();
-  showAttributes();
-  show();
-}
-
-/**
 * Carrega una partida guardada.
 **/
 function startGame(level) {
@@ -69,21 +48,6 @@ function startGame(level) {
   propertiesHands();
   showAttributes(level);
   show();
-}
-
-/**
-* Reinicia una partida i el que es mostra en pantalla.
-**/
-function restart() {
-  resetProperties ();
-  //forcem el pintat dels dos botons de les mans.
-  $("#right_hand").text("Mano Derecha");
-  $("#left_hand").text("Mano Izquierda");
-
-  objects = 0;
-  left_weapon = 0;
-  right_weapon = 0;
-  loadNewLevel(-2);
 }
 
 /**

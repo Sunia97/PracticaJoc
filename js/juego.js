@@ -43,31 +43,18 @@ window.onload = function () {
   iniciarJuego();
 }
 
-/*  Pinta imagen en el visor */
 function pintaImagen(src, x, y) {
   // Consigue el canvas
   var canvas = document.getElementById('visor');
   var context = canvas.getContext('2d');
   var base_image = new Image();
   base_image.src = "./media/images/"+src;
-  base_image.onload = function () {
-    // Pinta imagen en el canvas
-    context.drawImage(this, x, y);
-  }
-}
-
-function pintaImagen(src, x, y) {
-  // Consigue el canvas
-  var canvas = document.getElementById('visor');
-  var context = canvas.getContext('2d');
-  var base_image = new Image();
-  base_image.src = "./media/images/"+src;
+  console.log("mostra " + src);
   base_image.onload = function () {
     // Pinta imagen en el canvas
     context.drawImage(this, x, y);
   };
 }
-
 
 /* Pinta al visor lo que hay en el mapa */
 function pintaPosicion(x, y) {
