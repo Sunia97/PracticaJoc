@@ -1,13 +1,15 @@
 function move (movement) {
   $("#alerta-info").hide();
-  if (movement == "right" || movement == "left") {
-    rotate (movement);
-  } else {
-    walk (movement);
-  }
-  console.log("he entrat a move");
+  if (playerWins != -1) {
+    if (movement == "right" || movement == "left") {
+      rotate (movement);
+    } else {
+      walk (movement);
+    }
+    console.log("he entrat a move");
 
-  show();
+    show();
+  }
 }
 
 function walk (movement) {

@@ -65,12 +65,11 @@ function mapaToImg(x, y) {
 }
 
 function getRandomObject () {
-  var objects = Object.keys(objetos);
-  console.log(objects[randomNum]);
-    random_obj = objects[randomNum];
-    randomNum++;
-
-    return random_obj;
+  var result;
+    var count = 0;
+    for (var prop in objetos)
+        if (Math.random() < 1/++count) result = prop;
+    return result;
 }
 
 function soundEnable () {

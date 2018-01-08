@@ -3,6 +3,7 @@
  * @param {number} level Nivell a carregar
  */
 function loadNewLevel(level, isNewGame) {
+  playerWins = 0;
   if (level < 0) {
     readJSON (level);
     startGame(isNewGame); //carrega la posició del jugador i el que calgui
@@ -37,6 +38,7 @@ function readJSON (level) {
 * Carrega una partida guardada.
 **/
 function startGame(isNewGame) {
+
   player.estadoPartida.direccion = gameJSON[2].estadoPartida.direccion;
   player.estadoPartida.x = gameJSON[2].estadoPartida.x;
   player.estadoPartida.y = gameJSON[2].estadoPartida.y;

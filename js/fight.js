@@ -18,10 +18,7 @@ function fight () {
 
   //El jugador mor
   if (player.vida <= 0) {
-    playerWins = -1;
-    console.log("JUGADOR MORT");
-    $("#lives").text(player.vida);
-    pintaImagen("you_lose.png",0,0);
+    playerDies ();
   }
 
   //L'enemic mor
@@ -32,6 +29,18 @@ function fight () {
 
   updatePlayer ();
   return playerWins;
+}
+
+function playerDies (){
+  playerWins = -1;
+  $("#alerta-info").text("¡Has muerto! Haz click en Comenzar Partida.");
+  $("#alerta-info").show();
+  console.log("JUGADOR MORT");
+  if (player.vida<0){
+    player.vida = 0;
+  }
+  $("#lives").text(player.vida);
+  pintaImagen("you_lose.png",0,0);
 }
 
 function attacks () {
@@ -75,7 +84,7 @@ function enemyDies () {
     //Afegeix un nou objecte al jugador.
     $("#alerta-pared").text("Has ganado y obtienes sus armas.");
     $("#alerta-pared").show();
-    player.mochila.push(obj);
+    getObject (obj);
     addWeaponButton(obj);
     $("#xp").text(player.xp);
   }
