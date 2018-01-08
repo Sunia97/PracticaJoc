@@ -60,7 +60,9 @@ function downloadStructureJSON(slot, callback) {
     url: url_server + token + "&slot=" + slot,
     success: function(response){
       responseParsed = JSON.parse(response);
-      console.log("Parse de response fet, es crida al callback:");
+      //console.log("Parse de response fet, es crida al callback:");
+      console.log("Partida descarregada:");
+      console.log(responseParsed[2]);
       callback(responseParsed);
     }
   });

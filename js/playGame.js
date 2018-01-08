@@ -8,10 +8,15 @@ var id_llave;
 * Mostra en pantalla les dades i els objectes del jugador.
 * @param {number} level Nivell en el que es troba el jugador
 **/
-function showAttributes (level) {
-  if (level == -2) {
-    for (var i = 1; i < 9 && level == -2; i++) {
-      $("#item" + i).text("ESPACIO LIBRE");
+function showAttributes (isNewGame) {
+
+  if (isNewGame == true) {
+    for (var i = 0; i < 8; i++) {
+      $("#item" + (i+1)).text("ESPACIO LIBRE");
+    }
+  }else {
+    for (var j = 0; j < player.mochila.length; j++) {
+      addWeaponButton(player.mochila[j]);
     }
   }
 
@@ -121,6 +126,7 @@ function show () {
   x = player.estadoPartida.x;
   y = player.estadoPartida.y;
 
+  console.log(player);
   switch (player.estadoPartida.direccion) {
       case 0:
         pintaPosicion(x, y - 1);
@@ -156,7 +162,7 @@ function checkGame(x, y) {
     console.log("entra a perd");
     estatPartida = 1;
     pintaImagen("you_lose.png", 0, 0);
-    // TODO: que passa quan perd?
+
   } else {
 
     if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "D") {

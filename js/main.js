@@ -20,8 +20,8 @@ function iniciarJuego() {
   // NOTE: Descarreguem estructura de partida nova
   downloadStructureJSON ("nueva", function callback(result) {
     gameJSON = result;
-    loadNewLevel(-2);
-    console.log("Callback fet. gameJSON carregat des del server.");
+    loadNewLevel(-2, true);//Per defecte, paràmetres: Nivell -2 i isNewGame = true
+    //console.log("Callback fet. gameJSON carregat des del server.");
   });
 }
 
@@ -63,7 +63,10 @@ function getRandomObject () {
 }
 
 function soundEnable () {
-  getListOfGames();
+  //getListOfGames();
+
+  console.log("player te els valor actualitzats:");
+  console.log(player);
 
   if (introMusic.paused) {
     introMusic.play();
@@ -91,5 +94,5 @@ function loadAssets () {
   objetos.llave = {"path" : "llave.png" };
 
   enemigo.img = "demogorgon.png";
-  resetProperties ();
+  //resetProperties ();
 }

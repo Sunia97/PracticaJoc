@@ -2,10 +2,10 @@
  * carrega un nivell del map i on es desenvolupa tot el joc amb crides a funcions
  * @param {number} level Nivell a carregar
  */
-function loadNewLevel(level) {
+function loadNewLevel(level, isNewGame) {
   if (level < 0) {
     readJSON (level);
-    startGame(level); //carrega la posició del jugador i el que calgui
+    startGame(isNewGame); //carrega la posició del jugador i el que calgui
   }
 }
 
@@ -34,61 +34,32 @@ function readJSON (level) {
 }
 
 /**
- * Cerca la posició del jugador en el mapa i reinicia la informació en pantalla.
- */
-function startGame() {
-  //Busca la posició del jugador
-  fi = 0;
-  for (x = 0; x < 10 && fi == 0; x++) {
-    for (y = 0; y < 10 && fi == 0; y++) {
-      if (mapa[x][y] == "P") {
-        player.estadoPartida.x = x;
-        player.estadoPartida.y = y;
-        fi = 1;
-      }
-    }
-  }
-
-  propertiesHands();
-  showAttributes();
-  show();
-}
-
-/**
 * Carrega una partida guardada.
 **/
-function startGame(level) {
+function startGame(isNewGame) {
   player.estadoPartida.direccion = gameJSON[2].estadoPartida.direccion;
   player.estadoPartida.x = gameJSON[2].estadoPartida.x;
   player.estadoPartida.y = gameJSON[2].estadoPartida.y;
   player.nombre = gameJSON[2].nombre;
   player.nivel = gameJSON[2].nivel;
   player.ataque = gameJSON[2].ataque;
+  player.defensa = gameJSON[2].defensa;
+  player.manoderecha = gameJSON[2].manoderecha;
+  player.manoizquierda = gameJSON[2].manoizquierda;
+  player.mochila = gameJSON[2].mochila;
 
-
+  console.log("player te els valor actualitzats:");
+  console.log(player);
   propertiesHands();
-  showAttributes(level);
+  showAttributes(isNewGame);
   show();
-}
-
-/**
-* Reinicia una partida i el que es mostra en pantalla.
-**/
-function restart() {
-  resetProperties ();
-  //forcem el pintat dels dos botons de les mans.
-  $("#right_hand").text("Mano Derecha");
-  $("#left_hand").text("Mano Izquierda");
-
-  objects = 0;
-  left_weapon = 0;
-  right_weapon = 0;
-  loadNewLevel(-2);
 }
 
 /**
 * Reinicia les propietats del jugador.
 **/
+
+/*
 function resetProperties () {
   level = -2;
   player.nivel = 1;
@@ -102,4 +73,4 @@ function resetProperties () {
   player.xp = 0;
   player.ataque = 0;
   player.defensa = 0;
-}
+}*/
