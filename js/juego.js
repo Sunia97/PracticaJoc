@@ -12,7 +12,7 @@ var objetos = {
 };
 
 var enemigo = {
-  vida:0,
+  vida:10,
   ataque:0,
   defensa:0,
   xp:0,
@@ -49,25 +49,13 @@ function pintaImagen(src, x, y) {
   var canvas = document.getElementById('visor');
   var context = canvas.getContext('2d');
   var base_image = new Image();
+  console.log("pinta " + src);
   base_image.src = "./media/images/"+src;
   base_image.onload = function () {
     // Pinta imagen en el canvas
     context.drawImage(this, x, y);
   }
 }
-
-function pintaImagen(src, x, y) {
-  // Consigue el canvas
-  var canvas = document.getElementById('visor');
-  var context = canvas.getContext('2d');
-  var base_image = new Image();
-  base_image.src = "./media/images/"+src;
-  base_image.onload = function () {
-    // Pinta imagen en el canvas
-    context.drawImage(this, x, y);
-  };
-}
-
 
 /* Pinta al visor lo que hay en el mapa */
 function pintaPosicion(x, y) {

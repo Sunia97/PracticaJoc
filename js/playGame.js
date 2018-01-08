@@ -145,7 +145,7 @@ function changeWeapon (id_hand) {
 function show () {
   x = player.estadoPartida.x;
   y = player.estadoPartida.y;
-
+  console.log("Soc el show")
   switch (player.estadoPartida.direccion) {
       case 0:
         pintaPosicion(x, y - 1);
@@ -172,23 +172,20 @@ function checkGame(x, y) {
 
   if (mapa[x][y] == "E") {
     esViu = fight();
-    if (esViu == true) mapa[x][y] = "·";
+    if (esViu == 1) mapa[x][y] = "·";
   }
 
   updatePlayer ();
-  //Si està mort:
-  if (player.vida <= 0) {
-    console.log("entra a perd");
-    estatPartida = 1;
-    pintaImagen("you_lose.png", 0, 0);
-
-  } else {
-
+  //Si està viu:
+  if (player.vida > 0) {
+    //console.log("entra a perd")
+    //pintaImagen("you_lose.png", 0, 0);
     if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "D") {
       checkDoor();
       show();
     }
     if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "O") {
+      console.log("hla");
       checkObject(random_obj);
       show();
     }
@@ -255,7 +252,7 @@ function stepBackwards () {
 * @param {string} obj Objecte trobat
 **/
 function checkObject (obj) {
-  player.mochila.push (obj);
+  getObject(obj);
   addWeaponButton(obj);
   $("#alerta-info").text("Has encontrado el objeto: " + obj);
 
@@ -279,12 +276,17 @@ function updatePlayer () {
     player.defensa --;
     player.vida += player.nivel * 10;
     console.log("PUJA NIVELL " + player.nivel);
+    $("#level").text ("Nivel:" + player.nivel);
   }
 
   //Cada dos nivells es puja 1 d'atac
   if (player.nivel % 2 == 0) {
     player.ataque ++;
   }
+
+  $("#level").text(player.nivel);
+  $("#vida").text(player.vida);
+  $("#xp").text(player.xp);
 }
 
 /**
@@ -304,4 +306,35 @@ function addWeaponEnemy (){
 
   $("#alerta-info").text("Tiene: " + enemigo.objetos + "/ XP: " + enemigo.xp + "/ Vida: " + enemigo.vida + " Avanza para luchar");
   $("#alerta-info").show();
+}
+
+function getObject (obj) {
+  console.log(objects);
+  if (objects < 8) {
+    player.mochila.push(obj);
+  } else {
+    //busca el pijor objecte
+    var worst_obj = player.mochila [0];
+    var worst_prop = worst_obj.ataque + worst_obj.defensa;
+    var iterations = 0;
+
+    for (var i = 0; i < player.mochila.length; i ++){
+      if ((obj.ataque + obj.defensa) < worst_prop && obj != "llave") {
+        worst_obj = player.mochila [i];
+        iterations = i;
+      }
+    }
+
+    console.log(obj + "iterations " + iterations);
+    player.mochila.pop (worst_obj);
+    player.mochila.push (obj);
+
+    $("#item" + iterations).text(obj);
+    var object_button = "<br/><img class='weapon' src='media/images/objects/" + objetos[obj].path + "'>";
+    if (obj == "llave") id_llave = id_object;
+    $(id_object).append(object_button);
+
+
+    //TODO treure el boto i treure de la ma
+  }
 }
