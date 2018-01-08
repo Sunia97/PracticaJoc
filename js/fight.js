@@ -1,7 +1,10 @@
-var attacker = player;
-var attacked = enemigo;
+var attacker = player; //Qui ataca
+var attacked = enemigo; //Qui es defensa
 
-//Lluita entre l'enemic i el jugador que retorna true si el jugador guanya. .
+/**
+* Lluita entre l'enemic i el jugador que retorna 1 si el jugador guanya, 0 si
+* hi ha empat i -1 si guanya l'enemic.
+**/
 function fight () {
   var playerWins = 1; //guanya el jugador
 
@@ -31,6 +34,9 @@ function fight () {
   return playerWins;
 }
 
+/**
+* Es mostra que el jugador ha mort.
+**/
 function playerDies (){
   playerWins = -1;
   $("#alerta-info").text("¡Has muerto! Haz click en Comenzar Partida.");
@@ -43,6 +49,9 @@ function playerDies (){
   pintaImagen("you_lose.png",0,0);
 }
 
+/**
+* Es produeix un atac.
+**/
 function attacks () {
   var attack = attacker.ataque - attacked.defensa;
 
@@ -51,25 +60,20 @@ function attacks () {
   }
 
   if (attacker == player) {
-
-    console.log ("PLAYER " + attack);
+    console.log ("PLAYER ataca amb " + attack);
     attacker = enemigo;
     attacked = player;
   } else {
-
-    console.log ("ENEMY" + attack);
+    console.log ("ENEMY ataca amb " + attack);
     attacked = enemigo;
     attacker = player;
   }
   return attack;
-
-  //TODO Mostrar titol d'atac (que no apareix fins que es mor)
-  //$("#alerta-info").text("Jugador: " + player.vida + " Enemigo: " + enemigo.vida);
-  //$("#alerta-info").show();
-  //wait (3);
-  //$("#alerta-info").hide();
 }
 
+/**
+* El jugador guanya el combat
+**/
 function enemyDies () {
   $("#alerta-info").text("¡Has vencido! Recibes: " + enemigo.objetos);
   $("#alerta-info").show();
@@ -87,13 +91,5 @@ function enemyDies () {
     getObject (obj);
     addWeaponButton(obj);
     $("#xp").text(player.xp);
-  }
-}
-
-function wait(seconds){
-   var start = new Date().getTime();
-   var end = start;
-   while(end < start + seconds * 1000) {
-     end = new Date().getTime();
   }
 }
