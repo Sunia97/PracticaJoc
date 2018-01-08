@@ -1,6 +1,6 @@
-var level = -2;
 var gameJSON = "";
 var introMusic = new Audio('src/StrangerThings8 Bit.mp3');
+var random_obj = "";
 
 /* Inicializar el juego */
 function iniciarJuego() {
@@ -10,16 +10,18 @@ function iniciarJuego() {
   $("#save-game-panel").hide();
   $("#load-game-panel").hide();
   $("#game-saved-panel").hide();
-    $("#game-loaded-panel").hide();
+  $("#game-loaded-panel").hide();
   introMusic.loop = true;
 
-  //uploadStructureJSON("2");   // NOTE: Només per pujar els mapes al servidor per part dels desenvolupadors.
-                                //Comentar-ho quan ja estan pujats el primer cop!
+  var slot = "nueva";           // NOTE: Variarà segons el que vulgui el jugador (partida 1 o 2 guardada) o "nueva" a l'inici
+  //deleteStructureJSON(slot);
+  //uploadStructureJSON(slot);
   loadAssets();
+
   // NOTE: Descarreguem estructura de partida nova
-  downloadStructureJSON ("nueva", function callback(result) {
+  downloadStructureJSON (slot, function callback(result) {
     gameJSON = result;
-    loadNewLevel(level);
+    loadNewLevel(-2);
     console.log("Callback fet. gameJSON carregat des del server.");
   });
 }
@@ -39,8 +41,24 @@ function mapaToImg(x, y) {
     return enemigo.img;
   }
   if (mapa[x][y] == "K") {
-    return "path_key.png";
+    return "path_llave.png";
   }
+  //Apareix un objecte
+  if (mapa[x][y] == "O") {
+    random_obj = getRandomObject ();
+    while (random_obj == "llave") {
+      random_obj = getRandomObject ();
+    }
+    return ("path_" + random_obj + ".png");
+  }
+}
+
+function getRandomObject () {
+    var result;
+    var count = 0;
+    for (var prop in objetos)
+        if (Math.random() < 1/++count) result = prop;
+    return result;
 }
 
 function soundEnable () {
@@ -62,11 +80,16 @@ function introSkip () {
 //Carrega els objectes amb les seves imatges i les propietats inicials.
 //Per no modificar el juego.js
 function loadAssets () {
-  objetos.hacha = {"ataque" : 3, "defensa" : 1, "path" : "hacha_2.png" };
-  objetos.escudo = {"ataque" : 0, "defensa" : 4, "path" : "escudo_2.png" };
-  objetos.garrote = {"ataque" : 1, "defensa" : 0, "path" : "garrote_2.png" };
-  objetos.tirachinas = {"ataque" : 2, "defensa" : 0, "path" : "tirachinas_2.png" };
-  objetos.llave = {"path" : "llave_2.png" };
+  objetos.hacha = {"ataque" : 3, "defensa" : 1, "path" : "hacha.png" };
+  objetos.escudo = {"ataque" : 0, "defensa" : 4, "path" : "escudo.png" };
+  objetos.garrote = {"ataque" : 1, "defensa" : 1, "path" : "garrote.png" };
+  objetos.tirachinas = {"ataque" : 1, "defensa" : 0, "path" : "tirachinas.png" };
+  objetos.espada = {"ataque" : 2, "defensa" : 3, "path" : "espada.png" };
+  objetos.pistola = {"ataque" : 4, "defensa" : 2, "path" : "pistola.png" };
+  objetos.llave = {"path" : "llave.png" };
+
   enemigo.img = "demogorgon.png";
+  enemigo.vida = 5;
+  addWeaponEnemy("hacha");
   resetProperties ();
 }

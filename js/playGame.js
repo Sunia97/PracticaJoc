@@ -2,63 +2,10 @@ numNivells = 3; //Nombre de nivells que tenim al joc
 objects = 0;//Nombre d'objectes que té el jugador
 left_weapon = 0;
 right_weapon = 0;
-level = -2;
-
-//Funció que carrega un nivell del map i on es desenvolupa tot el joc amb crides a funcions
-function loadNewLevel(level) {
-  if (level < 0) {
-    readJSON (level);
-    startGame(); //carrega la posició del jugador i el que calgui
-  }
-}
-
-function readJSON (level) {
-  //Busca el mapa corresponent al nivell
-  // Utilitzem numNivells ja que gameJSON.size no funcionava.
-  for (var z = 0; z < numNivells; z++) {
-    if (gameJSON[z].level == level) {
-      break;
-    }
-  }
-  player.estadoPartida.direccion = gameJSON[3].estadoPartida.direccion;
-
-  mapa = gameJSON[z].map;//Assigna el nivell (mapa) que toca a mapa
-
-  //Fa la trasposada de la matriu Mapa, per guardar-la igual que al json.
-  for (var i = 0; i < 10; i++) {
-    for (var j = 0; j < i; j++) {
-      var temp = mapa[i][j];
-      mapa[i][j] = mapa[j][i];
-      mapa[j][i] = temp;
-    }
-  }
-}
-
-function startGame() {
-
-  player.estadoPartida.x = gameJSON[3].estadoPartida.x;
-  player.estadoPartida.y = gameJSON[3].estadoPartida.y;
-/*
-  //Busca la posició del jugador
-  fi = 0;
-  for (x = 0; x < 10 && fi == 0; x++) {
-    for (y = 0; y < 10 && fi == 0; y++) {
-      if (mapa[x][y] == "P") {
-        player.estadoPartida.x = x;
-        player.estadoPartida.y = y;
-        console.log(x, y);
-        fi = 1;
-      }
-    }
-  }
-*/
-  propertiesHands();
-  showAttributes();
-  show();
-}
+var id_llave;
 
 //l jugador i de l'equip.
-function showAttributes () {
+function showAttributes (level) {
   if (level == -2) {
     for (var i = 1; i < 9 && level == -2; i++) {
       $("#item" + i).text("ESPACIO LIBRE");
@@ -76,6 +23,8 @@ function showAttributes () {
 function addWeaponButton (obj) {
   var id_object = "#item" + (objects + 1);
   var object_button = "<br/><img class='weapon' src='media/images/objects/" + objetos[obj].path + "'>";
+
+  if (obj == "llave") id_llave = id_object;
 
   objects ++;
   $(id_object).text(obj);
@@ -193,11 +142,15 @@ function checkGame(x, y) {
   } else {
 
     if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "D") {
-        checkDoor();
-        show();
+      checkDoor();
+      show();
+    }
+    if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "O") {
+      checkObject(random_obj);
+      show();
     }
     if (mapa[player.estadoPartida.x][player.estadoPartida.y] == "K") {
-      checkKey();
+      checkObject("llave");
       show();
     }
   }
@@ -207,8 +160,19 @@ function checkDoor () {
   if (player.manoderecha == "llave" || player.manoizquierda == "llave"){
     if (confirm("Vols pujar de nivell?")) {
       able = false;
-      level++;
-      loadNewLevel(level);
+      player.estadoPartida.nivel++;
+      player.mochila.pop("llave");
+      if (manoderecha == "llave") {
+        manoderecha = "";
+        $("right_hand").text("Mano Derecha");
+      }
+      if (manoizquierda == "llave") {
+        manoizquierda = "";
+        $("left_hand").text("Mano Izquierda");
+      }
+      player.mochila.pop("llave");
+      $(id_llave).text("ESPACIO LIBRE");
+      loadNewLevel(player.estadoPartida.nivel);
     } else {
       alert("esperem veure't aviat");
       stepBackwards();
@@ -238,12 +202,12 @@ function stepBackwards () {
     }
 }
 
-function checkKey () {
-    player.mochila.push ("llave");
-    addWeaponButton("llave");
-    $("#alerta-pared").text("Has encontrado una llave.");
-    $("#alerta-pared").show();
-    mapa[player.estadoPartida.x][player.estadoPartida.y] = ".";
+function checkObject (obj) {
+  player.mochila.push (obj);
+  addWeaponButton(obj);
+  $("#alerta-pared").text("Has encontrado el objeto: " + obj);
+  $("#alerta-pared").show();
+  mapa[player.estadoPartida.x][player.estadoPartida.y] = ".";
 }
 
 //Actualitza el nivell, defensa i atac del jugador
@@ -268,29 +232,8 @@ function updatePlayer () {
   }
 }
 
-function restart() {
-  resetProperties ();
-  //forcem el pintat dels dos botons de les mans.
-  $("#right_hand").text("Mano Derecha");
-  $("#left_hand").text("Mano Izquierda");
-
-  objects = 0;
-  left_weapon = 0;
-  right_weapon = 0;
-  loadNewLevel(level);
-}
-
-function resetProperties () {
-  level = -2;
-  player.nivel = 1;
-  player.ataque = 0;
-  player.defensa = 0;
-  player.manoderecha = "";
-  player.manoizquierda ="";
-  player.mochila = [];
-  player.vida = 10;
-  player.nivel = 1;
-  player.xp = 0;
-  player.ataque = 0;
-  player.defensa = 0;
+function addWeaponEnemy (weapon){
+  enemigo.objetos.push(weapon);
+  enemigo.ataque += objetos[weapon].ataque;
+  enemigo.defensa += objetos[weapon].defensa;
 }
