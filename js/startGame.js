@@ -49,6 +49,7 @@ function startGame(isNewGame) {
   player.manoderecha = gameJSON[2].manoderecha;
   player.manoizquierda = gameJSON[2].manoizquierda;
   player.mochila = gameJSON[2].mochila;
+  player.vida = gameJSON[2].vida;
 
   propertiesHands();
   showAttributes(isNewGame);
