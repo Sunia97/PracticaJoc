@@ -6,11 +6,16 @@ var random_obj = "";
 function iniciarJuego() {
 
   introMusic.play();
+
   $("#alerta-info").hide();
+
   $("#save-game-panel").hide();
   $("#load-game-panel").hide();
+  $("#delete-game-panel").hide();
+
   $("#game-saved-panel").hide();
   $("#game-loaded-panel").hide();
+  $("#game-deleted-panel").hide();
   introMusic.loop = true;
 
   //deleteStructureJSON("2");

@@ -78,6 +78,18 @@ function deleteStructureJSON(slot) {
   });
 }
 
+function deleteAndResetStructureJSON(slot) {
+
+  $.ajax({
+    type: 'DELETE',
+    url: url_server + token + "&slot=" + slot,
+    success: function(result){
+      console.log("Success on DELETE from Server (deleteStructureJSON)\n");
+      uploadStructureJSON(slot);
+    }
+  });
+}
+
 function deleteAndSaveGameJSON(slot) {
   $.ajax({
     type: 'DELETE',
