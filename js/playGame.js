@@ -1,7 +1,7 @@
-numNivells = 3; //Nombre de nivells que tenim al joc
-objects = 0;//Nombre d'objectes que té el jugador
-left_weapon = 0;//Nombre de l'arma de la mà dreta
-right_weapon = 0;//Nombre de l'arma de la mà esquerra
+var numNivells = 3; //Nombre de nivells que tenim al joc
+var objects = 0;//Nombre d'objectes que té el jugador
+var left_weapon = 0;//Nombre de l'arma de la mà dreta
+var right_weapon = 0;//Nombre de l'arma de la mà esquerra
 var id_llave;
 
 /**
@@ -11,12 +11,17 @@ var id_llave;
 function showAttributes (isNewGame) {
 
   if (isNewGame == true) {
+    objects = 0;
     for (var i = 0; i < 8; i++) {
       $("#item" + (i+1)).text("ESPACIO LIBRE");
     }
   }else {
+    objects = 0;
     for (var j = 0; j < player.mochila.length; j++) {
       addWeaponButton(player.mochila[j]);
+    }
+    for (var y = j; y < 8; y++) {
+      $("#item" + (y+1)).text("ESPACIO LIBRE");
     }
   }
 
@@ -239,6 +244,7 @@ function checkObject (obj) {
   player.mochila.push (obj);
   addWeaponButton(obj);
   $("#alerta-info").text("Has encontrado el objeto: " + obj);
+  
   $("#alerta-info").show();
   mapa[player.estadoPartida.x][player.estadoPartida.y] = ".";
 }
